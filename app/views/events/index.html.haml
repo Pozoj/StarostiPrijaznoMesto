@@ -1,0 +1,8 @@
+%h1 Dogodki
+
+- if can? :create, Event
+  %nav#editors-resource-menu
+    %ul
+      %li= link_to "Dodaj dogodek", new_resource_path
+
+= kalendar(@events_this_month, @cal_date)

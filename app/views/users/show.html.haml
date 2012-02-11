@@ -1,0 +1,25 @@
+= title "Pregled uporabnika"
+
+= render "common/simple_editors_nav", :resource => resource
+
+.field
+  .description Ime in priimek
+  .value= resource.full_name
+
+.field
+  .description Elektronska pošta
+  .value= resource.email
+
+.field
+  .description Vrsta uporabnika
+  .value= resource.user_kind
+
+- if resource.user_kind and resource.access_rights.any?
+  = render "access_rights/access_right", :collection => resource.access_rights
+
+- if resource.notes.present?
+  .field
+    .description Beležke
+    .value= resource.notes
+
+= link_to_back

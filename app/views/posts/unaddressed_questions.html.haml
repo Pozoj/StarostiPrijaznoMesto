@@ -1,0 +1,14 @@
+= title @title
+
+- unless @questions.present?
+  %article
+    %h2= @no_questions_message
+- @questions.each do |date_of_creation, questions|
+  %article
+    %h2 Vprašanje je bilo obdelano dne #{ l date_of_creation, :format => :default }
+    - questions.each do |question|
+      = render "question", :question => question
+      .admin
+        = link_to "Naslovi vprašanje",  institutionalize_answer_path(:post_id => question.id)
+        = link_to "Uredi", edit_post_path(question)
+

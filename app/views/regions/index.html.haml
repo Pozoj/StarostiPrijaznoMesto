@@ -1,0 +1,13 @@
+= title "Regije"
+
+- if can? :create, Region
+  %nav#editors-resource-menu
+    %ul
+      %li= link_to "Dodaj regijo", new_resource_path
+      
+- if collection.present?
+  %h2 Obstoječe regije
+  %ul
+    - collection.order(:name).each do |region|
+      %li= link_to region, region
+  

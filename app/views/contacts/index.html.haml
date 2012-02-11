@@ -1,0 +1,19 @@
+= title "Kontakt"
+
+- if can? :manage, Contact
+  %nav#editors-resource-menu
+    %ul
+      = render "common/new_edit_nav", :collection => collection
+
+- if collection.present?
+  - contact = collection.last
+  %contact_details
+    .name= contact.name
+    .address= contact.address
+    .tax_nr= contact.tax_nr
+    .telephone= contact.telephone
+    .fax= contact.fax
+    .mobile= contact.mobile
+    .email= contact.email
+    .url= contact.url
+  

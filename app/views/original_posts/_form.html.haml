@@ -1,0 +1,10 @@
+= simple_form_for resource, :html => { :multipart => true } do |f|
+  = f.input :first_name
+  = f.input :last_name
+  = f.input :email
+  = f.input :text
+
+  = f.simple_fields_for :photos do |photo_fields|
+    = photo_fields.input :photo
+
+  = f.submit

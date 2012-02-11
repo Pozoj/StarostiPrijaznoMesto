@@ -1,0 +1,15 @@
+- collection.group_by(&:user_kind_id).each do |uk_id, users|
+  - if uk_id.present?
+    %br
+    %hr
+    %h3= UserKind.find(uk_id).to_s
+  - else
+    %br
+    %hr
+    %h3 Administratorji
+  %ul
+    - for user in users
+      %li
+        = link_to user, user
+
+  

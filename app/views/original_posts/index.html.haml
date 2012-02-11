@@ -1,0 +1,12 @@
+= title "Neobdelana objave"
+
+- unless collection.present?
+  %article
+    %h2 Ni neobdelanih objav
+- collection.each do |date_of_creation, posts|
+  %article
+    %h2 Prejeto dne #{ l date_of_creation, :format => :default }
+    - posts.each do |post|
+      = render "original_posts/og_post", :original_post => post
+      .admin
+        = link_to "Obravnavaj objavo",  new_post_path(:original_post_id => post)

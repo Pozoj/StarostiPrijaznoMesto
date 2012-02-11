@@ -1,0 +1,14 @@
+.question
+  = render "common/sender", :original_post => question.original_post
+  %p
+    %strong Izvorno besedilo:
+    = question.original_post.text
+  %p
+    %strong Naziv:
+    = question.title
+  %p
+    %strong Povzetek:
+    = question.summary
+  %p
+    %strong Besedilo:
+    = question.text

@@ -1,0 +1,11 @@
+= simple_form_for resource do |f|
+  = f.input :name
+  = f.input :short_name
+  = f.input :description
+  = f.input :tasks
+  = f.input :address
+  = f.association :post_office
+  = f.input :phone
+  = f.input :fax
+  = f.input :website
+  = f.submit

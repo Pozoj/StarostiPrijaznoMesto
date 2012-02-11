@@ -1,0 +1,23 @@
+- if resource.present?
+  .institution-info
+    %h2= resource.name
+  
+    .info
+      %dl
+        %dt Naslov
+        %dd= "#{resource.address}, #{resource.post_office.post_number} #{resource.post_office.city}"
+
+      - if resource.phone.present?
+        %dl
+          %dt Telefon:
+          %dd= resource.phone
+
+      - if resource.fax.present?
+        %dl
+          %dt Fax:
+          %dd= resource.fax
+
+      - if resource.website.present?
+        %dl
+          %dt Spletna stran:
+          %dd= link_to resource.website, resource.website

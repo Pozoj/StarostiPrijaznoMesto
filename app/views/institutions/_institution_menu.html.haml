@@ -1,0 +1,12 @@
+- if institutions.present?
+  #institution-container
+    %h2 Lokalne ustanove in organizacije
+
+    - institutions.in_groups_of(5, false).each do |row|
+      .row
+        - row.each do |institution|
+          - if institution.short_name.present?
+            = link_to institution.short_name, institution, :abbr => institution.name
+          - else 
+            = link_to institution, institution
+          

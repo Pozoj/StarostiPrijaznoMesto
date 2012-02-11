@@ -1,0 +1,15 @@
+= title resource.title
+= render "common/simple_editors_nav"
+#event-info
+  %p#organizer
+    = link_to resource.institution, resource.institution
+    = " Vas vljudno vabi na #{resource.title}"
+  %p#address
+    %strong Naslov:
+    %span= "#{resource.address}, #{resource.post_office}"
+  %p#timing
+    %strong Čas dogodka: 
+    %span= l resource.date_and_time_at, :format => :long
+  
+  = render "common/redcloth_it", :content => resource.description
+

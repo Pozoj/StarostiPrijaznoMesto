@@ -1,0 +1,13 @@
+.suggestions
+  = title "Predlogi"
+
+  - unless @suggestions.present?
+    %article
+      %h2= "Trenutno ni predlogov."
+  - @suggestions.each do |date_of_creation, suggestions|
+    %article
+      %h2 Objavljeno dne #{ l date_of_creation, :format => :default }
+      - for suggestion in suggestions
+        .suggestion
+          = render "title_content", :thing => suggestion
+

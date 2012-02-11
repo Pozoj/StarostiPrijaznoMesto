@@ -1,0 +1,13 @@
+- if collection.present?
+  - thing = collection.last
+  
+= title thing.present? ? thing.title : "Rdeč gumb"
+
+- if can? :manage, RedButton
+  %nav#editors-resource-menu
+    %ul
+      = render "common/new_edit_nav", :collection => collection
+      
+- if thing.present?
+  = render "common/redcloth_it", :content => thing.description
+  .url= link_to thing.url, thing.url

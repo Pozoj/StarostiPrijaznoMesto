@@ -1,0 +1,11 @@
+= simple_form_for resource do |f|
+  = f.association :institution, :prompt => "Izberite ustanovo uporabnika"
+  = f.input :first_name
+  = f.input :last_name
+  = f.input :email
+  = f.input :password
+  = f.input :password_confirmation
+  = f.input :user_kind, :collection => UserKind.all, :prompt => "Izberite vrsto uporabnika", :value_method => Proc.new {|user_kind| user_kind.id }
+  = f.input :notes
+  
+  = f.submit

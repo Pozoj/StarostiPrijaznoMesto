@@ -1,0 +1,7 @@
+= simple_form_for resource do |f|
+  = f.association :institution
+  = f.input :answer
+  = f.input :suggestion
+  = f.input :range
+  = f.input :answer_status, :as => :select, :collection => AnswerStatus.all, :prompt => "Določite status odgovora"
+  = f.submit

@@ -1,0 +1,11 @@
+%h1 Ustanove
+
+- if can? :create, Institution
+  %nav#editors-resource-menu
+    %ul
+      %li= link_to "Dodaj ustanovo", new_resource_path
+
+= array_to_link_list(collection, "institution")
+
+
+  

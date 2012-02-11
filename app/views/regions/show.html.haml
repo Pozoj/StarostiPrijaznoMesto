@@ -1,0 +1,8 @@
+= title resource
+= render "common/simple_editors_nav"
+
+- if resource.cities.present?
+  %h2 Mesta, ki spadajo pod regijo
+  %ul
+    - resource.cities.each do |city|
+      %li= link_to city, city

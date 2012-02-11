@@ -1,0 +1,14 @@
+= title "Ustvarjanje zahtevka za odgovor"
+
+= render "posts/question", :question =>  @answer.post
+
+= simple_form_for @answer do |f|
+  = f.association :institution, :prompt => "Izberite ustanovo, kateri želite posredovati vprašanje"
+  = f.input :answer_status, :as => :hidden
+  = f.input :post_id, :as => :hidden
+  = f.submit
+  
+= link_to "Nazaj", unaddressed_questions_posts_path
+
+
+

@@ -1,0 +1,20 @@
+= title @title
+
+- unless @questions.present?
+  %article
+    %h2= @no_questions_message
+- @questions.each do |date_of_creation, questions|
+  %article
+    %h2 Naslovljeno dne #{ l date_of_creation, :format => :default }
+    - questions.each do |question|
+      - reciever = question.answers.first.institution
+      .reciever-info
+        %p
+          %strong Prejemnik:
+          = reciever
+          ,
+          = reciever.address
+          = reciever.post_office
+    
+      = render "question", :question => question
+

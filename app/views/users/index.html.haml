@@ -1,0 +1,7 @@
+= title "Pregled uporabnikov"
+
+- if can? :manage, User
+  %nav#editors-resource-menu
+    %ul
+      %li= link_to "Dodaj uporabnika", new_resource_path
+= render "users/user", :collection => collection

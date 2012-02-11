@@ -1,0 +1,28 @@
+= title resource
+
+= render "common/simple_editors_nav"
+
+%p
+  %strong Naslov:
+  = "#{resource.address}, #{resource.post_office.post_number} #{resource.post_office.city}"
+
+- if resource.phone.present?
+  %p
+    %strong Telefon:
+    = resource.phone
+
+- if resource.fax.present?
+  %p
+    %strong Fax:
+    = resource.fax
+
+- if resource.website.present?
+  %p
+    %strong Spletna stran:
+    = link_to resource.website, resource.website
+
+%h3 Opis
+= render "common/redcloth_it", :content => resource.description
+
+%h3 Naloge
+= render "common/redcloth_it", :content => resource.tasks

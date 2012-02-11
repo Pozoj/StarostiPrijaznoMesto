@@ -1,0 +1,14 @@
+= title "Mesta"
+
+- if can? :create, City
+  %nav#editors-resource-menu
+    %ul
+      %li= link_to "Dodaj mesto", new_resource_path
+
+
+- if collection.present?
+  %h2 Obstoječa mesta
+  %ul
+    - collection.order(:name).each do |city|
+      %li= link_to city, city
+  

@@ -1,0 +1,5 @@
+%p.sender
+  - if original_post.email.present?
+    Poslal #{ original_post.first_name } #{ original_post.last_name }, #{ mail_to original_post.email } 
+  - else
+    Poslal #{ original_post.first_name } #{ original_post.last_name }

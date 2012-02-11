@@ -1,0 +1,5 @@
+= title "Neodobrene objave"
+
+- for post in @unapproved
+  %article
+    = render "original_posts/og_post", :original_post => post.original_post
