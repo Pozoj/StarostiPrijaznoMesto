@@ -4,20 +4,11 @@
       %nav#admin_menu
         %h4 ADMINISTRATIVA
         %ul
+          - if can? :read, SuperAdminTable
+            %li= link_to "Administratorska tabela", super_admin_tables_path
           - if can? :manage, [OriginalPost, Post]
             %li
-              %strong Objave
-              %ul
-                %li= link_to "Neobdelane objave", original_posts_path
-                %li
-                  %strong Vprašanja
-                  %ul
-                    %li= selected_link("Nenaslovljena vprašanja", unaddressed_questions_posts_path)
-                    %li= selected_link("Naslovljena vprašanja", addressed_questions_posts_path)
-                    %li= selected_link("Odgovorjena vprašanja", answered_questions_posts_path)
-                %li= link_to "Komentarji", comments_posts_path
-                %li= link_to "Predlogi", suggestions_posts_path
-                %li= link_to "Neodobrene objave", unapproved_posts_path
+              = render "common/post_links"
           - if can? :manage, Region
             %li= link_to "Regije", regions_path
           - if can? :manage, City

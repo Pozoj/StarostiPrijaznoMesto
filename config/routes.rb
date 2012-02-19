@@ -2,6 +2,7 @@ Starci::Application.routes.draw do
   devise_for  :users, :path => "admins", :controllers => { :sessions => "sessions" }
   resources   :access_rights,   :except => [:index, :show, :edit]
   
+  match 'super_admin_tables' => 'super_admin_tables#index', :via => :get
   match 'institutionalize_answer' => 'answers#institutionalize', :via => :get
   
   resources   :abouts, :contacts, :conditions, :original_posts, :project_infos, :red_buttons, :except => [:show]

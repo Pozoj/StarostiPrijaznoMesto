@@ -1,12 +1,12 @@
-u = User.create :first_name => "Peter", :last_name => "Rebernik", :email => "peter@starci.si", :password => "peterr", :password_confirmation => "peterr"
+u = User.create :first_name => "Peter", :last_name => "Rebernik", :email => "peter@spm.si", :password => "peterr", :password_confirmation => "peterr"
 u.admin = true
 u.save
 
-u = User.create :first_name => "Ljubomir", :last_name => "Marković", :email => "ljm@starci.si", :password => "ljmljm", :password_confirmation => "ljmljm"
+u = User.create :first_name => "Ljubomir", :last_name => "Marković", :email => "ljm@spm.si", :password => "ljmljm", :password_confirmation => "ljmljm"
 u.admin = true
 u.save
 
-u = User.create :first_name => "Miha", :last_name => "Rebernik", :email => "mre@starci.si", :password => "mremre", :password_confirmation => "mremre"
+u = User.create :first_name => "Miha", :last_name => "Rebernik", :email => "mre@spm.si", :password => "mremre", :password_confirmation => "mremre"
 u.admin = true
 u.save
 

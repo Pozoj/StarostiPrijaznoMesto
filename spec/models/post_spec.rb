@@ -16,6 +16,7 @@ describe "Approved Post", :class => "Post" do
     it { should validate_presence_of :post_kind_id }
     it { should validate_presence_of :post_status_id }
     it { should validate_presence_of :sex_id }      
+    it { should validate_presence_of :tag_group_id }
   end
 
 end
@@ -31,7 +32,7 @@ describe "Rejected Post", :class => "Post" do
     it { should_not validate_presence_of :text }
     it { should_not validate_presence_of :post_kind_id }
     it { should_not validate_presence_of :sex_id }      
-    
+    it { should_not validate_presence_of :tag_group_id }
     
   end
 end

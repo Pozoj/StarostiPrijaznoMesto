@@ -1,0 +1,26 @@
+%strong Objave
+%ul
+  %li= link_to "Neobdelane objave", original_posts_path
+  %li
+    %strong Vprašanja
+    %ul
+      %li= selected_link("Nenaslovljena", unaddressed_questions_posts_path)
+      %li= selected_link("Naslovljena", addressed_questions_posts_path)
+      %li Napačno naslovljena
+      %li V čakanju
+      %li= selected_link("Odgovorjena", answered_questions_posts_path)
+  %li
+    %strong Komentarji
+    %ul
+      %li Nenaslovljeni
+      %li Naslovljeni
+      %li Napačno naslovljeni
+      %li Odgovorjeni
+  %li
+    %strong Predlogi
+    %ul
+      %li Nenaslovljeni
+      %li Naslovljeni
+      %li Napačno naslovljeni
+      %li Odgovorjeni
+    

@@ -1,0 +1,25 @@
+= title "Administratorski pregled dogajanja v IS"
+
+%table
+  %thead
+    %tr
+      %th= sortable("original_post_created_at", "Prejem vprašanja")
+      %th= sortable("questioners_first_name",   "Ime pošiljatelja")
+      %th= sortable("questioners_last_name",    "Priimek pošiljatelja")
+      %th= sortable("posts_post_kind_id",       "Vrsta objave")
+      %th= sortable("posts_post_status_id",     "Status objave")
+      %th= sortable("posts_title",              "Naziv objave")
+      %th= sortable("posts_tag_group_id",       "Skupina oznak")
+      %th= sortable("institutions_name",        "Naslovljena ustanova")      
+  %tbody
+    - for row in @table
+      %tr
+        %td= l row.original_post_created_at, :format => :short
+        %td= row.questioners_first_name
+        %td= row.questioners_last_name
+        %td= PostKind.find(row.posts_post_kind_id)
+        %td= PostStatus.find(row.posts_post_status_id)
+        %td= row.posts_title
+        %td= TagGroup.find(row.posts_tag_group_id)
+        %td= row.institutions_name
+

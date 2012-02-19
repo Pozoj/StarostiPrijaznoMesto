@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120210122638) do
+ActiveRecord::Schema.define(:version => 20120217112739) do
 
   create_table "abouts", :force => true do |t|
     t.text     "content"
@@ -38,6 +38,9 @@ ActiveRecord::Schema.define(:version => 20120210122638) do
     t.text     "summary"
     t.string   "range"
     t.text     "notes"
+    t.datetime "institutionalized_at"
+    t.datetime "answered_at"
+    t.datetime "misplaced_at"
   end
 
   create_table "cities", :force => true do |t|
@@ -140,11 +143,7 @@ ActiveRecord::Schema.define(:version => 20120210122638) do
     t.datetime "updated_at"
     t.string   "post_status_id"
     t.string   "sex_id"
-  end
-
-  create_table "posts_tags", :id => false, :force => true do |t|
-    t.integer "post_id"
-    t.integer "tag_id"
+    t.string   "tag_group_id"
   end
 
   create_table "project_infos", :force => true do |t|
@@ -168,15 +167,30 @@ ActiveRecord::Schema.define(:version => 20120210122638) do
     t.datetime "updated_at"
   end
 
-  create_table "tag_groups", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+  create_table "super_admin_table_v", :id => false, :force => true do |t|
+    t.integer  "original_posts_id",            :default => 0, :null => false
+    t.datetime "original_post_created_at"
+    t.string   "questioners_first_name"
+    t.string   "questioners_last_name"
+    t.integer  "posts_id",                     :default => 0
+    t.string   "posts_post_status_id"
+    t.string   "posts_post_kind_id"
+    t.string   "posts_title"
+    t.string   "posts_tag_group_id"
+    t.integer  "institutions_id",              :default => 0
+    t.string   "institutions_name"
+    t.integer  "responders_id",                :default => 0
+    t.string   "responders_first_name"
+    t.string   "responders_last_name"
+    t.integer  "answers_id",                   :default => 0
+    t.string   "answers_answer_status"
+    t.datetime "answers_institutionalized_at"
+    t.datetime "answers_misplaced_at"
+    t.datetime "answers_answered_at"
   end
 
   create_table "tags", :force => true do |t|
     t.text     "tag"
-    t.integer  "tag_group_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -1,0 +1,35 @@
+= title @title
+
+- unless @posts.present?
+  %p.message= @no_posts_message
+- else
+  %table
+    %thead
+      %tr
+        %th Datum prejema
+        %th Datum obdelave
+        %th Področje
+        %th Naziv
+        %th Vprašal
+        %th Obdelal
+        %th Ustanova
+        %th Priponka
+        %th Možnosti
+    %tbody
+      - for post in @posts
+        %tr
+          %td= l post.original_post.created_at, :format => :short
+          %td= l post.created_at, :format => :short
+          %td= post.tag_group
+          %td= post.title
+          %td= post.sender
+          %td= post.user
+          %td= post.responsible_institution
+          %td
+            - if post.attachment_added?
+              = render "common/post_attachment_link", :post => post
+            - else
+              ✗
+          %td.admin
+            = link_to "Naslovi",  institutionalize_answer_path(:post_id => post.id)
+            = link_to "Uredi", edit_post_path(post)

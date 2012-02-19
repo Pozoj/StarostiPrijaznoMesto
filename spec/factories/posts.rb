@@ -10,6 +10,7 @@ FactoryGirl.define do
     text "Kaj je zzaj sm opraso."
     post_status_id "approved"
     sex_id "man"
+    tag_group_id "fifth"
   end
   
   factory :rejected_post, :class => "Post" do

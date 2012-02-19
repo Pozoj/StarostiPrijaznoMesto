@@ -1,14 +1,27 @@
 = simple_form_for resource do |f|
   = f.input :title
   = f.input :summary
+  %p.original-content
+    %strong Izvorna objava
+    %br
+    = resource.original_post.text
   = f.input :text
+  = f.input :tag_group_id, :as => :select, :collection => TagGroup.all, :prompt => "Izberite v katero skupino oznak spada vprašanje"
+  
+  %p.original-content
+    - if resource.attachment_added?
+      %strong Objavi je bila priložena slednja datoteka
+      %br
+      = render "common/post_attachment_link", :post => resource
   .sender-info
     %p
       %strong Ime pošiljatelja:
       #{ resource.original_post.sender}
-    %p
-      %strong Email pošiljatelja:
-      #{ mail_to(resource.original_post.email)}
+    - if resource.original_post.email.present?
+      %p
+        %strong Email pošiljatelja:
+        #{ mail_to(resource.original_post.email)}
+  
   
   = f.input :sex_id, :as => :radio, :collection => Sex.all
   = f.input :post_kind_id, :as => :radio, :collection => PostKind.all
@@ -16,4 +29,5 @@
   
   = f.input :original_post_id, :as => :hidden
   = f.input :info_admin_id, :as => :hidden
+  
   = f.submit

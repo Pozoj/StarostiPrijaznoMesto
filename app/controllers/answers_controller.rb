@@ -5,6 +5,7 @@ class AnswersController < InheritedResources::Base
     @answer = Answer.new
     @answer.post = Post.find_by_id(params[:post_id]) if params[:post_id]
     @answer.answer_status = "institutionalized"
+    @answer.institutionalized_at = DateTime.now
   end
   
   def create

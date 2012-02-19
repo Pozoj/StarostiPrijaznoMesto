@@ -1,14 +1,29 @@
 = title @title
 
 - unless @questions.present?
-  %article
-    %h2= @no_questions_message
-- @questions.each do |date_of_creation, questions|
-  %article
-    %h2 Vprašanje je bilo obdelano dne #{ l date_of_creation, :format => :default }
-    - questions.each do |question|
-      = render "question", :question => question
-      .admin
-        = link_to "Naslovi vprašanje",  institutionalize_answer_path(:post_id => question.id)
-        = link_to "Uredi", edit_post_path(question)
-
+  %p.message= @no_questions_message
+- else
+  %table
+    %thead
+      %tr
+        %th Prejem vprašanja
+        %th Vprašanje poslal
+        %th= sortable("created_at", "Obdelava vprašanja")
+        %th Vprašanje obdelal
+        %th Priponka
+        %th Možnosti
+    %tbody
+      - for question in @questions
+        %tr
+          %td= l question.original_post.created_at, :format => :short
+          %td= question.original_post.sender
+          %td= l question.created_at, :format => :short
+          %td= question.user
+          %td
+            - if question.attachment_added?
+              = render "common/post_attachment_link", :post => question
+            - else
+              ✗
+          %td.admin
+            = link_to "Naslovi vprašanje",  institutionalize_answer_path(:post_id => question.id)
+            = link_to "Uredi", edit_post_path(question)

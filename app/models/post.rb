@@ -1,12 +1,11 @@
 class Post < ActiveRecord::Base
-  belongs_to :original_post
+  belongs_to :original_post, :dependent => :destroy
   belongs_to :user, :foreign_key => "info_admin_id"
-  has_and_belongs_to_many :tags
-  has_many :answers
+  has_many :answers, :dependent => :destroy
   has_many :photos, :as => :holder, :dependent => :destroy  
   
   validates_presence_of :post_status_id
-  validates_presence_of :title, :summary, :text, :post_kind_id, :sex_id, :if => :approved?
+  validates_presence_of :title, :summary, :text, :post_kind_id, :sex_id, :tag_group_id, :if => :approved?
   
   scope :rejected,    where(:post_status_id => "rejected")
   scope :approved,    where(:post_status_id => "approved")  
@@ -20,7 +19,7 @@ class Post < ActiveRecord::Base
     # Returns all questions, that don't have an answer
     # => Unaddressed questions are posts with post_kind_id == "question" that don't have an related answer
     def unaddressed_questions
-      self.approved.questions.joins("LEFT JOIN answers ON posts.id = answers.post_id").where("answers.id IS NULL").order("created_at DESC")
+      self.approved.questions.joins("LEFT JOIN answers ON posts.id = answers.post_id").where("answers.id IS NULL") #.order("created_at DESC")
     end
 
     # Returns all questions, that have an answer with institution_id and answer_status = 'institutionalized'
@@ -37,16 +36,34 @@ class Post < ActiveRecord::Base
     
   end # class << self
   
+  def approved?
+    status.approved?
+  end
+
+  def rejected?
+    status.rejected?
+  end
+  
+  def attachment_added?
+    original_post.present? and original_post.photos.any?
+  end
+  
+  def attachment
+    if original_post.present? and original_post.photos.any?
+      return original_post.photos.order(:id).last
+    end
+  end
+  
+  def attachment_name
+    attachment.photo_file_name
+  end
+  
   def answer
     answers.answered.last
   end
   
-  def sender
-    original_post.sender if original_post.present?
-  end
-  
-  def photos_added?
-    photos.any? or (original.present? and original.photos.any?)
+  def responsible_institution
+    answers.last.institution
   end
   
   def kind
@@ -55,6 +72,10 @@ class Post < ActiveRecord::Base
   
   def kind=(pk)
     self.post_kind_id = PostKind.find(pk).id if PostKind.find(pk)
+  end
+  
+  def sender
+    original_post.sender if original_post.present?
   end
   
   def sex
@@ -70,24 +91,15 @@ class Post < ActiveRecord::Base
     @status ||= PostStatus.find(post_status_id)
   end
   
-  def approved?
-    status.approved?
-  end
-
-  def rejected?
-    status.rejected?
+  def tag_group
+    @tag_group ||= TagGroup.find(tag_group_id)
   end
   
-  def pic
-    if photos.any?
-      return photos.order(:id).last
-    elsif (original.present? and original.photos.any?)
-      return original.photos.order(:id).last
-    end
+  def tag_group=(tg)
+    self.tag_group = TagGroup.find(tg).id if TagGroup.find(tg)
   end
   
   def to_s
     title
   end
-  
 end

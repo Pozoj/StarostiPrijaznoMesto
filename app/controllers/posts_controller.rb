@@ -1,5 +1,6 @@
 class PostsController < InheritedResources::Base
   load_and_authorize_resource
+  helper_method :sort_column, :sort_direction
   
   def new
     @post = Post.new
@@ -13,13 +14,13 @@ class PostsController < InheritedResources::Base
   def unaddressed_questions
     @title = "Nenaslovljena vprašanja"
     @no_questions_message = "Trenutno ni nenaslovljenih vprašanj."
-    @questions = Post.unaddressed_questions.group_by {|question| question.created_at.to_date }
+    @questions = Post.unaddressed_questions.order(sort_column + " " + sort_direction)
   end
 
   def addressed_questions
     @title = "Naslovljena vprašanja"
     @no_questions_message = "Trenutno ni naslovljenih vprašanj."
-    @questions = Post.addressed_questions.group_by {|question| question.answers.last.created_at.to_date }
+    @questions = Post.addressed_questions.order(sort_column + " " + sort_direction) #.group_by {|question| question.answers.last.created_at.to_date }
   end
 
   def answered_questions
@@ -33,7 +34,7 @@ class PostsController < InheritedResources::Base
   end
   
   def comments
-    @comments = Post.approved.comments.group_by {|comment| comment.created_at.to_date }
+    @comments = Post.approved.comments #.group_by {|comment| comment.created_at.to_date }
   end
   
   def unapproved
@@ -49,6 +50,14 @@ class PostsController < InheritedResources::Base
       @post.info_admin_id = current_user.id
     end    
   end
+
+  def sort_column
+    (Post.column_names).include?(params[:sort]) ? params[:sort] : "created_at"
+  end
+
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "desc"
+  end  
 
 
   # def all

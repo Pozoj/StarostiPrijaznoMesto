@@ -44,17 +44,6 @@ class AccessRight < ActiveRecord::Base
     {:value=>[:create,  Institution], :title=>"Ustanove - Ustvarjanje"},
     {:value=>[:update,  Institution], :title=>"Ustanove - Urejanje"},
     {:value=>[:manage,  Institution], :title=>"Ustanove - Upravljanje"},
-
-    {:value=>[:destroy, Tag], :title=>"Oznake - Brisanje"},
-    {:value=>[:create,  Tag], :title=>"Oznake - Ustvarjanje"},
-    {:value=>[:update,  Tag], :title=>"Oznake - Urejanje"},
-    {:value=>[:manage,  Tag], :title=>"Oznake - Upravljanje"},
-    
-    {:value=>[:destroy, TagGroup], :title=>"Vrsta oznake - Brisanje"},
-    {:value=>[:create,  TagGroup], :title=>"Vrsta oznake - Ustvarjanje"},
-    {:value=>[:update,  TagGroup], :title=>"Vrsta oznake - Urejanje"},
-    {:value=>[:manage,  TagGroup], :title=>"Vrsta oznake - Upravljanje"}
-    
   ]
   
   class << self

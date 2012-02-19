@@ -11,7 +11,6 @@ class OriginalPost < ActiveRecord::Base
     #
     def untreated
       joins("LEFT JOIN posts ON original_posts.id = posts.original_post_id").where("posts.id IS NULL").order("created_at DESC").group_by {|og_post| og_post.created_at.to_date }
-      #all - self.find(Recipe.original_ids)
     end
   end # class << self
 

@@ -4,4 +4,5 @@
   = f.input :suggestion
   = f.input :range
   = f.input :answer_status, :as => :select, :collection => AnswerStatus.all, :prompt => "Določite status odgovora"
+  = f.input :institutionalized_at, :as => :hidden
   = f.submit

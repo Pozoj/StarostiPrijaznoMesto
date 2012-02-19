@@ -8,7 +8,7 @@ class Photo < ActiveRecord::Base
   
   validates_attachment_presence :photo
   validates_attachment_size :photo, :less_than => 10.megabytes, :if => Proc.new { |photo| not photo.photo.nil? }
-  validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png'], :if => Proc.new { |photo| not photo.photo.nil? }
+  validates_attachment_content_type :photo, :content_type => ['application/pdf', 'image/jpeg', 'image/png'], :if => Proc.new { |photo| not photo.photo.nil? }
   
   private
   
