@@ -1,1 +1,6 @@
-= render "institutions/institution_menu", :institutions => @institutions
+= render "posts"
+= render "paginate", :collection => @posts
+
+%aside
+  = render "institutions"
+  = render "events"

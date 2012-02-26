@@ -1,3 +1,41 @@
 = title resource
 
-= resource.text
+- if can?(:update, resource) or can?(:update, Answer)
+  %nav#editors-resource-menu
+    %ul        
+      - if can? :update, resource
+        %li= link_to "Uredi", edit_resource_path
+      - if resource.last_answer.present? and !resource.answered? and !resource.misplaced? and can? :update, Answer
+        %li= link_to "Odgovori", edit_answer_path(resource.last_answer.id)
+      - if resource.misplaced? and can? :create, Answer
+        %li= link_to "Ponovno naslovi",  new_answer_path(:post_id => resource.id)
+
+= render "common/sender", :original_post => resource.original_post
+%h3 Povzetek
+%p.post-summary
+  %strong Vprašanje:
+  = resource.summary
+
+- if resource.answered?
+  %p.answer-summary
+    %strong Odgovor:
+    =resource.answer.summary
+
+%h3 Podrobnosti
+.post-pack
+  .post
+    = render "common/redcloth_it", :content => resource.text
+  - if resource.answered?
+    .answer
+      = render "common/redcloth_it", :content => resource.answer.answer
+
+  - if resource.attachment_added?  
+    .attachment
+      %p
+        %strong Priloga:
+        = render "common/post_attachment_link", :post => resource
+
+  .sent_at
+    %p
+      %strong Poslano:
+      = l resource.original_post.created_at, :format => :short_date

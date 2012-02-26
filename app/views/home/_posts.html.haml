@@ -1,0 +1,15 @@
+%h2 Vprašanja, predlogi in komentarji z odgovori
+- for post in @posts
+  %article
+    .sender
+      = what_happened(post.senders_sex, post.post_kind_id)
+      %strong= post.senders_name
+      dne
+      .post-date= l post.posts_date
+    .post-title= link_to post.posts_title, post_path(post.posts_id)
+    .post-answer= post.answers_summary
+    .responder
+      Odgovor posredoval-a:
+      = link_to post.institutions_name, institution_path(post.institutions_id)
+      dne
+      .answer-date= l post.answers_date

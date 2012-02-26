@@ -13,6 +13,7 @@
       %strong Objavi je bila priložena slednja datoteka
       %br
       = render "common/post_attachment_link", :post => resource
+      = f.input :approved_attachment, :label => "Pregledal sem prilogo in jo odobravam za prikaz."
   .sender-info
     %p
       %strong Ime pošiljatelja:

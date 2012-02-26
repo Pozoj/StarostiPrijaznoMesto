@@ -17,9 +17,8 @@
 - if resource.user_kind and resource.access_rights.any?
   = render "access_rights/access_right", :collection => resource.access_rights
 
-- if resource.notes.present?
+- if resource.notes.present? and admin?
   .field
     .description Beležke
     .value= resource.notes
 
-= link_to_back

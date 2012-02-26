@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120217112739) do
+ActiveRecord::Schema.define(:version => 20120226202336) do
 
   create_table "abouts", :force => true do |t|
     t.text     "content"
@@ -26,6 +26,22 @@ ActiveRecord::Schema.define(:version => 20120217112739) do
     t.datetime "updated_at"
   end
 
+  create_table "addressed_posts_v", :id => false, :force => true do |t|
+    t.integer  "original_posts_id",         :default => 0, :null => false
+    t.datetime "original_posts_created_at"
+    t.string   "original_posts_first_name"
+    t.string   "original_posts_last_name"
+    t.integer  "posts_id",                  :default => 0
+    t.datetime "posts_created_at"
+    t.string   "posts_tag_group_id"
+    t.string   "posts_title"
+    t.string   "posts_post_kind_id"
+    t.string   "institutions_name"
+    t.integer  "attachments_id",            :default => 0
+    t.integer  "answers_id",                :default => 0
+    t.string   "answers_answer_status"
+  end
+
   create_table "answers", :force => true do |t|
     t.text     "answer"
     t.text     "suggestion"
@@ -36,11 +52,21 @@ ActiveRecord::Schema.define(:version => 20120217112739) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "summary"
-    t.string   "range"
     t.text     "notes"
+    t.string   "answer_range"
     t.datetime "institutionalized_at"
     t.datetime "answered_at"
     t.datetime "misplaced_at"
+    t.datetime "waiting_at"
+  end
+
+  create_table "attachments", :force => true do |t|
+    t.integer "holder_id"
+    t.string  "holder_type"
+    t.string  "attachment_file_name"
+    t.string  "attachment_content_type"
+    t.string  "attachment_file_size"
+    t.string  "attachment_updated_at"
   end
 
   create_table "cities", :force => true do |t|
@@ -89,6 +115,19 @@ ActiveRecord::Schema.define(:version => 20120217112739) do
     t.boolean  "region_wide"
   end
 
+  create_table "homescreen_posts_v", :id => false, :force => true do |t|
+    t.date    "posts_date"
+    t.string  "senders_name",      :limit => 511
+    t.integer "posts_id",                         :default => 0
+    t.string  "posts_title"
+    t.string  "senders_sex"
+    t.string  "post_kind_id"
+    t.integer "institutions_id",                  :default => 0
+    t.string  "institutions_name"
+    t.text    "answers_summary"
+    t.date    "answers_date"
+  end
+
   create_table "institutions", :force => true do |t|
     t.string   "name"
     t.string   "short_name"
@@ -116,17 +155,6 @@ ActiveRecord::Schema.define(:version => 20120217112739) do
     t.integer  "city_id"
   end
 
-  create_table "photos", :force => true do |t|
-    t.integer  "holder_id"
-    t.string   "holder_type"
-    t.string   "photo_file_name"
-    t.string   "photo_content_type"
-    t.string   "photo_file_size"
-    t.string   "photo_updated_at"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "post_offices", :force => true do |t|
     t.integer "post_number"
     t.string  "city"
@@ -144,12 +172,24 @@ ActiveRecord::Schema.define(:version => 20120217112739) do
     t.string   "post_status_id"
     t.string   "sex_id"
     t.string   "tag_group_id"
+    t.boolean  "approved_attachment", :default => false
   end
 
   create_table "project_infos", :force => true do |t|
     t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "public_posts_v", :id => false, :force => true do |t|
+    t.date    "posts_date"
+    t.string  "senders_name",       :limit => 511
+    t.integer "posts_id",                          :default => 0
+    t.string  "posts_title"
+    t.string  "post_kind_id"
+    t.string  "posts_tag_group_id"
+    t.string  "institutions_name"
+    t.date    "answers_date"
   end
 
   create_table "red_buttons", :force => true do |t|
@@ -169,10 +209,11 @@ ActiveRecord::Schema.define(:version => 20120217112739) do
 
   create_table "super_admin_table_v", :id => false, :force => true do |t|
     t.integer  "original_posts_id",            :default => 0, :null => false
-    t.datetime "original_post_created_at"
-    t.string   "questioners_first_name"
-    t.string   "questioners_last_name"
+    t.datetime "original_posts_created_at"
+    t.string   "original_posts_first_name"
+    t.string   "original_posts_last_name"
     t.integer  "posts_id",                     :default => 0
+    t.datetime "posts_created_at"
     t.string   "posts_post_status_id"
     t.string   "posts_post_kind_id"
     t.string   "posts_title"
@@ -182,17 +223,34 @@ ActiveRecord::Schema.define(:version => 20120217112739) do
     t.integer  "responders_id",                :default => 0
     t.string   "responders_first_name"
     t.string   "responders_last_name"
+    t.integer  "info_admins_id",               :default => 0
+    t.string   "info_admins_first_name"
+    t.string   "info_admins_last_name"
     t.integer  "answers_id",                   :default => 0
     t.string   "answers_answer_status"
     t.datetime "answers_institutionalized_at"
     t.datetime "answers_misplaced_at"
     t.datetime "answers_answered_at"
+    t.integer  "attachments_id",               :default => 0
   end
 
   create_table "tags", :force => true do |t|
     t.text     "tag"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "unaddressed_posts_v", :id => false, :force => true do |t|
+    t.integer  "original_posts_id",         :default => 0, :null => false
+    t.datetime "original_posts_created_at"
+    t.string   "original_posts_first_name"
+    t.string   "original_posts_last_name"
+    t.integer  "posts_id",                  :default => 0
+    t.datetime "posts_created_at"
+    t.string   "posts_tag_group_id"
+    t.string   "posts_title"
+    t.string   "posts_post_kind_id"
+    t.integer  "attachments_id",            :default => 0
   end
 
   create_table "users", :force => true do |t|

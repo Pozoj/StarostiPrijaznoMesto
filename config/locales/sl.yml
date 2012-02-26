@@ -78,6 +78,7 @@ sl:
       simple: "%d. %b %Y"
       month_year: "%B %Y"
       month: "%B"
+      short_date: "%d. %m. %y"
 
     day_names: [nedelja, ponedeljek, torek, sreda, četrtek, petek, sobota]
     abbr_day_names: [ned, pon, tor, sre, čet, pet, sob]
@@ -96,6 +97,7 @@ sl:
       simple: "%d. %B %Y"
       nice: "%A, %d. %B %Y, ob %H:%M"
       time_only: "%H:%M"
+      short_date: "%d. %m. %y"
     am: "dopoldan"
     pm: "popoldan"
 
@@ -113,6 +115,7 @@ sl:
 
   activerecord:
     models:
+      answer: "Odgovor"
       access_right: "Pravica dostopa"
       city: "Mesto"
       event: "Dogodek"
@@ -123,6 +126,10 @@ sl:
       region: "Regija"
       user_kind: "Vrsta uporabnika"
     attributes:
+      answer:
+        suggestion: "Predlog"
+        summary: "Povzetek odgovora"
+        answer: "Odgovor"
       access_right:
         user_kind_right: "Pravica dostopa"
       city:

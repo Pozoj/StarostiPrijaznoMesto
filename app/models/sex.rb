@@ -15,7 +15,7 @@ class Sex
   
   class << self
     def find(id)
-      return unless id and SEX_KINDS.include?(id.to_sym)
+      return unless id.present? and SEX_KINDS.include?(id.to_sym)
       id = id.to_sym
       self.new :id => id, :title => SEX_KINDS[id]
     end

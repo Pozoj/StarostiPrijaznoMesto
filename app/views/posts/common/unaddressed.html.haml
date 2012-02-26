@@ -6,28 +6,24 @@
   %table
     %thead
       %tr
-        %th Datum prejema
-        %th Datum obdelave
-        %th Področje
-        %th Naziv
-        %th Vprašal
-        %th Obdelal
-        %th Priponka
+        %th= sortable("original_posts_created_at",  "Datum vprašanja")
+        %th= sortable("posts_created_at",           "Datum obdelave")
+        %th= sortable("posts_tag_group_id",         "Področje")
+        %th= sortable("posts_title",                "Naziv vprašanja")
+        %th= sortable("original_posts_first_name",  "Ime izpraševalca")
+        %th= sortable("original_posts_last_name",   "Priimek izpraševalca")
+        %th= sortable("attachments_id",             "Priponka")
         %th Možnosti
     %tbody
       - for post in @posts
         %tr
-          %td= l post.original_post.created_at, :format => :short
-          %td= l post.created_at, :format => :short
-          %td= post.tag_group
-          %td= post.title
-          %td= post.sender
-          %td= post.user
-          %td
-            - if post.attachment_added?
-              = render "common/post_attachment_link", :post => post
-            - else
-              ✗
+          %td= dateit post.original_posts_created_at
+          %td= dateit post.posts_created_at
+          %td= textit TagGroup.find(post.posts_tag_group_id)
+          %td= textit post.posts_title
+          %td= post.original_posts_first_name
+          %td= post.original_posts_last_name
+          %td= yes_no(post.attachments_id)
           %td.admin
-            = link_to "Naslovi",  institutionalize_answer_path(:post_id => post.id)
-            = link_to "Uredi", edit_post_path(post)
+            = link_to "Naslovi",  new_answer_path(:post_id => post.posts_id)
+            = link_to "Uredi", edit_post_path(post.posts_id)

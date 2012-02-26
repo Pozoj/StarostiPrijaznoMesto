@@ -8,5 +8,6 @@ FactoryGirl.define do
     answer "To je to"
     summary "To."
     answer_status "answered"
+    answer_range "local"
   end
 end

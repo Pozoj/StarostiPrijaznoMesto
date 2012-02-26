@@ -36,9 +36,9 @@ class AccessRight < ActiveRecord::Base
     {:value=>[:update,  Post], :title=>"Objava - Urejanje"},
     {:value=>[:manage,  Post], :title=>"Objava - Upravljanje"},
     
-    {:value=>[:destroy, Photo], :title=>"Fotografije - Brisanje"},
-    {:value=>[:create,  Photo], :title=>"Fotografije - Ustvarjanje"},
-    {:value=>[:manage,  Photo], :title=>"Fotografije - Upravljanje"},
+    {:value=>[:destroy, Attachment], :title=>"Fotografije - Brisanje"},
+    {:value=>[:create,  Attachment], :title=>"Fotografije - Ustvarjanje"},
+    {:value=>[:manage,  Attachment], :title=>"Fotografije - Upravljanje"},
 
     {:value=>[:destroy, Institution], :title=>"Ustanove - Brisanje"},
     {:value=>[:create,  Institution], :title=>"Ustanove - Ustvarjanje"},

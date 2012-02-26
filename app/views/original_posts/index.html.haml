@@ -1,12 +1,25 @@
-= title "Neobdelana objave"
+= title "Neobdelane objave"
 
 - unless collection.present?
-  %article
-    %h2 Ni neobdelanih objav
-- collection.each do |date_of_creation, posts|
-  %article
-    %h2 Prejeto dne #{ l date_of_creation, :format => :default }
-    - posts.each do |post|
-      = render "original_posts/og_post", :original_post => post
-      .admin
-        = link_to "Obravnavaj objavo",  new_post_path(:original_post_id => post)
+  %p.message Trenutno ni neobdelanih objav
+- else
+  %table
+    %thead
+      %tr
+        %th= sortable("created_at", "Datum posredovanja")
+        %th= sortable("first_name", "Ime pošiljatelja")
+        %th= sortable("last_name",  "Priimek pošiljatelja")
+        %th= sortable("email",      "E-pošta")
+        %th Priloga
+        %th Možnosti
+    %tbody
+      - for post in collection
+        %tr
+          %td= dateit post.created_at
+          %td= post.first_name
+          %td= post.last_name
+          %td= textit post.email
+          %td= yes_no post.attachments
+          %td.admin= link_to "Obravnavaj objavo",  new_post_path(:original_post_id => post)
+
+

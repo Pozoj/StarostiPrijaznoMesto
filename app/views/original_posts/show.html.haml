@@ -1,0 +1,14 @@
+= title "Izvorna objava"
+
+= render "common/sender", :original_post => resource
+= render "common/redcloth_it", :content => resource.text
+- if resource.attachment_added?  
+  .attachment
+    %p
+      %strong Priloga:
+      = render "common/post_attachment_link", :post => resource
+
+.sent_at
+  %p
+    %strong Poslano:
+    = l resource.created_at, :format => :nice

@@ -1,5 +1,22 @@
 = title "Neodobrene objave"
 
-- for post in @unapproved
-  %article
-    = render "original_posts/og_post", :original_post => post.original_post
+- unless @posts.present?
+  %p.message Trenutno ni neodobrenih objav
+- else
+  %table
+    %thead
+      %tr
+        %th= sortable("created_at", "Datum posredovanja")
+        %th= sortable("first_name", "Ime pošiljatelja")
+        %th= sortable("last_name",  "Priimek pošiljatelja")
+        %th= sortable("email",      "E-pošta")
+        %th Priloga
+        %th Možnosti
+    %tbody
+      - for post in @posts
+        %tr
+          %td= dateit post.created_at
+          %td= post.first_name
+          %td= post.last_name
+          %td= textit post.email
+          %td= yes_no post.attachments

@@ -1,0 +1,19 @@
+= title "Podajanje odgovora na #{@post_kind_title}"
+
+= render "posts/question", :question =>  @answer.post
+
+= simple_form_for @answer do |f|
+  = f.input :summary
+  = f.input :answer
+  = f.input :suggestion, :class => "suggestion"
+  = f.input :notes, :class => "notes"
+  = f.input :range,   :as => :select, :collection => AnswerRange.all, :prompt => "Določite rang veljave"
+  = f.input :status,  :as => :select, :collection => AnswerStatus.all,:prompt => "Določite status odgovora"
+  = f.input :institutionalized_at, :as => :hidden
+  = f.input :post_id, :as => :hidden
+  = f.button :submit, :value => "Odgovori"
+  
+
+
+
+

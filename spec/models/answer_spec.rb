@@ -12,10 +12,6 @@ describe Answer do
   describe "validations" do
     it { should be_valid }
     it { should validate_presence_of :answer_status }
-    
-    #it { should validate_presence_of :answer }
-    #it should validate things according to answer_status.. 
-    #answer status == "answered" should validate presence of answer
   end
   
 end

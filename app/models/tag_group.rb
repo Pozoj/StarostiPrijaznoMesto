@@ -20,7 +20,7 @@ class TagGroup
   
   class << self
     def find(id)
-      return unless id and TAG_GROUPS.include?(id.to_sym)
+      return unless id.present? and TAG_GROUPS.include?(id.to_sym)
       id = id.to_sym
       self.new :id => id, :title => TAG_GROUPS[id]
     end

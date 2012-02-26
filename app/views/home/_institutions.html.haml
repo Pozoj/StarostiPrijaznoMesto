@@ -1,0 +1,6 @@
+%h2 Kje se nahaja?
+
+%dl
+  - for institution in @institutions
+    %dt.institution= link_to institution.name, institution_path(institution)
+    %dd.address= institution.address

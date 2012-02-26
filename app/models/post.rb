@@ -2,10 +2,11 @@ class Post < ActiveRecord::Base
   belongs_to :original_post, :dependent => :destroy
   belongs_to :user, :foreign_key => "info_admin_id"
   has_many :answers, :dependent => :destroy
-  has_many :photos, :as => :holder, :dependent => :destroy  
+  #has_many :attachments, :as => :holder, :dependent => :destroy  
   
   validates_presence_of :post_status_id
-  validates_presence_of :title, :summary, :text, :post_kind_id, :sex_id, :tag_group_id, :if => :approved?
+  validates_presence_of :title, :summary, :text, :post_kind_id, :sex_id, :tag_group_id, :if => :approved_without_attachment?
+  validates_presence_of :approved_attachment, :title, :summary, :text, :post_kind_id, :sex_id, :tag_group_id, :if => :approved_with_attachment?
   
   scope :rejected,    where(:post_status_id => "rejected")
   scope :approved,    where(:post_status_id => "approved")  
@@ -36,30 +37,46 @@ class Post < ActiveRecord::Base
     
   end # class << self
   
-  def approved?
-    status.approved?
+  def approved_without_attachment?
+    status.approved? and not attachment_added?
   end
-
+  
+  def approved_with_attachment?
+    status.approved? and attachment_added?
+  end
+  
   def rejected?
     status.rejected?
   end
   
   def attachment_added?
-    original_post.present? and original_post.photos.any?
+    original_post.present? and original_post.attachment_added?
   end
   
   def attachment
-    if original_post.present? and original_post.photos.any?
-      return original_post.photos.order(:id).last
+    if original_post.present? and original_post.attachment_added?
+      return original_post.attachment
     end
   end
   
   def attachment_name
-    attachment.photo_file_name
+    attachment.attachment_file_name
   end
   
   def answer
-    answers.answered.last
+    @answer ||= answers.answered.last
+  end
+  
+  def answered?
+    @answered ||= answer.present?
+  end
+  
+  def misplaced?
+     @misplaced ||= answers.misplaced.present? and not answers.answered.present?
+  end
+  
+  def last_answer
+    answers.order(:id).last
   end
   
   def responsible_institution

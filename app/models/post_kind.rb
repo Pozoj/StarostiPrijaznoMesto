@@ -15,7 +15,7 @@ class PostKind
   
   class << self
     def find(id)
-      return unless id and STATUSES.include?(id.to_sym)
+      return unless id.present? and STATUSES.include?(id.to_sym)
       id = id.to_sym
       self.new :id => id, :title => STATUSES[id]
     end

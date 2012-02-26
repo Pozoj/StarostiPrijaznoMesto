@@ -3,10 +3,11 @@ class AnswerStatus
   
   STATUSES = {
     :misplaced          => "Posredovano na napačno ustanovo",
+    :waiting            => "V čakanju",
     :answered           => "Odgovorjeno"
   }
   
-  ALL_STATUSES = STATUSES.merge( {:institutionalized  => "Posredovano ustanovi" } )
+  ALL_STATUSES = STATUSES.merge( {:institutionalized  => "Posredovano ustanovi", :archive => "Arhivirano, poslano napačni ustanovi" } )
   
   def initialize(options = {})
     self.id = options[:id].to_sym if options[:id]
@@ -16,13 +17,13 @@ class AnswerStatus
   
   class << self
     def find(id)
-      return unless id and STATUSES.include?(id.to_sym)
+      return unless id.present? and STATUSES.include?(id.to_sym)
       id = id.to_sym
       self.new :id => id, :title => STATUSES[id]
     end
 
     def find_among_all(id)
-      return unless id and ALL_STATUSES.include?(id.to_sym)
+      return unless id.present? and ALL_STATUSES.include?(id.to_sym)
       id = id.to_sym
       self.new :id => id, :title => ALL_STATUSES[id]
     end

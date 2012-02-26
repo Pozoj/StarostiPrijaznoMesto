@@ -3,23 +3,63 @@
 %table
   %thead
     %tr
-      %th= sortable("original_post_created_at", "Prejem vprašanja")
-      %th= sortable("questioners_first_name",   "Ime pošiljatelja")
-      %th= sortable("questioners_last_name",    "Priimek pošiljatelja")
-      %th= sortable("posts_post_kind_id",       "Vrsta objave")
-      %th= sortable("posts_post_status_id",     "Status objave")
-      %th= sortable("posts_title",              "Naziv objave")
-      %th= sortable("posts_tag_group_id",       "Skupina oznak")
-      %th= sortable("institutions_name",        "Naslovljena ustanova")      
+      %th= sortable("original_posts_created_at",  "Datum vprašanja")
+      %th= sortable("posts_created_at",           "Datum obdelave")
+      %th= sortable("answers_answered_at",        "Datum odgovora")
+      %th= sortable("posts_post_kind_id",         "Vrsta objave")
+      %th= sortable("posts_post_status_id",       "Status objave")
+      %th= sortable("answers_answer_status",      "Status odgovora")
+      %th= sortable("posts_tag_group_id",         "Področje")
+      %th= sortable("posts_title",                "Naziv objave")
+      %th= sortable("original_posts_first_name",  "Ime izpraševalca")
+      %th= sortable("original_posts_last_name",   "Priimek izpraševalca")
+      %th= sortable("info_admins_first_name",  "Ime administratorja")
+      %th= sortable("info_admins_last_name",   "Priimek administratorja")      
+      %th= sortable("responders_first_name",      "Ime respondenta")
+      %th= sortable("responders_last_name",       "Priimek respondenta")
+      %th Dni
+      %th= sortable("institutions_name",          "Naslovljena ustanova")
+      %th= sortable("attachments_id",             "Priponka")
   %tbody
     - for row in @table
       %tr
-        %td= l row.original_post_created_at, :format => :short
-        %td= row.questioners_first_name
-        %td= row.questioners_last_name
-        %td= PostKind.find(row.posts_post_kind_id)
-        %td= PostStatus.find(row.posts_post_status_id)
-        %td= row.posts_title
-        %td= TagGroup.find(row.posts_tag_group_id)
-        %td= row.institutions_name
+        %td= dateit row.original_posts_created_at
+        %td= dateit row.posts_created_at
+        %td= dateit row.answers_answered_at
+        %td
+          - if row.posts_post_kind_id.present?
+            - post_kind = PostKind.find(row.posts_post_kind_id)
+            = link_to post_kind.title, { :posts_post_kind_id => post_kind.id }
+          - else
+            ✗
+        %td= text_find(PostStatus, row.posts_post_status_id)
+        %td= text_find_among_all(AnswerStatus, row.answers_answer_status)
+        %td= text_find(TagGroup, row.posts_tag_group_id)
+        %td
+          - if row.posts_id.present?
+            = link_to row.posts_title, post_path(row.posts_id)
+          - else
+            ✗
+        %td= link_to row.original_posts_first_name, original_post_path(row.original_posts_id)
+        %td= link_to row.original_posts_last_name, original_post_path(row.original_posts_id)
+        - if row.info_admins_id.present?
+          %td= link_to row.info_admins_first_name, user_path(row.info_admins_id)
+          %td= link_to row.info_admins_last_name, user_path(row.info_admins_id)
+        - else
+          %td ✗
+          %td ✗
+        - if row.responders_id.present?
+          %td= link_to row.responders_first_name, user_path(row.responders_id)
+          %td= link_to row.responders_last_name, user_path(row.responders_id)
+        - else
+          %td ✗
+          %td ✗  
+        %td= difference_in_days row.original_posts_created_at, row.answers_answered_at
+        %td
+          - if row.institutions_id.present?
+            = link_to row.institutions_name, institution_path(row.institutions_id)
+          - else
+            ✗ 
+        %td= yes_no(row.attachments_id)
+
 

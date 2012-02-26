@@ -1,0 +1,8 @@
+%p.today
+  .time-and-location
+    Danes ob
+    .time= l event.date_and_time_at, :format => :time_only
+    v
+    .address= event.address
+  %span
+    = link_to event.title, event_path(event.id)

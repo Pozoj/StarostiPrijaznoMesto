@@ -2,20 +2,21 @@ class OriginalPostsController < InheritedResources::Base
   load_and_authorize_resource
   skip_load_resource :only => [:new, :create]
   skip_before_filter :authenticate_user!, :only => [:new, :create]
+  helper_method :sort_column, :sort_direction
   
   actions :all, :except => [ :show ]
   
   def new
     @original_post = OriginalPost.new
-    @original_post.photos.build
+    @original_post.attachments.build
   end
 
   def create
     #raise env['REMOTE_ADDR']
-    photo_attributes = params["original_post"]["photos_attributes"]["0"] if params["original_post"].present? and params["original_post"]["photos_attributes"].present? and params["original_post"]["photos_attributes"]["0"].present?
-    if params["original_post"].present? and og_post = OriginalPost.create( params["original_post"].merge({:ip => env['REMOTE_ADDR'] }).delete_if {|k,v| k == "photos_attributes"} )
-      if photo_attributes.present?
-        photo = Photo.create({:holder_id => og_post.id, :holder_type => "OriginalPost"}.merge(photo_attributes))
+    attachment_attributes = params["original_post"]["attachments_attributes"]["0"] if params["original_post"].present? and params["original_post"]["attachments_attributes"].present? and params["original_post"]["attachments_attributes"]["0"].present?
+    if params["original_post"].present? and og_post = OriginalPost.create( params["original_post"].merge({:ip => env['REMOTE_ADDR'] }).delete_if {|k,v| k == "attachments_attributes"} )
+      if attachment_attributes.present?
+        attachment = Attachment.create({:holder_id => og_post.id, :holder_type => "OriginalPost"}.merge(attachment_attributes))
       end
       redirect_to root_path, :notice => "Uspešno ste oddali vprašanje. Hvala za Vaš prispevek."
     else
@@ -26,6 +27,15 @@ class OriginalPostsController < InheritedResources::Base
   private
   
   def collection
-    OriginalPost.untreated
+    OriginalPost.untreated.order(sort_column + " " + sort_direction)
   end
+  
+  def sort_column
+    (OriginalPost.column_names).include?(params[:sort]) ? params[:sort] : "created_at"
+  end
+  
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "desc"
+  end  
+  
 end

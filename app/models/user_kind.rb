@@ -20,13 +20,13 @@ class UserKind
   
   class << self
     def find(id)
-      return unless id and USER_KINDS.include?(id.to_sym)
+      return unless id.present? and USER_KINDS.include?(id.to_sym)
       id = id.to_sym
       self.new :id => id, :title => USER_KINDS[id]
     end
     
     def find_among_all(id)
-      return unless id and ALL_USER_KINDS.include?(id.to_sym)
+      return unless id.present? and ALL_USER_KINDS.include?(id.to_sym)
       id = id.to_sym
       self.new :id => id, :title => ALL_USER_KINDS[id]
     end

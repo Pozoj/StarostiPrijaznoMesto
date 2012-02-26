@@ -1,0 +1,11 @@
+%h2 Dogodki
+
+- if @events.present?
+  .events
+    - for event in @events
+      - if event.date_and_time_at.today?
+        = render "todays_event", :event => event
+      - else
+        = render "upcoming_event", :event => event
+            
+    
