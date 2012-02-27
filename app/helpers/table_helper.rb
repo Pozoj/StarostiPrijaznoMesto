@@ -1,5 +1,31 @@
 module TableHelper
   
+  
+  #  DATE(original_posts.created_at) AS original_posts_created_at, 
+  # #   CONCAT(original_posts.first_name, ' ', original_posts.last_name) AS senders_name,
+  # #   posts.id AS posts_id,
+  # #   posts.title AS posts_title,
+  # #   posts.post_kind_id AS post_kind_id,
+  # #   posts.tag_group_id AS posts_tag_group_id,
+  # #   institutions.name AS institutions_name,
+  # #   answers.answer_status AS answers_answer_status,
+  def answering_institution(post)
+    if post.institutions_name.present?
+      ending = post.post_kind_id == "question" ? "o" : ""
+      case post.answers_answer_status 
+      when "waiting" then "#{PostKind.find(post.post_kind_id)} čaka na izvršen odgovor od ustanove #{post.institutions_name}"
+      when "answered" then "Na #{PostKind.find(post.post_kind_id).to_s.downcase} je odgovorila ustanova #{post.institutions_name}"
+      when "institutionalized" then "#{PostKind.find(post.post_kind_id)} je bil#{ending} posredovan#{ending} ustanovi #{post.institutions_name}"
+      end
+    else
+      case post.post_kind_id
+      when "suggestion" then "Predlog še ni bil posredovan ustanovi"
+      when "comment" then "Komentar še ni bil posredovan ustanovi"
+      when "question" then "Vprašanje še ni bilo posredovano ustanovi"
+      end
+    end
+  end
+  
   def yes_no(thing)
     if thing.present?
       "✓"

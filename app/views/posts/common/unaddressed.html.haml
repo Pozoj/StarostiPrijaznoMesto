@@ -6,13 +6,13 @@
   %table
     %thead
       %tr
-        %th= sortable("original_posts_created_at",  "Datum vprašanja")
-        %th= sortable("posts_created_at",           "Datum obdelave")
-        %th= sortable("posts_tag_group_id",         "Področje")
-        %th= sortable("posts_title",                "Naziv vprašanja")
-        %th= sortable("original_posts_first_name",  "Ime izpraševalca")
-        %th= sortable("original_posts_last_name",   "Priimek izpraševalca")
-        %th= sortable("attachments_id",             "Priponka")
+        %th= klass_sortable(UnaddressedPost, "original_posts_created_at",  "Datum vprašanja")
+        %th= klass_sortable(UnaddressedPost, "posts_created_at",           "Datum obdelave")
+        %th= klass_sortable(UnaddressedPost, "posts_tag_group_id",         "Področje")
+        %th= klass_sortable(UnaddressedPost, "posts_title",                "Naziv vprašanja")
+        %th= klass_sortable(UnaddressedPost, "original_posts_first_name",  "Ime izpraševalca")
+        %th= klass_sortable(UnaddressedPost, "original_posts_last_name",   "Priimek izpraševalca")
+        %th= klass_sortable(UnaddressedPost, "attachments_id",             "Priponka")
         %th Možnosti
     %tbody
       - for post in @posts

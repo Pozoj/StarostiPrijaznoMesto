@@ -3,7 +3,7 @@ class CreateHomescreenPostsDatabaseView < ActiveRecord::Migration
     execute(
     "CREATE VIEW homescreen_posts_v AS
       SELECT  
-        DATE(original_posts.created_at) AS posts_date, 
+        DATE(original_posts.created_at) AS original_posts_created_at, 
         CONCAT(original_posts.first_name, ' ', original_posts.last_name) AS senders_name,
         posts.id AS posts_id,
         posts.title AS posts_title,

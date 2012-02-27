@@ -6,14 +6,19 @@
   %table
     %thead
       %tr
-        %th= sortable("posts_date",  "Datum vprašanja")
-        %th= sortable("answers_date", "Datum odgovora")
-        %th= sortable("posts_tag_group_id", "Področje")
-        %th= sortable("posts_title",  @post_kind_title)
-        %th= sortable("senders_name", "Poslal")
-        %th= sortable("institutions_name", "Odgovoril")
+        %th= klass_sortable(PublicPost, "original_posts_created_at",  "Datum vprašanja")
+        %th= klass_sortable(PublicPost, "answers_date", "Datum odgovora")
+        %th= klass_sortable(PublicPost, "posts_tag_group_id", "Področje")
+        %th= klass_sortable(PublicPost, "posts_title",  @post_kind_title)
+        %th= klass_sortable(PublicPost, "senders_name", "Poslal")
+        %th= klass_sortable(PublicPost, "institutions_name", "Odgovoril")
     %tbody
       - for post in @posts
         %tr
-          %td= dateit post.posts_date
-          / TODO
+          %td= dateit post.original_posts_created_at
+          %td= dateit post.answers_date
+          %td= text_find TagGroup, post.posts_tag_group_id
+          %td= link_to post.posts_title, post_path(post.posts_id)
+          %td= post.senders_name
+          %td= answering_institution(post)
+          

@@ -18,6 +18,8 @@ class Ability
       end
     else # User is a visitor
       can :read, :all
+      can :read, PublicPost
+      can [:questions, :comments, :suggestions], Post
       can :create, OriginalPost
       cannot :destroy, :all
       cannot :read, [OriginalPost, AccessRight, UserKind, User, SuperAdminTable]

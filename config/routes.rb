@@ -10,7 +10,8 @@ Starci::Application.routes.draw do
   resources :posts, :except => :index do
     collection do
       get :questions
-      
+      get :suggestions
+      get :comments
       get :unaddressed_questions
       get :unaddressed_comments
       get :unaddressed_suggestions
@@ -20,19 +21,17 @@ Starci::Application.routes.draw do
       get :misplaced_questions
       get :misplaced_comments
       get :misplaced_suggestions
-      
+
       get :answered_questions
+      get :answered_comments
+      get :answered_suggestions 
+
+      get :waiting_questions
+      get :waiting_comments
+      get :waiting_suggestions 
+
       get :unapproved
     end
   end
-  
-  # resources :questions, :only => :index do
-  #   collection do
-  #     get :unaddressed
-  #     get :addressed
-  #     get :misplaced
-  #   end  
-  # end
-  
   root :to => 'home#index'
 end

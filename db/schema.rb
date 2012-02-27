@@ -116,13 +116,13 @@ ActiveRecord::Schema.define(:version => 20120226202336) do
   end
 
   create_table "homescreen_posts_v", :id => false, :force => true do |t|
-    t.date    "posts_date"
-    t.string  "senders_name",      :limit => 511
-    t.integer "posts_id",                         :default => 0
+    t.date    "original_posts_created_at"
+    t.string  "senders_name",              :limit => 511
+    t.integer "posts_id",                                 :default => 0
     t.string  "posts_title"
     t.string  "senders_sex"
     t.string  "post_kind_id"
-    t.integer "institutions_id",                  :default => 0
+    t.integer "institutions_id",                          :default => 0
     t.string  "institutions_name"
     t.text    "answers_summary"
     t.date    "answers_date"
@@ -182,13 +182,14 @@ ActiveRecord::Schema.define(:version => 20120226202336) do
   end
 
   create_table "public_posts_v", :id => false, :force => true do |t|
-    t.date    "posts_date"
-    t.string  "senders_name",       :limit => 511
-    t.integer "posts_id",                          :default => 0
+    t.date    "original_posts_created_at"
+    t.string  "senders_name",              :limit => 511
+    t.integer "posts_id",                                 :default => 0
     t.string  "posts_title"
     t.string  "post_kind_id"
     t.string  "posts_tag_group_id"
     t.string  "institutions_name"
+    t.string  "answers_answer_status"
     t.date    "answers_date"
   end
 

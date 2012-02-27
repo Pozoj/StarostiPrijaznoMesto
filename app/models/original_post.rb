@@ -26,6 +26,10 @@ class OriginalPost < ActiveRecord::Base
     attachments.present?
   end
   
+  def attachment_name
+    attachment.attachment_file_name
+  end
+  
   def sender
     "#{first_name} #{last_name}"
   end

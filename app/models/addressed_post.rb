@@ -5,6 +5,7 @@ class AddressedPost < ActiveRecord::Base
   scope :suggestions, where(:posts_post_kind_id => "suggestion")
   scope :answered,          where(:answers_answer_status => "answered")
   scope :misplaced,         where(:answers_answer_status => "misplaced")
+  scope :waiting,           where(:answers_answer_status => "waiting")
   scope :institutionalized, where(:answers_answer_status => "institutionalized")
   
   # Querry for addressed_posts_v 

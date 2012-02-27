@@ -7,22 +7,22 @@
       %li= selected_link("Nenaslovljena", unaddressed_questions_posts_path)
       %li= selected_link("Naslovljena", addressed_questions_posts_path)
       %li= selected_link("Napačno naslovljena", misplaced_questions_posts_path)
-      %li V čakanju
-      %li Odgovorjena
+      %li= selected_link("V čakanju", waiting_questions_posts_path)
+      %li= selected_link("Odgovorjena", answered_questions_posts_path) 
   %li
     %strong Komentarji
     %ul
       %li= selected_link("Nenaslovljeni", unaddressed_comments_posts_path)
       %li= selected_link("Naslovljeni", addressed_comments_posts_path)
       %li= selected_link("Napačno naslovljeni", misplaced_comments_posts_path)
-      %li V čakanju
-      %li Odgovorjeni
+      %li= selected_link("V čakanju", waiting_comments_posts_path)
+      %li= selected_link("Odgovorjeni", answered_comments_posts_path)
   %li
     %strong Predlogi
     %ul
       %li= selected_link("Nenaslovljeni", unaddressed_suggestions_posts_path)
       %li= selected_link("Naslovljeni", addressed_suggestions_posts_path)
       %li= selected_link("Napačno naslovljeni", misplaced_suggestions_posts_path)
-      %li V čakanju
-      %li Odgovorjeni
+      %li= selected_link("V čakanju", waiting_suggestions_posts_path) 
+      %li= selected_link("Odgovorjeni", answered_suggestions_posts_path)
     

@@ -1,6 +1,6 @@
 = title resource
 
-- if can?(:update, resource) or can?(:update, Answer)
+- if can?(:update, resource) or can?(:update, Answer) or can?(:create, Answer)
   %nav#editors-resource-menu
     %ul        
       - if can? :update, resource

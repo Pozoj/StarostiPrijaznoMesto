@@ -5,7 +5,7 @@
       = what_happened(post.senders_sex, post.post_kind_id)
       %strong= post.senders_name
       dne
-      .post-date= l post.posts_date
+      .post-date= l post.original_posts_created_at
     .post-title= link_to post.posts_title, post_path(post.posts_id)
     .post-answer= post.answers_summary
     .responder
