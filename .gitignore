@@ -1,9 +1,12 @@
 .bundle
 db/*.sqlite3
-log/*.log
 tmp/
-public/system/
+public/system
 TODO.txt
 .DS_Store
 .rvmrc
-*.PDF
+*.PDFlog
+public/assets/
+config/database.yml
+config/setup_load_paths.rb
+log

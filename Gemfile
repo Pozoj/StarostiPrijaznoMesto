@@ -15,6 +15,10 @@ gem 'paperclip'
 gem 'will_paginate', '~> 3.0'
 gem "RedCloth", "~> 4.2.7"
 
+group :assets do
+  gem 'uglifier'
+  gem 'therubyracer'
+end
 
 group :development, :test do
   gem 'rails-erd'
