@@ -1,28 +1,21 @@
 %strong Objave
 %ul
-  %li= link_to "Neobdelane objave", original_posts_path
-  %li
-    %strong Vprašanja
-    %ul
-      %li= selected_link("Nenaslovljena", unaddressed_questions_posts_path)
-      %li= selected_link("Naslovljena", addressed_questions_posts_path)
-      %li= selected_link("Napačno naslovljena", misplaced_questions_posts_path)
-      %li= selected_link("V čakanju", waiting_questions_posts_path)
-      %li= selected_link("Odgovorjena", answered_questions_posts_path) 
-  %li
-    %strong Komentarji
-    %ul
-      %li= selected_link("Nenaslovljeni", unaddressed_comments_posts_path)
-      %li= selected_link("Naslovljeni", addressed_comments_posts_path)
-      %li= selected_link("Napačno naslovljeni", misplaced_comments_posts_path)
-      %li= selected_link("V čakanju", waiting_comments_posts_path)
-      %li= selected_link("Odgovorjeni", answered_comments_posts_path)
-  %li
-    %strong Predlogi
-    %ul
-      %li= selected_link("Nenaslovljeni", unaddressed_suggestions_posts_path)
-      %li= selected_link("Naslovljeni", addressed_suggestions_posts_path)
-      %li= selected_link("Napačno naslovljeni", misplaced_suggestions_posts_path)
-      %li= selected_link("V čakanju", waiting_suggestions_posts_path) 
-      %li= selected_link("Odgovorjeni", answered_suggestions_posts_path)
-    
+  - if can? :read, OriginalPost
+    %li= link_to "Neobdelane objave", original_posts_path
+  - if can? :read, RejectedPost
+    %li= link_to "Zavrnjene objave", unapproved_posts_path
+  
+  - if [UnaddressedPost, Institutionalized, Misplaced, Waiting, Answered].collect {|m| can?(:read, m)}.include?(true)
+    %li
+      %strong Pobude
+      %ul
+        - if can? :read, UnaddressedPost
+          %li= selected_link("Nenaslovljene (#{@unaddressed_count})", unaddressed_posts_path)
+        - if can? :read, Institutionalized
+          %li= selected_link("Naslovljene (#{@addressed_count})", addressed_posts_path)
+        - if can? :read, Misplaced
+          %li= selected_link("Napačno naslovljene (#{@misplaced_count})", misplaced_posts_path)
+        - if can? :read, Waiting
+          %li= selected_link("V čakanju (#{@waiting_count})", waiting_posts_path)
+        - if can? :read, Answered
+          %li= selected_link("Odgovorjene", answered_posts_path) 

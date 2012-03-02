@@ -2,6 +2,10 @@
   = link_to "<h1 class='ir' id='title'>Starosti prijazno mesto</h1>".html_safe, root_path, :class => "home_link"
   = link_to "Vprašajte nas, želimo Vam odgovoriti", new_original_post_path
   
+  .time-and-date
+    %span#time
+    %span#date
+  
 %nav#menu
   %ul
     %li= link_to "Vprašanja", questions_posts_path

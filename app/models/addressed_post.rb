@@ -7,6 +7,7 @@ class AddressedPost < ActiveRecord::Base
   scope :misplaced,         where(:answers_answer_status => "misplaced")
   scope :waiting,           where(:answers_answer_status => "waiting")
   scope :institutionalized, where(:answers_answer_status => "institutionalized")
+  scope :for_institution, lambda { |institution_id| where(:institutions_id => institution_id) }
   
   # Querry for addressed_posts_v 
   # ---
@@ -20,6 +21,7 @@ class AddressedPost < ActiveRecord::Base
   #   posts.tag_group_id AS posts_tag_group_id,
   #   posts.title AS posts_title,
   #   posts.post_kind_id AS posts_post_kind_id,
+  #   institutions.id AS institutions_id,
   #   institutions.name AS institutions_name,
   #   attachments.id AS attachments_id,
   #   answers.id AS answers_id,

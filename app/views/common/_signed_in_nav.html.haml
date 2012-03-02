@@ -1,14 +1,13 @@
 - if user_signed_in?
   %div.admin
-    - if [Event, Institution, OriginalPost, Post, AccessRight].collect {|m| can?(:manage, m)}.include?(true)
+    - if [OriginalPost, RejectedPost, UnaddressedPost, Institutionalized, Misplaced, Waiting, Answered].collect {|m| can?(:read, m)}.include?(true)
       %nav#admin_menu
         %h4 ADMINISTRATIVA
         %ul
+          - if [OriginalPost, RejectedPost, UnaddressedPost, Institutionalized, Misplaced, Waiting, Answered].collect {|m| can?(:read, m)}.include?(true)
+            %li= render "common/post_links"
           - if can? :read, SuperAdminTable
-            %li= link_to "Administratorska tabela", super_admin_tables_path
-          - if can? :manage, [OriginalPost, Post]
-            %li
-              = render "common/post_links"
+            %li= link_to "Administratorska tabela", super_admin_tables_path          
           - if can? :manage, Region
             %li= link_to "Regije", regions_path
           - if can? :manage, City

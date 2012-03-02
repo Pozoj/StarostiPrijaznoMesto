@@ -19,6 +19,7 @@ class PostsController < InheritedResources::Base
     @no_posts_message = "Trenutno ni vprašanj."
     @title = "Vsa vprašanja"
     @post_kind_title = "Naziv vprašanja"
+    @created_at_title = "Datum vprašanja"
     render "posts/common/public"
   end
   
@@ -27,6 +28,7 @@ class PostsController < InheritedResources::Base
     @no_posts_message = "Trenutno ni komentarjev."
     @title = "Vsi komentarji"
     @post_kind_title = "Naziv komentarja"
+    @created_at_title = "Datum komentarja"
     render "posts/common/public"
   end
   
@@ -35,123 +37,74 @@ class PostsController < InheritedResources::Base
     @no_posts_message = "Trenutno ni predlogov."
     @title = "Vsi predlogi"
     @post_kind_title = "Naziv predloga"
+    @created_at_title = "Datum predloga"
     render "posts/common/public"
   end
-  
-  #unaddressed
-  def unaddressed_questions
-    @title = "Nenaslovljena vprašanja"
-    @no_posts_message = "Trenutno ni nenaslovljenih vprašanj."
-    @posts = UnaddressedPost.questions.order(klass_sort_column(UnaddressedPost) + " " + sort_direction)
+    
+  def unaddressed
+    @title = "Nenaslovljene pobude"
+    @no_posts_message = "Trenutno ni nenaslovljenih pobud."
+    if params[:posts_post_kind_id].present? and PostKind.keys.include?(params[:posts_post_kind_id])
+      @posts = UnaddressedPost.where(:posts_post_kind_id => params[:posts_post_kind_id]).order(klass_sort_column(UnaddressedPost) + " " + sort_direction)
+    else
+      @posts = UnaddressedPost.order(klass_sort_column(UnaddressedPost) + " " + sort_direction)
+    end
     render "posts/common/unaddressed"
   end
   
-  def unaddressed_comments
-    @title = "Nenaslovljeni komentarji"
-    @no_posts_message = "Trenutno ni nenaslovljenih komentarjev."
-    @posts = UnaddressedPost.comments.order(klass_sort_column(UnaddressedPost) + " " + sort_direction)
-    render "posts/common/unaddressed"
-  end
-  
-  def unaddressed_suggestions
-    @title = "Nenaslovljeni predlogi"
-    @no_posts_message = "Trenutno ni nenaslovljenih predlogov."
-    @posts = UnaddressedPost.suggestions.order(klass_sort_column(UnaddressedPost) + " " + sort_direction)
-    render "posts/common/unaddressed"
-  end
-
-  #addressed
-  def addressed_questions
-    @title = "Naslovljena vprašanja"
-    @no_posts_message = "Trenutno ni naslovljenih vprašanj."
-    @posts = AddressedPost.institutionalized.questions.order(klass_sort_column(AddressedPost) + " " + sort_direction)
-    render "posts/common/addressed"
-  end
-
-  def addressed_comments
-    @title = "Naslovljeni komentarji"
-    @no_posts_message = "Trenutno ni naslovljenih komentarjev."
-    @posts = AddressedPost.institutionalized.comments.order(klass_sort_column(AddressedPost) + " " + sort_direction)
-    render "posts/common/addressed"
-  end
-
-  def addressed_suggestions
-    @title = "Naslovljeni predlogi"
-    @no_posts_message = "Trenutno ni naslovljenih predlogov."
-    @posts = AddressedPost.institutionalized.suggestions.order(klass_sort_column(AddressedPost) + " " + sort_direction)
+  def addressed
+    @title = "Naslovljene pobude"
+    @no_posts_message = "Trenutno ni naslovljenih pobud."
+    post_scope_and_order_for(Institutionalized)
     render "posts/common/addressed"
   end
   
-  #misplaced
-  def misplaced_questions
-    @title = "Napačno naslovljena vprašanja"
-    @no_posts_message = "Trenutno ni napačno naslovljenih vprašanj."
-    @posts = AddressedPost.misplaced.questions.order(klass_sort_column(AddressedPost) + " " + sort_direction)
-    render "posts/common/addressed"
-  end
-
-  def misplaced_comments
-    @title = "Napačno naslovljeni komentarji"
-    @no_posts_message = "Trenutno ni napačno naslovljenih komentarjev."
-    @posts = AddressedPost.misplaced.comments.order(klass_sort_column(AddressedPost) + " " + sort_direction)
-    render "posts/common/addressed"
-  end
-
-  def misplaced_suggestions
-    @title = "Napačno naslovljeni predlogi"
-    @no_posts_message = "Trenutno ni napačno naslovljenih predlogov."
-    @posts = AddressedPost.misplaced.suggestions.order(klass_sort_column(AddressedPost) + " " + sort_direction)
+  def misplaced
+    @title = "Napačno naslovljene pobude"
+    @no_posts_message = "Trenutno ni napačno naslovljenih pobud."
+    post_scope_and_order_for(Misplaced)
     render "posts/common/addressed"
   end
   
-  #waiting
-  def waiting_questions
-    @title = "Vprašanja v čakanju"
-    @no_posts_message = "Trenutno ni vprašanj v čakanju."
-    @posts = AddressedPost.waiting.questions.order(klass_sort_column(AddressedPost) + " " + sort_direction)
-    render "posts/common/addressed"
-  end
-
-  def waiting_comments
-    @title = "Komentarji v čakanju"
-    @no_posts_message = "Trenutno ni komentarjev v čakanju."
-    @posts = AddressedPost.waiting.comments.order(klass_sort_column(AddressedPost) + " " + sort_direction)
-    render "posts/common/addressed"
-  end
-
-  def waiting_suggestions
-    @title = "Predlogi v čakanju"
-    @no_posts_message = "Trenutno ni predlogov v čakanju."
-    @posts = AddressedPost.waiting.suggestions.order(klass_sort_column(AddressedPost) + " " + sort_direction)
+  def answered
+    @title = "Odgovorjene pobude"
+    @no_posts_message = "Trenutno ni odgovorjenih pobud."
+    post_scope_and_order_for(Answered)
     render "posts/common/addressed"
   end
   
-  #answered
-  def answered_questions
-    @title = "Odgovorjena vprašanja"
-    @no_posts_message = "Trenutno ni odgovorjenih vprašanj."
-    @posts = AddressedPost.answered.questions.order(klass_sort_column(AddressedPost) + " " + sort_direction)
-    render "posts/common/addressed"
-  end
-
-  def answered_comments
-    @title = "Odgovorjeni komentarji"
-    @no_posts_message = "Trenutno ni odgovorjenih komentarjev."
-    @posts = AddressedPost.answered.comments.order(klass_sort_column(AddressedPost) + " " + sort_direction)
-    render "posts/common/addressed"
-  end
-
-  def answered_suggestions
-    @title = "Odgovorjeni predlogi"
-    @no_posts_message = "Trenutno ni odgovorjenih predlogov."
-    @posts = AddressedPost.answered.suggestions.order(klass_sort_column(AddressedPost) + " " + sort_direction)
+  def waiting
+    @title = "Pobude v čakanju"
+    @no_posts_message = "Trenutno ni pobud v čakanju."
+    post_scope_and_order_for(Waiting)
     render "posts/common/addressed"
   end
   
   def unapproved
+    @title = "Zavrnjene objave"
+    @posts = RejectedPost.order(klass_sort_column(RejectedPost) + " " + sort_direction)
   end
   
   protected
+  
+  def post_scope_and_order_for(klass)
+    @posts = klass.scoped
+    post_kind_scope
+    institution_scope
+    @posts = @posts.order(klass_sort_column(klass) + " " + sort_direction)
+  end
+  
+  def post_kind_scope
+    if params[:posts_post_kind_id].present? and PostKind.keys.include?(params[:posts_post_kind_id])
+      @posts = @posts.where(:posts_post_kind_id => params[:posts_post_kind_id])
+    end
+  end
+  
+  def institution_scope
+    if current_user.user_kind.present? and current_user.institution_id.present? and current_user.user_kind.institution_admin?
+      @posts = @posts.for_institution(current_user.institution_id)
+    end
+  end
   
   def append_original_post
     @post.original_post = OriginalPost.find_by_id(params[:original_post_id]) if params[:original_post_id]

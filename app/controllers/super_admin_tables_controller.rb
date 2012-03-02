@@ -1,14 +1,14 @@
 class SuperAdminTablesController < ApplicationController
-  load_and_authorize_resource
+  load_and_authorize_resource :only => :index
+  
   helper_method :sort_column, :sort_direction
   
   def index
     if params[:posts_post_kind_id].present? and PostKind.keys.include?(params[:posts_post_kind_id])
-      @table = @table = SuperAdminTable.where(:posts_post_kind_id => params[:posts_post_kind_id]).order("original_posts_created_at desc")
+      @table = SuperAdminTable.where(:posts_post_kind_id => params[:posts_post_kind_id]).order("original_posts_created_at desc")
     else
       @table = SuperAdminTable.order(sort_column + " " + sort_direction)
     end
-    authorize! :show, @table
   end
   
   private

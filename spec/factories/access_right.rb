@@ -3,6 +3,6 @@
 FactoryGirl.define do
   factory :access_right do
     user_kind_right "manageEvent"
-    user_kind_id "worker"
+    user_kind_id "institution_admin"
   end
 end

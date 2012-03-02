@@ -6,12 +6,13 @@
   %table
     %thead
       %tr
-        %th= klass_sortable(AddressedPost, "original_posts_created_at",  "Datum vprašanja")
+        %th= klass_sortable(AddressedPost, "original_posts_created_at",  "Datum pobude")
         %th= klass_sortable(AddressedPost, "posts_created_at",           "Datum obdelave")
+        %th= klass_sortable(AddressedPost, "posts_post_kind_id",         "Vrsta objave")
         %th= klass_sortable(AddressedPost, "posts_tag_group_id",         "Področje")
-        %th= klass_sortable(AddressedPost, "posts_title",                "Naziv vprašanja")
-        %th= klass_sortable(AddressedPost, "original_posts_first_name",  "Ime izpraševalca")
-        %th= klass_sortable(AddressedPost, "original_posts_last_name",   "Priimek izpraševalca")
+        %th= klass_sortable(AddressedPost, "posts_title",                "Naziv pobude")
+        %th= klass_sortable(AddressedPost, "original_posts_first_name",  "Ime pobudnika")
+        %th= klass_sortable(AddressedPost, "original_posts_last_name",   "Priimek pobudnika")
         %th= klass_sortable(AddressedPost, "institutions_name",          "Ustanova")
         %th= klass_sortable(AddressedPost, "attachments_id",             "Priponka")
     %tbody
@@ -19,6 +20,12 @@
         %tr
           %td= dateit post.original_posts_created_at
           %td= dateit post.posts_created_at
+          %td
+            - if post.posts_post_kind_id.present?
+              - post_kind = PostKind.find(post.posts_post_kind_id)
+              = link_to post_kind.title, { :posts_post_kind_id => post_kind.id }
+            - else
+              ✗
           %td= textit TagGroup.find(post.posts_tag_group_id)
           %td= link_to post.posts_title, post_path(post.posts_id)
           %td= post.original_posts_first_name

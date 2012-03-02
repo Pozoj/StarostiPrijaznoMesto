@@ -1,22 +1,21 @@
-= title "Neodobrene objave"
+= title "Zavrnjene objave"
 
 - unless @posts.present?
-  %p.message Trenutno ni neodobrenih objav
+  %p.message Trenutno ni zavrnjenih objav.
 - else
   %table
     %thead
       %tr
-        %th= sortable("created_at", "Datum posredovanja")
-        %th= sortable("first_name", "Ime pošiljatelja")
-        %th= sortable("last_name",  "Priimek pošiljatelja")
-        %th= sortable("email",      "E-pošta")
-        %th Priloga
-        %th Možnosti
+        %th= klass_sortable(RejectedPost, "original_posts_created_at", "Datum posredovanja")
+        %th= klass_sortable(RejectedPost, "original_posts_first_name", "Ime pošiljatelja")
+        %th= klass_sortable(RejectedPost, "original_posts_last_name",  "Priimek pošiljatelja")
+        %th= klass_sortable(RejectedPost, "original_posts_email",      "E-pošta")
+        %th= klass_sortable(RejectedPost, "attachments_id",      "Priloga")
     %tbody
       - for post in @posts
         %tr
-          %td= dateit post.created_at
-          %td= post.first_name
-          %td= post.last_name
-          %td= textit post.email
-          %td= yes_no post.attachments
+          %td= dateit post.original_posts_created_at
+          %td= link_to post.original_posts_first_name, post_path(post.posts_id)
+          %td= link_to post.original_posts_last_name, post_path(post.posts_id)
+          %td= textit post.original_posts_email
+          %td= yes_no post.attachments_id

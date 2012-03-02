@@ -21,7 +21,8 @@ class PublicPost < ActiveRecord::Base
   #   LEFT JOIN posts ON original_posts.id = posts.original_post_id
   #   LEFT JOIN answers ON posts.id = answers.post_id
   #   LEFT JOIN institutions ON answers.institution_id = institutions.id
-  # WHERE posts.post_status_id = 'approved'
-  # AND answers.answer_status != 'misplaced'
-  # OR answers.id IS NULL;
+  # WHERE 
+  #   (posts.post_status_id = 'approved' AND answers.answer_status != 'misplaced')
+  # OR
+  #   (posts.post_status_id = 'approved' AND answers.id IS NULL);
 end

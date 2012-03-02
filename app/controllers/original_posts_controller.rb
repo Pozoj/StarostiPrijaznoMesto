@@ -9,6 +9,7 @@ class OriginalPostsController < InheritedResources::Base
   def new
     @original_post = OriginalPost.new
     @original_post.attachments.build
+    get_signed_in_user_data if user_signed_in?
   end
 
   def create
@@ -25,6 +26,12 @@ class OriginalPostsController < InheritedResources::Base
   end
   
   private
+  
+  def get_signed_in_user_data
+    @original_post.first_name = current_user.first_name
+    @original_post.last_name  = current_user.last_name
+    @original_post.email      = current_user.email
+  end
   
   def collection
     OriginalPost.untreated.order(sort_column + " " + sort_direction)

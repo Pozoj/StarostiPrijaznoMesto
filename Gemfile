@@ -14,6 +14,7 @@ gem 'haml'
 gem 'paperclip'
 gem 'will_paginate', '~> 3.0'
 gem "RedCloth", "~> 4.2.7"
+gem "yahoo_weatherman", "~> 1.1.4"
 
 group :assets do
   gem 'uglifier'

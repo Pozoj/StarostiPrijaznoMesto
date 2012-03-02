@@ -7,3 +7,23 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+var weekday = new Array("Nedelja", "Ponedeljek", "Torek", "Sreda", "Četrtek", "Petek", "Sobota");
+function formatTime() {
+  now = new Date();
+  hour = now.getHours();
+  min = now.getMinutes();
+	month = now.getMonth() + 1;
+	day = now.getDate();
+	year = now.getFullYear();
+	day_of_week = now.getDay();
+  
+	if (min <= 9) {
+    min = "0" + min; }
+  if (hour < 10) {
+    hour = "0" + hour; }
+  document.getElementById("time").innerHTML = hour + ':' + min;
+	document.getElementById("date").innerHTML = weekday[day_of_week] + ', ' + day + '.' + month + '.' + year;
+  setTimeout("formatTime()", 1000);
+}
+
+window.onload=formatTime;

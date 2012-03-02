@@ -7,7 +7,7 @@ FactoryGirl.define do
     sequence(:email) { |n| "srecko.meh#{n}@stari.si" }
     password "SimonTalek"
     password_confirmation "SimonTalek"
-    user_kind_id "worker"
+    user_kind_id "institution_admin"
     association :institution
     admin false
   end

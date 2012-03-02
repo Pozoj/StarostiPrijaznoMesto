@@ -2,12 +2,13 @@ class UserKind
   attr_accessor :id, :title
     
   USER_KINDS = {
-    :info_admin         => "Info administrator",
-    :worker             => "Uslužbenec",
-    :leader             => "Vodja",
-    :media_admin        => "Medijski administrator",
-    :basic_admin        => "Splošni administrator",
-    :president          => "Predsednik"
+    :info_admin           => "Info administrator",
+    :institution_admin    => "Administrator ustanove",
+    :coordination_member  => "Član koordinacijskega odbora",    
+    :honorable_member     => "Član častnega odbora",
+    :project_president    => "Predsednik projekta",
+    :mayor                => "Župan",
+    :deputy_mayor         => "Podžupan"
   }
   
   ALL_USER_KINDS = USER_KINDS.merge({ :admin => "Super administrator" })
@@ -45,54 +46,17 @@ class UserKind
         
     def info_admin 
       "info_admin"
-    end
-    
-    def worker
-      "worker"
-    end
-    
-    def leader
-      "leader"
-    end
-           
-    def media_admin
-      "media_admin"
     end       
-    
-    def basic_admin
-      "basic_admin"
-    end
-    
-    def president
-      "president"
-    end
-       
   end
   
   def info_admin?
     id == :info_admin
   end
   
-  def worker?
-    id == :worker
+  def institution_admin?
+    id == :institution_admin
   end
 
-  def leader?
-    id == :leader
-  end
-
-  def media_admin?
-    id == :media_admin
-  end
-
-  def basic_admin?
-    id == :basic_admin
-  end
-
-  def president?
-    id == :president
-  end
-  
   def to_s
     title
   end

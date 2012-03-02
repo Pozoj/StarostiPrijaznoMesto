@@ -1,5 +1,8 @@
 = simple_form_for resource do |f|
-  = f.association :institution
+  - if current_user.admin?
+    = f.association :institution, :prompt => "Izberite ustanovo, ki gosti dogodek"
+  - else
+    = f.input "institution_id", :as => :hidden
   = f.input "user_id", :as => :hidden
   = f.input "title"
   = f.input "address"

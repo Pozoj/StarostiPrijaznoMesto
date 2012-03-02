@@ -3,6 +3,7 @@ class AccessRight < ActiveRecord::Base
   validate :validate_selected_right
 
   RIGHTS = [
+    "read",
     "manage",
     "create",
     "update",
@@ -16,10 +17,22 @@ class AccessRight < ActiveRecord::Base
     'Photo',
     'Institution',
     'Tag',
-    'TagGroup'
+    'TagGroup',
+    'SuperAdminTable',
+    'UnaddressedPost',
+    'Institutionalized',
+    'Waiting',
+    'Answered',
+    'Misplaced'
   ]
     
   ALL_RIGHTS = [
+    {:value=>[:read,  UnaddressedPost], :title=>"Vidi - Nenaslovljene pobude"},
+    {:value=>[:read,  Institutionalized], :title=>"Vidi - Naslovljene pobude"},
+    {:value=>[:read,  SuperAdminTable], :title=>"Vidi - Administratorsko tabelo"},
+    {:value=>[:read,  Waiting], :title=>"Vidi - Pobude v čakanju"},
+    {:value=>[:read,  Answered], :title=>"Vidi - Odgovorjene pobude"},
+    {:value=>[:read,  Misplaced], :title=>"Vidi - Napačno posredovane pobude"},
     
     {:value=>[:destroy, Answer], :title=>"Odgovori - Brisanje"},
     {:value=>[:create,  Answer], :title=>"Odgovori - Ustvarjanje"},

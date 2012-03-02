@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   helper_method :body_attrs, :admin?
   before_filter :authenticate_user!, :except => [:index, :show]
+  before_filter :count_for_user_kind
   
   # Cancan
   check_authorization
@@ -22,6 +23,23 @@ class ApplicationController < ActionController::Base
   
   def export_i18n_messages
     SimplesIdeias::I18n.export! if Rails.env.development?
+  end
+  
+  def count_for_user_kind
+    #TODO glede na vrsto uporabnika moras nalozit counterje
+    #ce ima uporabnik vezano ustanovo, mora prikazat addressed in waiting s countom za njihovo ustanovo
+    # in sicer, ce gre za tako vrsto uporabnika, kjer bi to moralo bit omejeno. (worker, director)
+    if user_signed_in?
+      @unaddressed_count = UnaddressedPost.count if can? :read, UnaddressedPost
+      @misplaced_count = Misplaced.count if can? :read, Misplaced
+      if current_user.user_kind.present? and current_user.institution_id.present? and current_user.user_kind.institution_admin?
+        @addressed_count = Institutionalized.for_institution(current_user.institution_id).count if can? :read, Institutionalized
+        @waiting_count = Waiting.for_institution(current_user.institution_id).count if can? :read, Waiting
+      else
+        @addressed_count = Institutionalized.count if can? :read, Institutionalized
+        @waiting_count = Waiting.count if can? :read, Waiting  
+      end
+    end
   end
   
   rescue_from CanCan::AccessDenied do |exception|

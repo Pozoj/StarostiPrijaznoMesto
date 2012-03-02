@@ -4,7 +4,7 @@ class EventsController < InheritedResources::Base
   def new
     @event = Event.new
     @event.user_id = current_user.id
-    @event.institution_id = current_user.institution.present?? current_user.institution_id : nil
+    @event.institution_id = current_user.institution.present? ? current_user.institution_id : nil
   end
   
   protected

@@ -12,26 +12,14 @@ Starci::Application.routes.draw do
       get :questions
       get :suggestions
       get :comments
-      get :unaddressed_questions
-      get :unaddressed_comments
-      get :unaddressed_suggestions
-      get :addressed_questions
-      get :addressed_comments
-      get :addressed_suggestions 
-      get :misplaced_questions
-      get :misplaced_comments
-      get :misplaced_suggestions
-
-      get :answered_questions
-      get :answered_comments
-      get :answered_suggestions 
-
-      get :waiting_questions
-      get :waiting_comments
-      get :waiting_suggestions 
-
       get :unapproved
+      get :unaddressed
+      get :addressed
+      get :misplaced
+      get :answered
+      get :waiting
     end
   end
+  
   root :to => 'home#index'
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120226202336) do
+ActiveRecord::Schema.define(:version => 20120301140800) do
 
   create_table "abouts", :force => true do |t|
     t.text     "content"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(:version => 20120226202336) do
     t.string   "posts_tag_group_id"
     t.string   "posts_title"
     t.string   "posts_post_kind_id"
+    t.integer  "institutions_id",           :default => 0
     t.string   "institutions_name"
     t.integer  "attachments_id",            :default => 0
     t.integer  "answers_id",                :default => 0
@@ -52,8 +53,8 @@ ActiveRecord::Schema.define(:version => 20120226202336) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "summary"
-    t.string   "answer_range"
     t.text     "notes"
+    t.string   "answer_range"
     t.datetime "institutionalized_at"
     t.datetime "answered_at"
     t.datetime "misplaced_at"
@@ -206,6 +207,15 @@ ActiveRecord::Schema.define(:version => 20120226202336) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "rejected_posts_v", :id => false, :force => true do |t|
+    t.date    "original_posts_created_at"
+    t.string  "original_posts_first_name"
+    t.string  "original_posts_last_name"
+    t.string  "original_posts_email"
+    t.integer "attachments_id",            :default => 0
+    t.integer "posts_id",                  :default => 0
   end
 
   create_table "super_admin_table_v", :id => false, :force => true do |t|

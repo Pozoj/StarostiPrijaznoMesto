@@ -6,7 +6,7 @@
   %table
     %thead
       %tr
-        %th= klass_sortable(PublicPost, "original_posts_created_at",  "Datum vprašanja")
+        %th= klass_sortable(PublicPost, "original_posts_created_at",  @created_at_title)
         %th= klass_sortable(PublicPost, "answers_date", "Datum odgovora")
         %th= klass_sortable(PublicPost, "posts_tag_group_id", "Področje")
         %th= klass_sortable(PublicPost, "posts_title",  @post_kind_title)
