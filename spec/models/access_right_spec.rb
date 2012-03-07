@@ -7,6 +7,13 @@ describe AccessRight do
   
   it "should return these proper rights" do
     AccessRight.all_rights.sort_by {|hash| hash[:title] }.should == [
+      {:value=>[:read,  UnaddressedPost], :title=>"Vidi - Nenaslovljene pobude"},
+      {:value=>[:read,  Institutionalized], :title=>"Vidi - Naslovljene pobude"},
+      {:value=>[:read,  SuperAdminTable], :title=>"Vidi - Administratorsko tabelo"},
+      {:value=>[:read,  Waiting], :title=>"Vidi - Pobude v čakanju"},
+      {:value=>[:read,  Answered], :title=>"Vidi - Odgovorjene pobude"},
+      {:value=>[:read,  Misplaced], :title=>"Vidi - Napačno posredovane pobude"},
+
       {:value=>[:destroy, Answer], :title=>"Odgovori - Brisanje"},
       {:value=>[:create,  Answer], :title=>"Odgovori - Ustvarjanje"},
       {:value=>[:update,  Answer], :title=>"Odgovori - Urejanje"},
@@ -22,14 +29,14 @@ describe AccessRight do
       {:value=>[:update,  Post], :title=>"Objava - Urejanje"},
       {:value=>[:manage,  Post], :title=>"Objava - Upravljanje"},
 
-      {:value=>[:destroy, Photo], :title=>"Fotografije - Brisanje"},
-      {:value=>[:create,  Photo], :title=>"Fotografije - Ustvarjanje"},
-      {:value=>[:manage,  Photo], :title=>"Fotografije - Upravljanje"},
+      {:value=>[:destroy, Attachment], :title=>"Fotografije - Brisanje"},
+      {:value=>[:create,  Attachment], :title=>"Fotografije - Ustvarjanje"},
+      {:value=>[:manage,  Attachment], :title=>"Fotografije - Upravljanje"},
 
       {:value=>[:destroy, Institution], :title=>"Ustanove - Brisanje"},
       {:value=>[:create,  Institution], :title=>"Ustanove - Ustvarjanje"},
       {:value=>[:update,  Institution], :title=>"Ustanove - Urejanje"},
-      {:value=>[:manage,  Institution], :title=>"Ustanove - Upravljanje"},
+      {:value=>[:manage,  Institution], :title=>"Ustanove - Upravljanje"}
     ].sort_by {|hash| hash[:title] }
     
   end

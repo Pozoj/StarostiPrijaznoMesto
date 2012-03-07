@@ -56,7 +56,7 @@ class AccessRight < ActiveRecord::Base
     {:value=>[:destroy, Institution], :title=>"Ustanove - Brisanje"},
     {:value=>[:create,  Institution], :title=>"Ustanove - Ustvarjanje"},
     {:value=>[:update,  Institution], :title=>"Ustanove - Urejanje"},
-    {:value=>[:manage,  Institution], :title=>"Ustanove - Upravljanje"},
+    {:value=>[:manage,  Institution], :title=>"Ustanove - Upravljanje"}
   ]
   
   class << self

@@ -37,7 +37,7 @@ class AnswerStatus
     end
     
     def keys
-      ["misplaced", "answered" ]
+      ["misplaced", "answered", "waiting"]
     end
   end
     

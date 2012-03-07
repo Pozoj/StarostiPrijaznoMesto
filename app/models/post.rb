@@ -75,6 +75,10 @@ class Post < ActiveRecord::Base
      @misplaced ||= answers.misplaced.present? and not answers.answered.present?
   end
   
+  def waiting?
+     @waiting ||= answers.waiting.present?
+  end
+  
   def last_answer
     answers.order(:id).last
   end

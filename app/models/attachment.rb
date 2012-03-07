@@ -3,7 +3,7 @@ class Attachment < ActiveRecord::Base
   before_save :filename_to_permalink
   
   has_attached_file :attachment, 
-                    :styles => { :small => "150x150>", :medium => "250x250>", :big => "425x320#"},
+                    :styles => { :small => "150x150>", :medium => "250x250>", :big => "330x320#"},
                     :url  => "/system/attachments/:id/:style/:basename.:extension",
                     :path => ":rails_root/public/system/attachments/:id/:style/:basename.:extension"
   

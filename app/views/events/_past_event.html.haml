@@ -1,0 +1,8 @@
+%p.past
+  %span.date= l event.date_and_time_at, :format => :short_date
+  ob
+  %span.time= l event.date_and_time_at, :format => :time_only
+  je bil dogodek
+  %span.event_link= link_to event.title, event_path(event.id)
+  , na naslovu
+  %span.address= "#{event.address}, #{event.post_office}."

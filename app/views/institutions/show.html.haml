@@ -1,28 +1,82 @@
 = title resource
 
-= render "common/simple_editors_nav"
+- if can?(:update, resource) or can?(:destroy, resource) or can?(:create, Attachment) or can?(:destroy, Attachment)
+  %nav#editors-resource-menu
+    %ul        
+      - if can? :update, resource
+        %li= link_to "Uredi", edit_resource_path
+      - if can? :destroy, resource
+        %li= link_to "Odstrani", resource_path, :method => :delete, :confirm => destroy_confirmation(resource)
+      - if can? :create, Attachment and not resource.photos_added?
+        %li= link_to "Dodaj fotografijo", new_institution_attachment_path(resource)  
+      - if can? :destroy, Attachment and resource.photos_added?
+        %li= link_to "Odstrani fotografijo", resource.photo, :method => :delete, :confirm => destroy_confirmation(resource.photo)
+      - if can? :create, WorkHour and not resource.work_hours.present?
+        %li= link_to "Dodaj delovne ure", new_institution_work_hour_path(resource)
+      - if can? :update, WorkHour and resource.work_hours.present?
+        %li= link_to "Uredi delovne ure", edit_institution_work_hour_path(resource, resource.work_time)
 
-%p
-  %strong Naslov:
-  = "#{resource.address}, #{resource.post_office.post_number} #{resource.post_office.city}"
-
-- if resource.phone.present?
+.six.columns.alpha
+  .photo
+    - if resource.photos_added?
+      = link_to image_tag( resource.photos_url(:big), :class => "institution_pic", :alt => resource.name ), resource.photos_url(:original)
+    - else
+      = render "common/default_pic", :pic_name => resource.name
+  
+.six.columns.alpha
+  %h3 Infromacije
+  
   %p
-    %strong Telefon:
-    = resource.phone
+    %strong Naslov:
+    = "#{resource.address}, #{resource.post_office.post_number} #{resource.post_office.city}"
 
-- if resource.fax.present?
-  %p
-    %strong Fax:
-    = resource.fax
+  - if resource.phone.present?
+    %p
+      %strong Telefon:
+      = resource.phone
 
-- if resource.website.present?
-  %p
-    %strong Spletna stran:
-    = link_to resource.website, resource.website
+  - if resource.fax.present?
+    %p
+      %strong Fax:
+      = resource.fax
 
-%h3 Opis
-= render "common/redcloth_it", :content => resource.description
+  - if resource.website.present?
+    %p
+      %strong Spletna stran:
+      = link_to resource.website, resource.website
 
-%h3 Naloge
-= render "common/redcloth_it", :content => resource.tasks
+.four.columns.alpha
+  - if resource.work_hours.present?
+    %h3 Uradne ure
+    
+    %dl
+      %dt Ponedeljek
+      %dd= work_time_from_to(resource.work_time.mon_from, resource.work_time.mon_to)
+      
+      %dt Torek
+      %dd= work_time_from_to(resource.work_time.tue_from, resource.work_time.tue_to)
+      
+      %dt Sreda
+      %dd= work_time_from_to(resource.work_time.wed_from, resource.work_time.wed_to)
+      
+      %dt Četrtek
+      %dd= work_time_from_to(resource.work_time.thu_from, resource.work_time.thu_to)
+      
+      %dt Petek
+      %dd= work_time_from_to(resource.work_time.fri_from, resource.work_time.fri_to)
+      
+      %dt Sobota
+      %dd= work_time_from_to(resource.work_time.sat_from, resource.work_time.sat_to)
+      
+      %dt Nedelja
+      %dd= work_time_from_to(resource.work_time.sun_from, resource.work_time.sun_to)
+      
+
+.sixteen.columns
+  %h3 Opis
+  = render "common/redcloth_it", :content => resource.description
+
+  %h3 Naloge
+  = render "common/redcloth_it", :content => resource.tasks
+  
+  = render "posts/common/public_table"

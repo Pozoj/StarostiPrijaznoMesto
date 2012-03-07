@@ -1,4 +1,9 @@
 # encoding: utf-8
+
+class Date
+  DAYNAMES = ["Ned", "Pon", "Tor", "Sre", "Čet", "Pet", "Sob"]
+end
+
 class String
   
   def debalkanic
@@ -29,8 +34,6 @@ class String
   		self
   	end
   end
-  
-  
   
   def to_permalink
     separator = '-'

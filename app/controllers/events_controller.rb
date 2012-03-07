@@ -15,8 +15,7 @@ class EventsController < InheritedResources::Base
     else
       @cal_date = Date.today
     end
-    
-    Event.on_month(@cal_date)
+    @events_this_month = Event.on_month(@cal_date)
   end
   
 end

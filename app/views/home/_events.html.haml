@@ -4,9 +4,9 @@
   - if @events.present?
     - for event in @events
       - if event.date_and_time_at.today?
-        = render "todays_event", :event => event
+        = render "events/todays_event", :event => event
       - else
-        = render "upcoming_event", :event => event
+        = render "events/upcoming_event", :event => event
   - else
     %p.no_events_message Trenutno ni prihajajočih dogodkov
             

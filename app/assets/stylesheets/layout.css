@@ -1,0 +1,663 @@
+/*
+* Skeleton V1.1
+* Copyright 2011, Dave Gamache
+* www.getskeleton.com
+* Free to use under the MIT license.
+* http://www.opensource.org/licenses/mit-license.php
+* 8/17/2011
+*/
+
+/* Table of Content
+==================================================
+	#Site Styles
+	#Page Styles
+	#Media Queries
+	#Font-Face */
+
+/* #Site Styles
+================================================== */
+/*FONTS
+font-family: 'Droid Serif', serif;
+font-family: 'Droid Sans', sans-serif;
+
+
+*/
+::-moz-selection{ background: #0071b1; color:#fff; text-shadow: none; }
+::selection { background:#00aeef; color:#fff; text-shadow: none; }
+body{
+	font-family: 'Droid Sans', sans-serif;
+	margin-top:0;
+	background:#222;
+}
+
+#head_bg, #main_bg{
+	background:url(white_texture.png) repeat;
+}
+#main_bg{
+	padding-top:20px;
+	padding-bottom:30px;
+}
+
+#logo{
+	margin-top:25px;
+	width:55px;
+}
+
+.glava{
+	margin:20px 0 20px 0;
+}
+.glava h1{
+	font-family: 'Droid Sans', sans-serif;
+	font-size:2.4em;
+	padding:0;
+	margin:0 0 0 10px;
+}
+.glava h5{
+	color:#666;
+	font-size:1.2em;
+	padding:0;
+	margin:-10px 0 0 10px;
+}
+
+/*************URA***************/
+.time-and-date{
+		margin-top:6px;
+		padding:20px 0 5px 0;
+
+		  -moz-border-radius: 3px;
+	  -webkit-border-radius: 3px;
+	  border-radius: 3px;
+	  border:1px solid #ccc;
+	  
+	  background: #fff; /* Old browsers */
+		background: #fff -moz-linear-gradient(top, rgba(255,255,255,.2) 0%, rgba(0,0,0,.02) 100%); /* FF3.6+ */
+		background: #fff -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,.2)), color-stop(100%,rgba(0,0,0,.02))); /* Chrome,Safari4+ */
+		background: #fff -webkit-linear-gradient(top, rgba(255,255,255,.2) 0%,rgba(0,0,0,.02) 100%); /* Chrome10+,Safari5.1+ */
+		background: #fff -o-linear-gradient(top, rgba(255,255,255,.2) 0%,rgba(0,0,0,.02) 100%); /* Opera11.10+ */
+		background: #fff -ms-linear-gradient(top, rgba(255,255,255,.2) 0%,rgba(0,0,0,.02) 100%); /* IE10+ */
+		background: #fff linear-gradient(top, rgba(255,255,255,.2) 0%,rgba(0,0,0,.02) 100%); /* W3C */
+	  
+	}
+.time-and-date span{
+		display:block;
+		text-align:center;
+	}
+.time-and-date #time{
+		font-family: 'Droid Sans', sans-serif;
+		font-weight:bold;
+		font-size:2.8em;
+	}
+
+.time-and-date #date{
+		font-family: 'Droid Serif', serif;
+		font-size:1.1em;
+		line-height:35px;
+	}
+/*-------MENI------*/
+#navi_bg{
+	background: #222222; /* Old browsers */
+background: -moz-linear-gradient(top,  #444444 0%, #222222 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#444444), color-stop(100%,#222222)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  #444444 0%,#222222 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  #444444 0%,#222222 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  #444444 0%,#222222 100%); /* IE10+ */
+background: linear-gradient(top,  #444444 0%,#222222 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#444444', endColorstr='#222222',GradientType=0 ); /* IE6-9 */
+
+	color:#fff;
+	width:100%;
+	position:relative;
+
+
+}
+#nav{
+		overflow:hidden;
+		float:left;
+		margin:0 auto;
+		
+		height:45px;
+		line-height:45px;
+	}
+#nav ul li{
+		float:left;
+		/*margin-left:10px;*/
+		/*padding-top:14px;*/
+		/*margin-right:35px;*/
+	}
+	
+#nav ul li a{
+		color:#fff;
+		text-transform:uppercase;
+		font-family: sans-serif;
+		text-shadow: 0 1px 0 #222;
+		font-size:1em;
+		font-family: 'Droid Serif', serif;
+		padding:0 8px;
+		height:45px;
+		line-height:45px;
+	
+		display:block;
+		text-decoration:none;
+		
+		
+			-webkit-transition: all 0.2s ease-in-out;
+-moz-transition: all 0.2s ease-in-out;
+-o-transition: all 0.2s ease-in-out;
+transition: all 0.2s ease-in-out;	
+	}
+#nav ul li a:hover{
+		background:#0071b1;
+	}
+	
+/*---------GUMB ZA POSTAVLJANJE VPRAŠANj--------*/
+#navi_bg .add_button{
+		position:absolute;
+		top:-5px;
+
+		width:190px;
+		text-align:center;
+		display:block;
+		font-size:1.15em;
+		color:#fff;
+		font-family: 'Droid Serif', serif;
+		text-decoration:none;
+		background: #0071b1; /* Old browsers */
+		background: #0071b1 -moz-linear-gradient(top, rgba(255,255,255,.2) 0%, rgba(0,0,0,.2) 100%); /* FF3.6+ */
+		background: #0071b1 -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,.2)), color-stop(100%,rgba(0,0,0,.2))); /* Chrome,Safari4+ */
+		background: #0071b1 -webkit-linear-gradient(top, rgba(255,255,255,.2) 0%,rgba(0,0,0,.2) 100%); /* Chrome10+,Safari5.1+ */
+		background: #0071b1 -o-linear-gradient(top, rgba(255,255,255,.2) 0%,rgba(0,0,0,.2) 100%); /* Opera11.10+ */
+		background: #0071b1 -ms-linear-gradient(top, rgba(255,255,255,.2) 0%,rgba(0,0,0,.2) 100%); /* IE10+ */
+		background: #0071b1 linear-gradient(top, rgba(255,255,255,.2) 0%,rgba(0,0,0,.2) 100%); /* W3C */
+/*00aeef*/
+/*
+	border: 1px solid #eaeaea;
+	  border-top: 1px solid #fff;
+	  border-left: 1px solid #fff;*/
+
+
+	  -moz-border-radius: 3px;
+	  -webkit-border-radius: 3px;
+	  border-radius: 3px;
+	
+	  display: inline-block;
+
+	  font-weight: bold;
+	  text-decoration: none;
+	  text-shadow: 0 1px rgba(0, 0, 0, .75);
+	  cursor: pointer;
+
+	  line-height: normal;
+	  padding: 13px 15px 13px 15px;
+		
+	}
+#navi_bg .add_button span{
+		display:block;
+		font-family: 'Droid Sans', sans-serif;
+		font-size:0.65em;
+		text-transform:uppercase;
+	}
+
+#navi_bg .add_button:hover{
+				color: #fff;
+		background: #0098cd; /* Old browsers */
+		background: #0098cd -moz-linear-gradient(top, rgba(255,255,255,.3) 0%, rgba(0,0,0,.3) 100%); /* FF3.6+ */
+		background: #0098cd -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,.3)), color-stop(100%,rgba(0,0,0,.3))); /* Chrome,Safari4+ */
+		background: #0098cd -webkit-linear-gradient(top, rgba(255,255,255,.3) 0%,rgba(0,0,0,.3) 100%); /* Chrome10+,Safari5.1+ */
+		background: #0098cd -o-linear-gradient(top, rgba(255,255,255,.3) 0%,rgba(0,0,0,.3) 100%); /* Opera11.10+ */
+		background: #0098cd -ms-linear-gradient(top, rgba(255,255,255,.3) 0%,rgba(0,0,0,.3) 100%); /* IE10+ */
+		background: #0098cd linear-gradient(top, rgba(255,255,255,.3) 0%,rgba(0,0,0,.3) 100%); /* W3C */
+
+	}
+	
+#main_bg h5{
+	margin-bottom:-7px;
+	color:#999;
+	font-size:0.9em;
+	font-style:italic;
+}
+#main_bg h3{
+	margin:0 0 20px 0;
+
+}
+
+/************ADMIN MENI & STUFF*****************/
+#main_bg h4{
+		font-weight:bold;
+		text-transform:uppercase;
+		font-family: 'Droid Sans', sans-serif;
+		margin:10px 0 0 0;
+		font-size:1.2em;
+		
+	}
+	#admin_section{
+			background:#eaeaea;
+		margin-bottom:15px;
+		padding:5px 10px;
+		  -moz-border-radius: 3px;
+	  -webkit-border-radius: 3px;
+	  border-radius: 3px;
+		}
+.admin, .super-admin{
+
+		margin-bottom:0;
+
+	}
+.admin li, .super-admin li{
+		display:block;
+		margin:0 2px;
+	
+	
+		
+	}
+.admin li a, .super-admin li a{
+		margin:0 5px 5px 0;
+		float:left;
+		padding:8px 10px 8px 10px;
+		text-decoration:none;
+		background:#0071b1;
+		color:#fff;
+		-moz-border-radius: 3px;
+	  	-webkit-border-radius: 3px;
+	 	 border-radius: 3px;
+		 cursor: pointer;
+		
+	}
+.admin li a:hover, .super-admin li a:hover{
+		background:#0098cd;
+	}
+.admin li a span{
+		margin-left:5px;
+		color:#222;
+		font-weight:bold;
+
+	}
+.admin li a .good:before{
+		content:url(icon-check.png);
+
+		
+	}
+#current-user{
+		padding:10px 0;
+
+
+	}
+	
+/************FLASH notice & alert *********/
+.flash{
+		background:red;
+		margin-top:10px;
+		margin-bottom:0;
+	
+		-moz-border-radius: 3px;
+	  	-webkit-border-radius: 3px;
+	 	 border-radius: 3px;
+		 color:#fff;
+	}
+#notice{
+		background:#0071b1;
+			padding:5px 5px 5px 8px;
+		
+	}
+#alert{
+		background:#dc281e;
+		padding:5px 5px 5px 8px;
+		
+	}
+#alert:before{
+		content:"";
+		
+		background:url(flash.png) no-repeat 0 -12px;
+		width:9px;
+		height:8px;
+		padding-left:12px;
+	}
+#notice:before{
+		content:"";
+		
+		background:url(flash.png) no-repeat 0 4px;
+		width:9px;
+		height:8px;
+		padding-left:12px;
+	}	
+	
+/***********************************************/
+
+#lokacije{
+	height:280px;
+	overflow:auto;
+}
+
+#lokacije li{
+	border-bottom:2px dashed #ccc;
+	margin:0;
+
+}
+#lokacije li:last-child{
+	border:none;
+}
+#lokacije li a{
+	text-decoration:none;
+	width:100%;
+	height:auto;
+	display:block;
+	margin:5px 0;
+	padding:0;
+}
+#lokacije li a:hover{
+	background:#ddd;
+}
+#lokacije li a strong{
+	display:block;
+}
+
+.map{
+	margin-bottom:20px;
+}
+.institution_pic{
+	border:1px solid #ccc;
+	padding:5px;
+	margin-top:8px;
+}
+.entry p{
+	margin:0;
+	font-size:1em;
+	font-family: 'Droid Sans', sans-serif;
+}
+.entry .asked, .answered{color:#888;}
+.entry .asked span{
+	font-weight:bold;
+	text-transform:uppercase;
+}
+.entry .question{
+	font-family: 'Droid Serif', serif;
+	font-weight:bold;
+}
+.entry .answer{
+	margin-top:8px;
+}
+
+
+
+
+
+/*********FOOOTER**********/
+
+#footer_bg{
+	width:100%;
+	background:#222;
+	padding-top:20px;
+}
+#footer_bg h4{
+	color:#fff;
+	margin-bottom:10px;
+}
+#footer_bg ul li a{
+		color:#fff;
+		text-decoration:none;
+		font-size:0.9em;
+	}
+#footer_bg ul li a:hover{
+		color:#0071b1;
+	}
+/**********TABLES********/
+
+table{width:100%;margin:0 0 10px 0;text-align:left;border-collapse: collapse;}
+	thead, tbody{margin:0;padding:0;}
+	
+	th, td{padding:7px 10px;font-size:0.9em;border-bottom:1px dotted #ddd;text-align:left;}
+	thead th{font-size:0.9em;padding:3px 10px;border-bottom:1px solid #ddd; background:#222; color:#fff;}
+	tbody tr.last th,
+	tbody tr.last td{border-bottom:0;}
+	
+	tbody tr:hover{background:#dfdfdf;}
+	
+table.sortable{border:1px solid #ddd;}
+	table.sortable thead th{cursor: pointer;position:relative;top:0;left:0;border-right:1px solid #ddd;}
+	table.sortable thead th:hover{background:#444;}
+	table.sortable span.arrow{border-style:solid;border-width:5px;
+	display:block;position:absolute;top:50%;right:5px;font-size:0;
+	border-color:#ccc transparent transparent transparent;
+	line-height:0;height:0;width:0;margin-top:-2px;}
+	table.sortable span.arrow.up{border-color:transparent transparent #ccc transparent;margin-top:-7px;}
+
+
+.calendar th, .calendar td{
+		padding:10px 10px;font-size:0.9em;border:1px dotted #ddd;text-align:left;
+	}	
+
+.calendar thead tr .monthName{
+		text-align:center;
+		text-transform:uppercase;
+	}
+.calendar thead tr th a .left{float:left;}
+.calendar thead tr th a .right{float:right; }
+.calendar tbody tr:hover{background:none;}
+.calendar tbody tr td:hover{background:#dfdfdf;}
+
+.calendar .otherMonth{color:#aaa;}
+.calendar .special{
+		background:#0071b1;
+		color:#fff;
+	}
+.calendar .weekendDay{
+		background:#efefef;
+	}
+.calendar .today{
+		border:1px solid #666;
+	}
+	
+	
+	
+/*DODATNO TABELE*/
+table thead tr th a{
+		color:#fff;
+		text-decoration:none;
+
+	}
+table thead tr th .current{
+		color:#0071b1;
+	}
+table thead tr th .asc:after{
+	
+		content:"";
+		
+		background:url(table_sort.png) 0 3px no-repeat; 
+
+		width:15px;
+		height:10px;
+		padding-right:15px;
+	}
+table thead tr th .desc:after{
+		content:"";
+		
+		background:url(table_sort.png) -17px 3px no-repeat; 
+padding-right:12px;
+		width:15px;
+		height:10px;
+
+	}
+table tbody tr td span{
+	display:block;
+	color:#666;
+}
+
+
+/*--------------TABS-------------*/
+
+#admin_meni li{
+		display:inline; padding:0 10px 0 0;
+	}
+	
+/*************************TOOLTIPS***********************/
+
+
+	td > .tooltip, li > .tooltip, td > .tooltip, span > .tooltip {
+	opacity: 0;
+	margin-top: 0px;
+	visibility: hidden;
+	margin-left: 50px;
+
+	-webkit-transition-property:opacity, margin-top, visibility, margin-left;
+	-webkit-transition-duration:0.1s; 
+	-webkit-transition-timing-function: ease-in-out, ease-in-out, ease-in-out, ease-in-out;
+	
+	-moz-transition-property:opacity, margin-top, visibility, margin-left;
+	-moz-transition-duration:0.1s; 
+	-moz-transition-timing-function: ease-in-out, ease-in-out, ease-in-out, ease-in-out;
+	
+	-o-transition-property:opacity, margin-top, visibility, margin-left;
+	-o-transition-duration:0.1s; 
+	-o-transition-timing-function: ease-in-out, ease-in-out, ease-in-out, ease-in-out;
+	
+	transition-property:opacity, margin-top, visibility, margin-left;
+	transition-duration:0.1s;  
+	transition-timing-function: ease-in-out, ease-in-out, ease-in-out, ease-in;
+}
+
+	td:hover > .tooltip, li:hover > .tooltip, a:hover > .tooltip, span:hover > .tooltip,
+	a .tooltip:hover, span .tooltip:hover, li .tooltip:hover, td .tooltip:hover {
+		opacity: 1;
+		visibility: visible;
+		overflow: visible;
+		margin-top: 0px;
+		display: inline;
+		margin-left: 0px;
+		
+		-webkit-transition-property:opacity, margin-top, visibility, margin-left;
+		-webkit-transition-duration:0.3s;
+		-webkit-transition-timing-function: ease-in-out, ease-in-out, ease-in-out, ease-in-out;
+		
+		-moz-transition-property:opacity, margin-top, visibility, margin-left;
+		-moz-transition-duration:0.3s;
+		-moz-transition-timing-function: ease-in-out, ease-in-out, ease-in-out, ease-in-out;		
+		
+		-o-transition-property:opacity, margin-top, margin-left;
+		-o-transition-duration:0.3s;
+		-o-transition-timing-function: ease-in-out, ease-in-out, ease-in-out;
+		
+		transition-property:opacity, margin-top, visibility, margin-left;
+		transition-duration:0.3s; 
+		transition-timing-function: ease-in-out, ease-in-out, ease-in-out, ease-in-out;		
+	}
+
+.tooltip {
+		background: #0071b1;
+		font-family: 'Droid Sans', sans-serif;
+
+		-moz-border-radius: 3px;
+		-webkit-border-radius: 3px;
+		border-radius: 3px;
+	
+		padding: 10px;
+		margin-left: -40px;
+	
+		position: absolute;
+
+		font-size: 1em;
+		text-decoration: none;
+		font-style: normal;
+		color: #fff;
+		text-align:left;
+
+		z-index: 10;	
+}
+
+
+
+.tooltip strong{
+		font-size:1.2em;
+
+		color:#fff;
+		font-family: 'Droid Serif', serif;
+		text-transform:uppercase;
+	}
+.tooltip ol{	
+		padding:0 0 0 15px;
+		margin:5px 0 0 0;
+	}
+	
+.tooltip ol li{
+		margin:0;
+	}	
+.tooltip ol li a{
+		color:#fff;
+		font-weight:normal;
+		margin:0;
+		padding:0;
+		}
+.tooltip ol li a:hover{
+		color:#222;
+	}
+
+/***************LOGIN POLJE DESNO ZGORAJ***********/
+
+#login{
+		position:absolute;
+		top:0;
+		right:0;
+		display:block;
+		width:30px;
+		height:30px;
+		background:none;
+	}
+#login:hover{
+		background:#0071b1;
+	}
+	
+/* #Page Styles
+================================================== */
+
+/* #Media Queries
+================================================== */
+
+	/* Smaller than standard 960 (devices and browsers) */
+	@media only screen and (max-width: 959px) {
+		.glava h1, .glava h5{
+			margin-left:10px;
+		}
+		
+	}
+
+	/* Tablet Portrait size to standard 960 (devices and browsers) */
+	@media only screen and (min-width: 768px) and (max-width: 959px) {
+	
+	}
+
+	/* All Mobile Sizes (devices and browser) */
+	@media only screen and (max-width: 767px) {
+		#head_bg #logo{margin:20px 0 0 180px;}
+		.glava h1, .glava h5{
+			margin-left:0px;
+			text-align:center;
+		}
+		.time-and-date{margin-bottom:20px;}
+		#navi_bg .add_button{position:relative; display:block;}
+		#nav{display:block;}
+	}
+
+	/* Mobile Landscape Size to Tablet Portrait (devices and browsers) */
+	@media only screen and (min-width: 480px) and (max-width: 767px) {}
+
+	/* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
+	@media only screen and (max-width: 479px) {
+			#head_bg #logo{margin:20px 0 0 125px;}
+		}
+
+
+/* #Font-Face
+================================================== */
+/* 	This is the proper syntax for an @font-face file
+		Just create a "fonts" folder at the root,
+		copy your FontName into code below and remove
+		comment brackets */
+
+/*	@font-face {
+	    font-family: 'FontName';
+	    src: url('../fonts/FontName.eot');
+	    src: url('../fonts/FontName.eot?iefix') format('eot'),
+	         url('../fonts/FontName.woff') format('woff'),
+	         url('../fonts/FontName.ttf') format('truetype'),
+	         url('../fonts/FontName.svg#webfontZam02nTh') format('svg');
+	    font-weight: normal;
+	    font-style: normal; }
+*/

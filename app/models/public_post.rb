@@ -3,6 +3,7 @@ class PublicPost < ActiveRecord::Base
   scope :comments,    where(:post_kind_id => "comment")
   scope :questions,   where(:post_kind_id => "question")
   scope :suggestions, where(:post_kind_id => "suggestion")
+  scope :for_institution, lambda { |institution_id| where(:institutions_id => institution_id) }
   
   # Querry for public_posts_v 
   # ---
@@ -15,6 +16,7 @@ class PublicPost < ActiveRecord::Base
   #   posts.post_kind_id AS post_kind_id,
   #   posts.tag_group_id AS posts_tag_group_id,
   #   institutions.name AS institutions_name,
+  #   institutions.id AS institutions_id,
   #   answers.answer_status AS answers_answer_status,
   #   DATE(answers.answered_at) AS answers_date
   # FROM original_posts

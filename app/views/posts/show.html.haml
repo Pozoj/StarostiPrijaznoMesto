@@ -4,11 +4,14 @@
   %nav#editors-resource-menu
     %ul        
       - if can? :update, resource
-        %li= link_to "Uredi", edit_resource_path
+        %li= link_to "Uredi objavo", edit_resource_path
       - if resource.last_answer.present? and !resource.answered? and !resource.misplaced? and can? :update, Answer
         %li= link_to "Odgovori", edit_answer_path(resource.last_answer.id)
       - if resource.misplaced? and can? :create, Answer
         %li= link_to "Ponovno naslovi",  new_answer_path(:post_id => resource.id)
+      - if resource.last_answer.present? and can? :manage, Answer
+        %li= link_to "Uredi odgovor", edit_answer_path(resource.last_answer.id)
+        %li= link_to "Odstrani odgovor", resource.last_answer, :method => :delete, :confirm => destroy_confirmation(resource.last_answer)
 
 = render "common/sender", :original_post => resource.original_post
 %h3 Povzetek
@@ -24,9 +27,11 @@
 %h3 Podrobnosti
 .post-pack
   .post
+    %h5 Objava
     = render "common/redcloth_it", :content => resource.text
   - if resource.answered?
     .answer
+      %h5 Odgovor
       = render "common/redcloth_it", :content => resource.answer.answer
 
   - if resource.attachment_added?  

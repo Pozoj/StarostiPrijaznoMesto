@@ -10,24 +10,30 @@
   %title= yield(:title).empty?? "Starosti prijazno mesto" : yield(:title)
   %meta{:author => "Koda: Ljubomir Marković, Oblika: Jernej Gračner, za podjetje Pozoj d.o.o."}
   %meta{:content => "width=device-width,initial-scale=1", :name => "viewport"}
-  = stylesheet_link_tag "application"
+  %link{:href => 'http://fonts.googleapis.com/css?family=Droid+Sans:400,700', :rel => 'stylesheet', :type => 'text/css'}
+  %link{:href => 'http://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic', :rel => 'stylesheet', :type => 'text/css'}
+  %link{:rel => "shortcut icon", :href => "favicon.ico"}
+  %link{:rel => "apple-touch-icon", :href => "apple-touch-icon.png"}
+  %link{:rel => "apple-touch-icon", :sizes =>"72x72", :href => "apple-touch-icon-72x72.png"}
+  %link{:rel => "apple-touch-icon", :sizes => "114x114", :href => "apple-touch-icon-114x114.png"}
+
+  = stylesheet_link_tag "layout", "base", "skeleton"
   = javascript_include_tag "application"
   = csrf_meta_tags
 
 %body{body_attrs}
-  #container
-    #header-container
-      = render "common/header"
-    %br.clear
-    
-    #main
-      = render "common/flash", :flash => flash
-      = render "common/signed_in_nav"
-      = yield
-    %br.clear
-    
-    %footer
-      = render "common/footer"
-    %br.clear
-    
+  - unless user_signed_in?
+    = link_to "", new_user_session_path, :id => "login"
+  #head_bg  
+    = render "common/header"
+  #navi_bg
+    = render "common/navigation"
+  #main_bg
+    .container
+      .sixteen.columns
+        = render "common/signed_in_nav"
+        = render "common/flash", :flash => flash
+        = yield
+  #footer_bg
+    = render "common/footer"
 </html>

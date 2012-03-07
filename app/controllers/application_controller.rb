@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  helper_method :body_attrs, :admin?
+  helper_method :body_attrs, :admin?, :klass_sort_column, :sort_direction
   before_filter :authenticate_user!, :except => [:index, :show]
   before_filter :count_for_user_kind
   
@@ -32,6 +32,7 @@ class ApplicationController < ActionController::Base
     if user_signed_in?
       @unaddressed_count = UnaddressedPost.count if can? :read, UnaddressedPost
       @misplaced_count = Misplaced.count if can? :read, Misplaced
+      @original_count = OriginalPost.untreated.count if can? :read, OriginalPost
       if current_user.user_kind.present? and current_user.institution_id.present? and current_user.user_kind.institution_admin?
         @addressed_count = Institutionalized.for_institution(current_user.institution_id).count if can? :read, Institutionalized
         @waiting_count = Waiting.for_institution(current_user.institution_id).count if can? :read, Waiting
@@ -41,6 +42,14 @@ class ApplicationController < ActionController::Base
       end
     end
   end
+
+  def klass_sort_column(klass)
+    (klass.column_names).include?(params[:sort]) ? params[:sort] : "original_posts_created_at"
+  end
+
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "desc"
+  end  
   
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to root_url, :alert => exception.message

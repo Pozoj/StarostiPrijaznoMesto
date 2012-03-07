@@ -23,7 +23,7 @@ module LayoutHelper
     content_for(:title) { title }
     
     if heading
-      return content_tag(:a, "", :name => "top") + content_tag(:h1, _title)
+      return content_tag(:a, "", :name => "top") + content_tag(:h3, _title)
     end
   end
   

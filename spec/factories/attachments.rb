@@ -2,5 +2,7 @@
 
 FactoryGirl.define do
   factory :attachment do
+    holder_id 1
+    holder_type "Institution"
   end
 end

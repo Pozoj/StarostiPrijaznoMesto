@@ -1,0 +1,20 @@
+- if [OriginalPost, RejectedPost, UnaddressedPost, Institutionalized, Misplaced, Waiting, Answered].collect {|m| can?(:read, m)}.include?(true)
+  %h4 POBUDE
+  %ul.admin
+    - if can? :read, OriginalPost
+      %li= menu_link_with_counter "Neobdelane", @original_count, original_posts_path
+    - if can? :read, UnaddressedPost
+      %li= menu_link_with_counter "Nenaslovljene", @unaddressed_count, unaddressed_posts_path
+    - if can? :read, Institutionalized
+      %li= menu_link_with_counter "Naslovljene", @addressed_count, addressed_posts_path
+    - if can? :read, Misplaced
+      %li= menu_link_with_counter "Napačno naslovljene", @misplaced_count, misplaced_posts_path
+    - if can? :read, Waiting
+      %li= menu_link_with_counter "V čakanju", @waiting_count, waiting_posts_path
+    - if can? :read, Answered
+      %li= link_to "Odgovorjene", answered_posts_path    
+    - if can? :read, RejectedPost
+      %li= link_to "Zavrnjene", unapproved_posts_path
+    - if can? :read, SuperAdminTable
+      %li= link_to "Administratorska tabela", super_admin_tables_path
+  

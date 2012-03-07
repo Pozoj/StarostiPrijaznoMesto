@@ -1,17 +1,9 @@
-%header.wrapper
-  = link_to "<h1 class='ir' id='title'>Starosti prijazno mesto</h1>".html_safe, root_path, :class => "home_link"
-  = link_to "Vprašajte nas, želimo Vam odgovoriti", new_original_post_path
-  
-  .time-and-date
-    %span#time
-    %span#date
-  
-%nav#menu
-  %ul
-    %li= link_to "Vprašanja", questions_posts_path
-    %li= link_to "Predlogi", suggestions_posts_path
-    %li= link_to "Komentarji", comments_posts_path
-    %li= link_to "Dogodki", events_path
-    %li= link_to "Ustanove", institutions_path
-  
-%br.clear
+.container
+  .one.columns= image_tag("velenje.png", :id => "logo")
+  .eleven.columns.glava
+    = link_to "<h1>VELENJE</h1><h5>Starosti prijazno mesto</h5>".html_safe, root_path
+  .four.columns
+    .time-and-date
+      %span#time
+      %span#date
+      

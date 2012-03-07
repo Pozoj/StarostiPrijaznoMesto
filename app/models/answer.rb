@@ -1,12 +1,11 @@
 class Answer < ActiveRecord::Base
-  validates_presence_of :answer, :summary, :answer_range, :if => lambda {|answer| ["answered", "waiting"].include?(answer.answer_status) }
-  
-  validates_presence_of :institution_id, :message => "Ustanova mora biti izbrana."
-  validates_presence_of :answer_status
-  
   before_save :set_correct_time
-  before_validation :institutionalize
+  before_validation :institutionalize_or_clear_answer_status
   after_create :change_status_of_misplaced_to_archive
+  
+  validates_presence_of :user_id, :answer, :summary, :answer_range, :if => lambda {|ans| ans.answer_status == "answered" or ans.answer_status == "waiting" }
+  validates_presence_of :user_id, :if => lambda {|ans| ans.answer_status == "misplaced" }
+  validates_presence_of :post_id, :institution_id, :answer_status  
   
   belongs_to :user
   belongs_to :post
@@ -36,8 +35,12 @@ class Answer < ActiveRecord::Base
   
   private
   
-  def institutionalize
-    self.answer_status = "institutionalized" if new_record?
+  def institutionalize_or_clear_answer_status
+    if new_record? and not answer_status.present?
+      self.answer_status = "institutionalized"
+    elsif not new_record? and answer_status == "institutionalized"
+      self.answer_status = nil
+    end
   end
   
   def set_correct_time
@@ -50,10 +53,12 @@ class Answer < ActiveRecord::Base
   end
   
   def change_status_of_misplaced_to_archive
-    misplaced_answer = post.answers.misplaced.last
-    if misplaced_answer.present?
-      misplaced_answer.answer_status = "archive"
-      misplaced_answer.save
+    if answer_status == "institutionalized"
+      misplaced_answer = post.answers.misplaced.last
+      if misplaced_answer.present?
+        misplaced_answer.answer_status = "archive"
+        misplaced_answer.save
+      end
     end
   end
 end

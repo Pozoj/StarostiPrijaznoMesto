@@ -6,3 +6,15 @@
       %li= link_to "Dodaj dogodek", new_resource_path
 
 = kalendar(@events_this_month, @cal_date)
+
+- if @events_this_month.present?
+  - for event in @events_this_month
+    - if event.date_and_time_at < Time.now
+      = render "events/past_event", :event => event
+    - elsif event.date_and_time_at.today?
+      = render "events/todays_event", :event => event
+    - else
+      = render "events/upcoming_event", :event => event
+      
+- else
+  %p.no_events_message Izbran mesec nima dogodkov

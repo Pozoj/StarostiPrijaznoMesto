@@ -1,26 +1,11 @@
 - if user_signed_in?
-  %div.admin
-    - if [OriginalPost, RejectedPost, UnaddressedPost, Institutionalized, Misplaced, Waiting, Answered].collect {|m| can?(:read, m)}.include?(true)
-      %nav#admin_menu
-        %h4 ADMINISTRATIVA
-        %ul
-          - if [OriginalPost, RejectedPost, UnaddressedPost, Institutionalized, Misplaced, Waiting, Answered].collect {|m| can?(:read, m)}.include?(true)
-            %li= render "common/post_links"
-          - if can? :read, SuperAdminTable
-            %li= link_to "Administratorska tabela", super_admin_tables_path          
-          - if can? :manage, Region
-            %li= link_to "Regije", regions_path
-          - if can? :manage, City
-            %li= link_to "Mesta", cities_path
-          - if can? :manage, [User, AccessRight]
-            %li= link_to "Uporabniške pravice", user_kinds_path
-            %li= link_to "Uporabniki", users_path 
-          
-    
+  #admin_section
+    = render "common/admin_links"
+    %br.clear
+    = render "common/super_admin_links"  
+    %br.clear
     #current-user
       Prijavljen
       = "administrator" if current_user.admin?
       = current_user
       = link_to "(Odjava)", destroy_user_session_path, :method => :delete
-- else
-  = link_to "Prijava", new_user_session_path, :id => "login"

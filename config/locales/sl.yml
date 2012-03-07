@@ -18,6 +18,7 @@ sl:
   attributes:
     address: "Poštni naslov"
     about: "Informacije"
+    attachment: "Priloga"
     password_confirmation: "Geslo ponovno"
     password: "Geslo"
     name: "Naziv"
@@ -125,6 +126,7 @@ sl:
       post: "Objava"
       region: "Regija"
       user_kind: "Vrsta uporabnika"
+      work_hour: "Delovne ure"
     attributes:
       answer:
         suggestion: "Predlog"
@@ -163,6 +165,21 @@ sl:
         name: "Naziv vrste uporabnika"
       institution:
         tasks: "Naloge"
+      work_hour:
+        mon_from: "Ponedeljek od"
+        mon_to: "Ponedeljek do"
+        tue_from: "Torek od"
+        tue_to: "Torek do"
+        wed_from: "Sreda od"
+        wed_to: "Sreda do"
+        thu_from: "Četrtek od"
+        thu_to: "Četrtek do"
+        fri_from: "Petek od"
+        fri_to: "Petek do"
+        sat_from: "Sobota od"
+        sat_to: "Sobota do"
+        sun_from: "Nedelja od"
+        sun_to: "Nedelja do"
         
     errors:
       messages:

@@ -3,7 +3,6 @@ class PostsController < InheritedResources::Base
   skip_load_resource :only => [:questions, :comments, :suggestions]
   skip_before_filter :authenticate_user!, :only => [:questions, :comments, :suggestions]
   
-  helper_method :klass_sort_column, :sort_direction
   
   def new
     @post = Post.new
@@ -114,11 +113,4 @@ class PostsController < InheritedResources::Base
     end    
   end
 
-  def klass_sort_column(klass)
-    (klass.column_names).include?(params[:sort]) ? params[:sort] : "original_posts_created_at"
-  end
-
-  def sort_direction
-    %w[asc desc].include?(params[:direction]) ? params[:direction] : "desc"
-  end  
 end

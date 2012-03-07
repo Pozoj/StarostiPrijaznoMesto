@@ -26,6 +26,6 @@ class FixPublicPostsView < ActiveRecord::Migration
 
   def down
     execute("DROP VIEW IF EXISTS public_posts_v;")
-    drop_table :addressed_posts_v if self.table_exists?("public_posts_v")
+    drop_table :public_posts_v if self.table_exists?("public_posts_v")
   end
 end

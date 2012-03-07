@@ -1,0 +1,6 @@
+.container
+  .twelve.columns
+    #nav
+      = render "common/navigation_menu"
+  .four.columns
+    = link_to "Oddaj <span>VPRAŠANJE, KOMENTAR, PREDLOG</span>".html_safe, new_original_post_path, :class => "add_button"

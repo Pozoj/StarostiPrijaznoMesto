@@ -29,6 +29,16 @@ module ApplicationHelper
     end
   end
   
+  def menu_link_with_counter(title, item_count, path)
+    # ce je count == 0 mas span class='good' in brez vsebine
+    #sicer mas span brez classa z vsebino cifre v oklepajih
+    if item_count == 0
+      return link_to raw(title + content_tag(:span, '', :class => 'good')), path
+    else
+      return link_to raw(title + content_tag(:span, "(#{item_count})")), path
+    end
+  end
+  
   def sortable(column, title = nil)
     title ||= column.titleize
     css_class = column == sort_column ? "current #{sort_direction}" : nil

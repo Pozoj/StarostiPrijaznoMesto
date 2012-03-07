@@ -1,0 +1,7 @@
+- unless [Region, City, User, AccessRight].collect {|m| can?(:manage, m)}.include?(false)
+  %h4 ADMINISTRATIVA
+  %ul.super-admin
+    %li= link_to "Regije", regions_path
+    %li= link_to "Mesta", cities_path
+    %li= link_to "Uporabniške pravice", user_kinds_path
+    %li= link_to "Uporabniki", users_path 

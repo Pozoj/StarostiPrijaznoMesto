@@ -1,15 +1,16 @@
-%h2 Vprašanja, predlogi in komentarji z odgovori
+%h3 Vprašanja, predlogi in komentarji z odgovori
 - for post in @posts
-  %article
-    .sender
+  .entry
+    %p.asked
       = what_happened(post.senders_sex, post.post_kind_id)
-      %strong= post.senders_name
+      %span= post.senders_name
       dne
-      .post-date= l post.original_posts_created_at
-    .post-title= link_to post.posts_title, post_path(post.posts_id)
-    .post-answer= post.answers_summary
-    .responder
+      = l post.original_posts_created_at
+    %p.question= link_to post.posts_summary, post_path(post.posts_id)
+    %p.answer= post.answers_summary
+    %p.answered
       Odgovor posredoval-a:
       = link_to post.institutions_name, institution_path(post.institutions_id)
       dne
-      .answer-date= l post.answers_date
+      = l post.answers_date
+  %hr

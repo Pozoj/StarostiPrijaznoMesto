@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120301140800) do
+ActiveRecord::Schema.define(:version => 20120307093542) do
 
   create_table "abouts", :force => true do |t|
     t.text     "content"
@@ -120,7 +120,7 @@ ActiveRecord::Schema.define(:version => 20120301140800) do
     t.date    "original_posts_created_at"
     t.string  "senders_name",              :limit => 511
     t.integer "posts_id",                                 :default => 0
-    t.string  "posts_title"
+    t.text    "posts_summary"
     t.string  "senders_sex"
     t.string  "post_kind_id"
     t.integer "institutions_id",                          :default => 0
@@ -190,6 +190,7 @@ ActiveRecord::Schema.define(:version => 20120301140800) do
     t.string  "post_kind_id"
     t.string  "posts_tag_group_id"
     t.string  "institutions_name"
+    t.integer "institutions_id",                          :default => 0
     t.string  "answers_answer_status"
     t.date    "answers_date"
   end
@@ -287,5 +288,25 @@ ActiveRecord::Schema.define(:version => 20120301140800) do
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+
+  create_table "work_hours", :force => true do |t|
+    t.integer  "institution_id"
+    t.string   "mon_from"
+    t.string   "mon_to"
+    t.string   "tue_from"
+    t.string   "tue_to"
+    t.string   "wed_from"
+    t.string   "wed_to"
+    t.string   "thu_from"
+    t.string   "thu_to"
+    t.string   "fri_from"
+    t.string   "fri_to"
+    t.string   "sat_from"
+    t.string   "sat_to"
+    t.string   "sun_from"
+    t.string   "sun_to"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end
