@@ -33,7 +33,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'faker'
   gem 'cucumber'
-  gem 'shoulda'
+  gem 'shoulda', '> 3.0.0'
   gem 'rcov'
   gem 'rspec-rails', "~> 2.6.0"
   gem 'mocha'
