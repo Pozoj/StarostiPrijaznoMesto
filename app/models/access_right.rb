@@ -23,10 +23,12 @@ class AccessRight < ActiveRecord::Base
     'Institutionalized',
     'Waiting',
     'Answered',
-    'Misplaced'
+    'Misplaced',
+    'OriginalPost'
   ]
     
   ALL_RIGHTS = [
+    {:value=>[:read,  OriginalPost], :title=>"Vidi - Neobdelane pobude"},
     {:value=>[:read,  UnaddressedPost], :title=>"Vidi - Nenaslovljene pobude"},
     {:value=>[:read,  Institutionalized], :title=>"Vidi - Naslovljene pobude"},
     {:value=>[:read,  SuperAdminTable], :title=>"Vidi - Administratorsko tabelo"},

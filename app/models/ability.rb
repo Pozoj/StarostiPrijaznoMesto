@@ -20,11 +20,13 @@ class Ability
             can access_right.rights_sym, access_right.models_class_name, :institution_id => user.institution_id
           else #assign given access right to given model
             can access_right.rights_sym, access_right.models_class_name
-            #specific access rights
-            can :addressed, Post    if access_right.rights_sym == :read and access_right.models_class_name == Institutionalized
+            #specific Post action
+            can :addressed,   Post  if access_right.rights_sym == :read and access_right.models_class_name == Institutionalized
             can :unaddressed, Post  if access_right.rights_sym == :read and access_right.models_class_name == UnaddressedPost
-            can :misplaced, Post    if access_right.rights_sym == :read and access_right.models_class_name == Misplaced
-            can :answered, Post     if access_right.rights_sym == :read and access_right.models_class_name == Answered
+            can :waiting,     Post  if access_right.rights_sym == :read and access_right.models_class_name == Waiting
+            can :misplaced,   Post  if access_right.rights_sym == :read and access_right.models_class_name == Misplaced
+            can :answered,    Post  if access_right.rights_sym == :read and access_right.models_class_name == Answered
+            can :unapproved,  Post  if access_right.rights_sym == :read and access_right.models_class_name == RejectedPost
           end      
         end
       else # User is a visitor

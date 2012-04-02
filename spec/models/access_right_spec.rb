@@ -7,6 +7,7 @@ describe AccessRight do
   
   it "should return these proper rights" do
     AccessRight.all_rights.sort_by {|hash| hash[:title] }.should == [
+      {:value=>[:read,  OriginalPost], :title=>"Vidi - Neobdelane pobude"},
       {:value=>[:read,  UnaddressedPost], :title=>"Vidi - Nenaslovljene pobude"},
       {:value=>[:read,  Institutionalized], :title=>"Vidi - Naslovljene pobude"},
       {:value=>[:read,  SuperAdminTable], :title=>"Vidi - Administratorsko tabelo"},

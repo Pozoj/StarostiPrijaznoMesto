@@ -4,13 +4,8 @@ class ApplicationController < ActionController::Base
   before_filter :authenticate_user!, :except => [:index, :show]
   before_filter :count_for_user_kind
   
-  # Cancan
-  check_authorization
-  rescue_from CanCan::AccessDenied do |exception|
-    redirect_to root_url, :error => exception.message
-  end
-    
   protected
+  
   def admin?
     current_user and current_user.admin
   end
@@ -50,7 +45,9 @@ class ApplicationController < ActionController::Base
   def sort_direction
     %w[asc desc].include?(params[:direction]) ? params[:direction] : "desc"
   end  
-  
+
+  # Cancan
+  check_authorization
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to root_url, :alert => exception.message
   end 
