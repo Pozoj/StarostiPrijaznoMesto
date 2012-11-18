@@ -1,4 +1,5 @@
 source 'http://rubygems.org'
+ruby '1.9.3'
 
 gem 'rails', '3.1.3'
 gem 'json'
@@ -19,11 +20,7 @@ group :production do
   gem 'pg'
   gem 'therubyracer-heroku'
   gem 'thin'
-end
-
-group :assets do
   gem 'uglifier'
-  gem 'therubyracer'
 end
 
 group :development, :test do
