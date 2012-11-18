@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 ruby '1.9.3'
 
-gem 'rails', '3.1.3'
+gem 'rails', '>= 3.2.8'
 gem 'json'
 gem 'jquery-rails'
 #gem "table_builder", "~> 0.2.3"
@@ -25,8 +25,6 @@ group :production do
 end
 
 group :assets do
-  gem 'sass-rails'
-  gem 'coffee-rails'
   gem 'uglifier'
   gem 'asset_sync'
 end

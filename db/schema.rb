@@ -27,23 +27,6 @@ ActiveRecord::Schema.define(:version => 20120307093542) do
     t.datetime "updated_at"
   end
 
-  create_table "addressed_posts_v", :id => false, :force => true do |t|
-    t.integer  "original_posts_id",         :default => 0, :null => false
-    t.datetime "original_posts_created_at"
-    t.string   "original_posts_first_name"
-    t.string   "original_posts_last_name"
-    t.integer  "posts_id",                  :default => 0
-    t.datetime "posts_created_at"
-    t.string   "posts_tag_group_id"
-    t.string   "posts_title"
-    t.string   "posts_post_kind_id"
-    t.integer  "institutions_id",           :default => 0
-    t.string   "institutions_name"
-    t.integer  "attachments_id",            :default => 0
-    t.integer  "answers_id",                :default => 0
-    t.string   "answers_answer_status"
-  end
-
   create_table "answers", :force => true do |t|
     t.text     "answer"
     t.text     "suggestion"
@@ -117,19 +100,6 @@ ActiveRecord::Schema.define(:version => 20120307093542) do
     t.boolean  "region_wide"
   end
 
-  create_table "homescreen_posts_v", :id => false, :force => true do |t|
-    t.date    "original_posts_created_at"
-    t.string  "senders_name",              :limit => 511
-    t.integer "posts_id",                                 :default => 0
-    t.text    "posts_summary"
-    t.string  "senders_sex"
-    t.string  "post_kind_id"
-    t.integer "institutions_id",                          :default => 0
-    t.string  "institutions_name"
-    t.text    "answers_summary"
-    t.date    "answers_date"
-  end
-
   create_table "institutions", :force => true do |t|
     t.string   "name"
     t.string   "short_name"
@@ -183,19 +153,6 @@ ActiveRecord::Schema.define(:version => 20120307093542) do
     t.datetime "updated_at"
   end
 
-  create_table "public_posts_v", :id => false, :force => true do |t|
-    t.date    "original_posts_created_at"
-    t.string  "senders_name",              :limit => 511
-    t.integer "posts_id",                                 :default => 0
-    t.string  "posts_title"
-    t.string  "post_kind_id"
-    t.string  "posts_tag_group_id"
-    t.string  "institutions_name"
-    t.integer "institutions_id",                          :default => 0
-    t.string  "answers_answer_status"
-    t.date    "answers_date"
-  end
-
   create_table "red_buttons", :force => true do |t|
     t.string   "title"
     t.text     "short_description"
@@ -211,59 +168,10 @@ ActiveRecord::Schema.define(:version => 20120307093542) do
     t.datetime "updated_at"
   end
 
-  create_table "rejected_posts_v", :id => false, :force => true do |t|
-    t.date    "original_posts_created_at"
-    t.string  "original_posts_first_name"
-    t.string  "original_posts_last_name"
-    t.string  "original_posts_email"
-    t.integer "attachments_id",            :default => 0
-    t.integer "posts_id",                  :default => 0
-  end
-
-  create_table "super_admin_table_v", :id => false, :force => true do |t|
-    t.integer  "original_posts_id",            :default => 0, :null => false
-    t.datetime "original_posts_created_at"
-    t.string   "original_posts_first_name"
-    t.string   "original_posts_last_name"
-    t.integer  "posts_id",                     :default => 0
-    t.datetime "posts_created_at"
-    t.string   "posts_post_status_id"
-    t.string   "posts_post_kind_id"
-    t.string   "posts_title"
-    t.string   "posts_tag_group_id"
-    t.integer  "institutions_id",              :default => 0
-    t.string   "institutions_name"
-    t.integer  "responders_id",                :default => 0
-    t.string   "responders_first_name"
-    t.string   "responders_last_name"
-    t.integer  "info_admins_id",               :default => 0
-    t.string   "info_admins_first_name"
-    t.string   "info_admins_last_name"
-    t.integer  "answers_id",                   :default => 0
-    t.string   "answers_answer_status"
-    t.datetime "answers_institutionalized_at"
-    t.datetime "answers_misplaced_at"
-    t.datetime "answers_answered_at"
-    t.integer  "attachments_id",               :default => 0
-  end
-
   create_table "tags", :force => true do |t|
     t.text     "tag"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "unaddressed_posts_v", :id => false, :force => true do |t|
-    t.integer  "original_posts_id",         :default => 0, :null => false
-    t.datetime "original_posts_created_at"
-    t.string   "original_posts_first_name"
-    t.string   "original_posts_last_name"
-    t.integer  "posts_id",                  :default => 0
-    t.datetime "posts_created_at"
-    t.string   "posts_tag_group_id"
-    t.string   "posts_title"
-    t.string   "posts_post_kind_id"
-    t.integer  "attachments_id",            :default => 0
   end
 
   create_table "users", :force => true do |t|
