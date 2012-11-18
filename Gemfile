@@ -11,6 +11,7 @@ gem 'devise'
 gem 'simple_form'
 gem 'inherited_resources'
 gem 'haml'
+gem 'sass'
 gem 'paperclip'
 gem 'will_paginate', '~> 3.0'
 gem "RedCloth", "~> 4.2.7"
