@@ -1,7 +1,6 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.1.3'
-gem 'mysql2'
 gem 'json'
 gem 'jquery-rails'
 #gem "table_builder", "~> 0.2.3"
@@ -15,7 +14,12 @@ gem 'paperclip'
 gem 'will_paginate', '~> 3.0'
 gem "RedCloth", "~> 4.2.7"
 gem "yahoo_weatherman", "~> 1.1.4"
-gem "thin"
+
+group :production do
+  gem 'pg'
+  gem 'therubyracer-heroku'
+  gem 'thin'
+end
 
 group :assets do
   gem 'uglifier'
@@ -23,6 +27,7 @@ group :assets do
 end
 
 group :development, :test do
+  gem 'mysql2'
   gem 'fuubar'
   gem 'factory_girl_rails'
   gem 'shoulda'
