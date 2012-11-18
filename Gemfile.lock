@@ -31,12 +31,27 @@ GEM
     activesupport (3.1.3)
       multi_json (~> 1.0)
     arel (2.2.3)
+    asset_sync (0.5.0)
+      activemodel
+      fog
+    aws-sdk (1.7.1)
+      httparty (~> 0.7)
+      json (~> 1.4)
+      nokogiri (>= 1.4.4)
+      uuidtools (~> 2.1)
     bcrypt-ruby (3.0.1)
     builder (3.0.4)
     calendar_helper (0.2.4)
       open4
     cancan (1.6.7)
     cocaine (0.2.1)
+    coffee-rails (3.1.1)
+      coffee-script (>= 2.2.0)
+      railties (~> 3.1.0)
+    coffee-script (2.2.0)
+      coffee-script-source
+      execjs
+    coffee-script-source (1.4.0)
     daemons (1.1.9)
     devise (2.0.4)
       bcrypt-ruby (~> 3.0)
@@ -46,6 +61,7 @@ GEM
     diff-lcs (1.1.3)
     erubis (2.7.0)
     eventmachine (1.0.0)
+    excon (0.16.10)
     execjs (1.3.0)
       multi_json (~> 1.0)
     factory_girl (2.6.3)
@@ -53,6 +69,17 @@ GEM
     factory_girl_rails (1.7.0)
       factory_girl (~> 2.6.0)
       railties (>= 3.0.0)
+    fog (1.7.0)
+      builder
+      excon (~> 0.14)
+      formatador (~> 0.2.0)
+      mime-types
+      multi_json (~> 1.0)
+      net-scp (~> 1.0.4)
+      net-ssh (>= 2.1.3)
+      nokogiri (~> 1.5.0)
+      ruby-hmac
+    formatador (0.2.4)
     fuubar (1.0.0)
       rspec (~> 2.0)
       rspec-instafail (~> 0.2.0)
@@ -60,6 +87,9 @@ GEM
     haml (3.1.4)
     has_scope (0.5.1)
     hike (1.2.1)
+    httparty (0.9.0)
+      multi_json (~> 1.0)
+      multi_xml
     i18n (0.6.1)
     inherited_resources (1.3.1)
       has_scope (~> 0.5.0)
@@ -74,7 +104,11 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.17.2)
     multi_json (1.3.7)
+    multi_xml (0.5.1)
     mysql2 (0.3.11)
+    net-scp (1.0.4)
+      net-ssh (>= 1.99.1)
+    net-ssh (2.6.1)
     nokogiri (1.5.2)
     open4 (1.3.0)
     orm_adapter (0.0.6)
@@ -130,7 +164,14 @@ GEM
       rspec-core (~> 2.12.0)
       rspec-expectations (~> 2.12.0)
       rspec-mocks (~> 2.12.0)
+    ruby-hmac (0.4.0)
     ruby-progressbar (0.0.10)
+    sass (3.2.3)
+    sass-rails (3.1.6)
+      actionpack (~> 3.1.0)
+      railties (~> 3.1.0)
+      sass (>= 3.1.10)
+      tilt (~> 1.3.2)
     shoulda (3.3.2)
       shoulda-context (~> 1.0.1)
       shoulda-matchers (~> 1.4.1)
@@ -158,6 +199,7 @@ GEM
     uglifier (1.2.3)
       execjs (>= 0.3.0)
       multi_json (>= 1.0.2)
+    uuidtools (2.1.3)
     warden (1.1.1)
       rack (>= 1.0)
     will_paginate (3.0.3)
@@ -169,8 +211,11 @@ PLATFORMS
 
 DEPENDENCIES
   RedCloth (~> 4.2.7)
+  asset_sync
+  aws-sdk
   calendar_helper
   cancan
+  coffee-rails
   devise
   factory_girl_rails
   fuubar
@@ -183,6 +228,7 @@ DEPENDENCIES
   pg
   rails (= 3.1.3)
   rspec-rails
+  sass-rails
   shoulda
   simple_form
   therubyracer-heroku
