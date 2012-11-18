@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -53,8 +54,8 @@ ActiveRecord::Schema.define(:version => 20120307093542) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "summary"
-    t.text     "notes"
     t.string   "answer_range"
+    t.text     "notes"
     t.datetime "institutionalized_at"
     t.datetime "answered_at"
     t.datetime "misplaced_at"

@@ -1,3 +1,4 @@
+# Encoding: utf-8
 module TableHelper
   def answering_institution(post)
     if post.institutions_name.present? and post.answers_answer_status.present?

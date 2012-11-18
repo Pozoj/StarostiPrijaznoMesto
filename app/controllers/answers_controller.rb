@@ -1,3 +1,4 @@
+# Encoding: utf-8
 class AnswersController < InheritedResources::Base
   load_and_authorize_resource
   

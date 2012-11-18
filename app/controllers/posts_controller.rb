@@ -1,3 +1,4 @@
+# Encoding: utf-8
 class PostsController < InheritedResources::Base
   load_and_authorize_resource
   skip_load_resource :only => [:questions, :comments, :suggestions]

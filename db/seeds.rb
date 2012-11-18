@@ -1,3 +1,4 @@
+# Encoding: utf-8
 u = User.create :first_name => "Peter", :last_name => "Rebernik", :email => "peter@spm.si", :password => "peterr", :password_confirmation => "peterr"
 u.admin = true
 u.save

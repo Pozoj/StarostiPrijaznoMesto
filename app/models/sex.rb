@@ -1,4 +1,6 @@
+# Encoding: utf-8
 class Sex
+  # Yes please
   attr_accessor :id, :title
     
   SEX_KINDS = {

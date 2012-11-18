@@ -1,3 +1,4 @@
+# Encoding: utf-8
 module HomeHelper
   
   def what_happened(senders_sex, post_kind)

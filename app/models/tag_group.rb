@@ -1,3 +1,4 @@
+# Encoding: utf-8
 class TagGroup 
   attr_accessor :id, :title
     

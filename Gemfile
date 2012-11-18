@@ -15,6 +15,7 @@ gem 'paperclip'
 gem 'will_paginate', '~> 3.0'
 gem "RedCloth", "~> 4.2.7"
 gem "yahoo_weatherman", "~> 1.1.4"
+gem "thin"
 
 group :assets do
   gem 'uglifier'
@@ -22,19 +23,8 @@ group :assets do
 end
 
 group :development, :test do
-  gem 'rails-erd'
-  gem 'ruby-graphviz'
-  gem 'hpricot'
-  gem 'ruby_parser'
-  gem 'capistrano'
-  gem 'capistrano-ext'
   gem 'fuubar'
-  gem 'webrat'
   gem 'factory_girl_rails'
-  gem 'faker'
-  gem 'cucumber'
-  gem 'shoulda', '> 3.0.0'
-  gem 'rcov'
-  gem 'rspec-rails', "~> 2.6.0"
-  gem 'mocha'
+  gem 'shoulda'
+  gem 'rspec-rails'
 end
