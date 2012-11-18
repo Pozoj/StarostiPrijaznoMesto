@@ -1,5 +1,7 @@
 class CreateAddressedPostsDatabaseView < ActiveRecord::Migration
   def up
+    execute("DROP VIEW IF EXISTS addressed_posts_v;")
+    drop_table :addressed_posts_v if self.table_exists?("addressed_posts_v")
     execute(
       "CREATE VIEW addressed_posts_v AS
       SELECT  original_posts.id AS original_posts_id, 

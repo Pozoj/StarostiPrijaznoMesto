@@ -1,5 +1,7 @@
 class CreateSuperAdminTableDatabaseView < ActiveRecord::Migration
   def up
+    execute("DROP VIEW IF EXISTS super_admin_table_v;")
+    drop_table :super_admin_table_v if self.table_exists?("super_admin_table_v")
     execute(
         "CREATE VIEW super_admin_table_v AS
          SELECT  original_posts.id AS original_posts_id, 

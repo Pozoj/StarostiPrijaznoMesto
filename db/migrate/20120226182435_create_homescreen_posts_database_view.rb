@@ -1,5 +1,7 @@
 class CreateHomescreenPostsDatabaseView < ActiveRecord::Migration
   def up
+    execute("DROP VIEW IF EXISTS homescreen_posts_v;")
+    drop_table :homescreen_posts_v if self.table_exists?("homescreen_posts_v") 
     execute(
     "CREATE VIEW homescreen_posts_v AS
       SELECT  
