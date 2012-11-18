@@ -3,9 +3,16 @@ class Attachment < ActiveRecord::Base
   before_save :filename_to_permalink
   
   has_attached_file :attachment, 
+                    :whiny => false,
                     :styles => { :small => "150x150>", :medium => "250x250>", :big => "330x320#"},
-                    :url  => "/system/attachments/:id/:style/:basename.:extension",
-                    :path => ":rails_root/public/system/attachments/:id/:style/:basename.:extension"
+                    :storage => :s3,
+                    :bucket => AWS_S3['bucket'],
+                    :s3_credentials => {
+                      :access_key_id => AWS_S3['access_key_id'],
+                      :secret_access_key => AWS_S3['secret_access_key']
+                    },
+                    :path => '/assets/attachments/:id/:style/:basename.:extension'
+
   
   before_post_process :is_image?
   validates_attachment_presence :attachment

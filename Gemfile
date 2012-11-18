@@ -15,12 +15,19 @@ gem 'paperclip'
 gem 'will_paginate', '~> 3.0'
 gem "RedCloth", "~> 4.2.7"
 gem "yahoo_weatherman", "~> 1.1.4"
+gem 'aws-sdk'
 
 group :production do
   gem 'pg'
   gem 'therubyracer-heroku'
   gem 'thin'
+end
+
+group :assets do
+  gem 'sass-rails'
+  gem 'coffee-rails'
   gem 'uglifier'
+  gem 'asset_sync'
 end
 
 group :development, :test do
