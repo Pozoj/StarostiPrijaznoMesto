@@ -10,3 +10,5 @@ public/assets/
 config/database.yml
 config/setup_load_paths.rb
 log
+.redcar/
+.idea/
