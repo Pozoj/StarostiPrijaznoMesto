@@ -3,8 +3,7 @@ class PostsController < InheritedResources::Base
   load_and_authorize_resource
   skip_load_resource :only => [:questions, :comments, :suggestions]
   skip_before_filter :authenticate_user!, :only => [:questions, :comments, :suggestions]
-  
-  
+
   def new
     @post = Post.new
     append_original_post
@@ -12,6 +11,54 @@ class PostsController < InheritedResources::Base
   
   def create
     create! { original_posts_path }
+  end
+
+  def show
+    @post = Post.find(params[:id])
+    respond_to do |format|
+      format.html
+
+      format.pdf do
+        #pdf = Prawn::Document.new
+        pdf = PostDocument.new
+
+        #pdf.font "DejaVuSans"
+        pdf.font_families.update("DejaVuSerif" => {
+            :normal => "#{Rails.root}/app/assets/fonts/DejaVuSerif.ttf",
+            :italic => "#{Rails.root}/app/assets/fonts/DejaVuSerif-Italic.ttf",
+            :bold => "#{Rails.root}/app/assets/fonts/DejaVuSerif-Bold.ttf",
+            :bold_italic => "#{Rails.root}/app/assets/fonts/DejaVuSerif-BoldItalic.ttf"
+        })
+        pdf.font "DejaVuSerif"
+        pdf.text "#{@post.title}", size: 30, style: :bold
+        pdf.move_down 10
+        pdf.text "Poslal #{@post.original_post.first_name} #{@post.original_post.last_name}"
+        pdf.move_down 20
+        pdf.text "Povzetek" , size: 20
+        pdf.move_down 10
+        pdf.text "<b>Vprašanje:</b> #{@post.summary}", :inline_format => true
+        pdf.move_down 5
+        pdf.text "<b>Odgovor:</b> #{@post.answer.summary}", :inline_format => true
+        pdf.move_down 20
+        pdf.text "Podrobnosti" , size: 20
+        pdf.move_down 5
+        pdf.text "Objava", size: 10, style: :italic
+        pdf.text "#{@post.text}"
+        pdf.move_down 5
+        pdf.text "Odgovor", size: 10, style: :italic
+        pdf.text "#{@post.answer.answer}"
+        pdf.move_down 15
+        temp = l @post.original_post.created_at, :format => :short_date
+        pdf.text "<b>Poslano:</b> #{temp}", :inline_format => true
+        if resource.attachment_added?
+          pdf.start_new_page
+          pdf.image "#{@post.attachment.attachment.url}", :width => 500
+        end
+        send_data pdf.render, filename: "Vprasanje_#{@post.id}.pdf",
+                              type: "application/pdf",
+                              disposition: "inline"
+      end
+    end
   end
   
   def questions

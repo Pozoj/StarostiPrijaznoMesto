@@ -1,5 +1,5 @@
 class SuperAdminTable < ActiveRecord::Base
-  set_table_name "super_admin_table_v"
+  self.table_name = "super_admin_table_v"
   scope :approved, where(:posts_post_status_id => "approved" )
   # Querry for super_admin_table_v 
   # ---

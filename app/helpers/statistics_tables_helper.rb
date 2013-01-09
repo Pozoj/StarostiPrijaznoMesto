@@ -1,0 +1,2 @@
+module StatisticsTablesHelper
+end

@@ -1,0 +1,46 @@
+= title "Seznam vseh pobud"
+
+= form_tag '/statistics_tables', :id => 'statistics', :method => :get do
+  = select_tag :tag_group_id, options_for_select(@taggroups.collect{|x| [x.title,x.id]}, @statistics[:tag_group_id]), :prompt => "Izberi področje"
+  = select_tag :year, options_for_select([ "2011", "2012", "2013"], @statistics[:year]), :prompt => "Izberi leto"
+  = select_tag :post_kind_id, options_for_select(@postkinds.collect{|x| [x.title,x.id]}, @statistics[:post_kind_id]), :prompt => "Izberi pobudo"
+  = select_tag :institution_id, options_for_select(@institutions.collect{|x| [x.name,x.id]}, @statistics[:institution_id]), :prompt => "Izberi ustanovo"
+  = submit_tag
+
+= link_to image_tag("pdf.jpg", :border => 0), statistics_tables_path(:tag_group_id => "#{ @statistics[:tag_group_id]}", :year => "#{ @statistics[:year]}", :post_kind_id => "#{ @statistics[:post_kind_id]}", :institution_id => "#{ @statistics[:institution_id]}", format: "pdf"), :target => "_blank"
+
+%table
+  %thead
+    %tr
+      %th= "Št."
+      %th= sortable("original_posts_created_at",  "Datum vprašanja")
+      %th= sortable("original_posts_first_name",  "Ime izpraševalca")
+      %th= sortable("original_posts_last_name",   "Priimek izpraševalca")
+      %th= sortable("posts_title",                "Naziv objave")
+      %th= sortable("posts_tag_group_id",         "Področje")
+      %th= sortable("answers_answered_at",        "Datum odgovora")
+      %th= sortable("institutions_name",          "Naslovljena ustanova")
+  %tbody
+    - counter = 0
+    - for row in @table
+      - counter+=1
+      %tr
+        %td= counter
+        %td= dateit row.original_posts_created_at
+        %td= link_to row.original_posts_first_name, original_post_path(row.original_posts_id)
+        %td= link_to row.original_posts_last_name, original_post_path(row.original_posts_id)
+        %td
+          - if row.posts_id.present?
+            = link_to row.posts_title, post_path(row.posts_id)
+          - else
+            ✗
+        %td= text_find(TagGroup, row.posts_tag_group_id)
+        %td= dateit row.answers_answered_at
+        %td
+          - if row.institutions_id.present?
+            = link_to row.institutions_name, institution_path(row.institutions_id)
+          - else
+            ✗
+
+
+

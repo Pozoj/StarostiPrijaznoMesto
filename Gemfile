@@ -18,6 +18,7 @@ gem "RedCloth", "~> 4.2.7"
 gem "yahoo_weatherman", "~> 1.1.4"
 gem 'aws-sdk'
 gem 'thin'
+gem 'prawn'
 
 group :production do
   gem 'pg'

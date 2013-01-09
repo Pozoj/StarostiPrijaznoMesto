@@ -34,6 +34,10 @@ class TagGroup
       TAG_GROUPS
     end
   end
+
+  def to_id
+    id
+  end
   
   def to_s
     title
