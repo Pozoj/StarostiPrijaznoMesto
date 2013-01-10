@@ -1,3 +1,3 @@
 class RejectedPost < ActiveRecord::Base
-  self.table_name = 'rejected_posts_v'
+  set_table_name 'rejected_posts_v'
 end

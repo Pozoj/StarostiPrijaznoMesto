@@ -603,19 +603,7 @@ table tbody tr td span{
 #login:hover{
 		background:#0071b1;
 	}
-
-/*Islam*/
-#pdf {
-    position: relative;
-    margin-right: 185px;
-}
-
-#pdf img {
-    position: absolute;
-    top: 0px;
-    right: 0px;
-}
-
+	
 /* #Page Styles
 ================================================== */
 
@@ -673,8 +661,3 @@ table tbody tr td span{
 	    font-weight: normal;
 	    font-style: normal; }
 */
-
-#statistics select {
-    float:left;
-    margin-right: 5px;
-}

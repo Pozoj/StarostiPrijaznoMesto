@@ -1,5 +1,5 @@
 class HomescreenPost < ActiveRecord::Base
-  self.table_name = "homescreen_posts_v"
+  set_table_name "homescreen_posts_v"
   # CREATE VIEW homescreen_posts_v AS
   #   SELECT  
   #     DATE(original_posts.created_at) AS original_posts_created_at, 

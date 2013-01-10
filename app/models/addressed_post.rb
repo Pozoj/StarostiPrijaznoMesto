@@ -1,5 +1,5 @@
 class AddressedPost < ActiveRecord::Base
-  self.table_name = "addressed_posts_v"
+  set_table_name "addressed_posts_v"
   scope :comments,    where(:posts_post_kind_id => "comment")
   scope :questions,   where(:posts_post_kind_id => "question")
   scope :suggestions, where(:posts_post_kind_id => "suggestion")
