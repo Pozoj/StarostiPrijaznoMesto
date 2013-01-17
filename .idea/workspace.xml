@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3d83d1c1-4781-4ecf-a6ca-6d497806fb1a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/fonts/DejaVuSerif-Bold.ttf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/fonts/DejaVuSerif-BoldItalic.ttf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/fonts/DejaVuSerif-Italic.ttf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/fonts/DejaVuSerif.ttf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/posts_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/posts_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/stylesheets/layout.css" afterPath="$PROJECT_DIR$/app/assets/stylesheets/layout.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/pdfs/post_document.rb" afterPath="$PROJECT_DIR$/app/pdfs/post_document.rb" />
     </list>
     <ignored path="StarostiPrijaznoMesto.iws" />
@@ -27,10 +22,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="post_document.rb" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="post_document.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/pdfs/post_document.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="37" column="7" selection-start="1332" selection-end="1332" vertical-scroll-proportion="0.81934565">
+            <state line="37" column="6" selection-start="1331" selection-end="1331" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="layout.css" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/layout.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="613" column="20" selection-start="14014" selection-end="14014" vertical-scroll-proportion="0.42028984">
               <folding />
             </state>
           </provider>
@@ -64,10 +68,10 @@
         <option value="$PROJECT_DIR$/app/pdfs/post_controller.rb" />
         <option value="$PROJECT_DIR$/config/initializers/mime_types.rb" />
         <option value="$PROJECT_DIR$/app/views/posts/show.html.haml" />
-        <option value="$PROJECT_DIR$/app/assets/stylesheets/layout.css" />
         <option value="$PROJECT_DIR$/Gemfile" />
         <option value="$PROJECT_DIR$/app/controllers/posts_controller.rb" />
         <option value="$PROJECT_DIR$/app/pdfs/post_document.rb" />
+        <option value="$PROJECT_DIR$/app/assets/stylesheets/layout.css" />
       </list>
     </option>
   </component>
@@ -264,6 +268,28 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="stylesheets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="StarostiPrijaznoMesto-2013-01-10" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="StarostiPrijaznoMesto-2013-01-10" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="javascripts" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -734,13 +760,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/layout.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="602" column="72" selection-start="13853" selection-end="13853" vertical-scroll-proportion="0.44347826">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/skeleton.css">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-4.644381">
@@ -771,7 +790,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/pdfs/post_document.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="7" selection-start="1332" selection-end="1332" vertical-scroll-proportion="0.81934565">
+        <state line="37" column="6" selection-start="1331" selection-end="1331" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/layout.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="613" column="20" selection-start="14014" selection-end="14014" vertical-scroll-proportion="0.42028984">
           <folding />
         </state>
       </provider>

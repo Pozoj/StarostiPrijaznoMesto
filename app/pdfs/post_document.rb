@@ -35,7 +35,7 @@ class PostDocument < Prawn::Document
     text "<b>Poslano:</b> #{temp}", :inline_format => true
     if post.attachment_added?
       start_new_page
-      #image "#{post.attachment.attachment.url}", :width => 500
+      image "#{post.attachment.attachment.url}", :width => 500
     end
   end
 end
