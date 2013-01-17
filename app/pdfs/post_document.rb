@@ -36,7 +36,7 @@ class PostDocument < Prawn::Document
     if post.attachment_added?
       require "open-uri"
       start_new_page(:layout => :landscape)
-      image open("#{post.attachment.attachment.url}"),:position => :left, :width=>100
+      image open("#{post.attachment.attachment.url}"),:position => :left, :width=>600
     end
   end
 end

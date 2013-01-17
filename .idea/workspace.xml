@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3d83d1c1-4781-4ecf-a6ca-6d497806fb1a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/pdfs/post_document.rb" afterPath="$PROJECT_DIR$/app/pdfs/post_document.rb" />
     </list>
     <ignored path="StarostiPrijaznoMesto.iws" />
@@ -25,7 +24,7 @@
       <file leaf-file-name="post_document.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/pdfs/post_document.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="37" column="21" selection-start="1350" selection-end="1350" vertical-scroll-proportion="0.8179232">
+            <state line="38" column="83" selection-start="1456" selection-end="1456" vertical-scroll-proportion="0.8406828">
               <folding />
             </state>
           </provider>
@@ -797,7 +796,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/pdfs/post_document.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="21" selection-start="1350" selection-end="1350" vertical-scroll-proportion="0.8179232">
+        <state line="38" column="83" selection-start="1456" selection-end="1456" vertical-scroll-proportion="0.8406828">
           <folding />
         </state>
       </provider>
