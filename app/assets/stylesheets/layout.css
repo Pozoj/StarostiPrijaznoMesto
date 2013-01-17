@@ -607,6 +607,19 @@ table tbody tr td span{
 /* #Page Styles
 ================================================== */
 
+
+/*Islam*/
+#pdf {
+    position: relative;
+    margin-right: 185px;
+}
+
+#pdf img {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+
 /* #Media Queries
 ================================================== */
 

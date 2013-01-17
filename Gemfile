@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 ruby '1.9.3'
 
-gem 'rails', '>= 3.2.8'
+gem 'rails', '>= 3.2.11'
 gem 'json'
 gem 'jquery-rails'
 #gem "table_builder", "~> 0.2.3"
@@ -18,6 +18,7 @@ gem "RedCloth", "~> 4.2.7"
 gem "yahoo_weatherman", "~> 1.1.4"
 gem 'aws-sdk'
 gem 'thin'
+gem 'prawn'
 
 group :production do
   gem 'pg'

@@ -13,6 +13,22 @@ class PostsController < InheritedResources::Base
   def create
     create! { original_posts_path }
   end
+
+  def show
+    @post = Post.find(params[:id])
+
+    respond_to do |format|
+      format.html
+
+      format.pdf do
+        pdf = PostDocument.new
+
+        send_data pdf.render, filename: "Vprasanje_#{@post.id}.pdf",
+                  type: "application/pdf",
+                  disposition: "inline"
+      end
+    end
+  end
   
   def questions
     @posts = PublicPost.questions.order(klass_sort_column(PublicPost) + " " + sort_direction)
