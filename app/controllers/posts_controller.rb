@@ -21,7 +21,7 @@ class PostsController < InheritedResources::Base
       format.html
 
       format.pdf do
-        pdf = PostDocument.new
+        pdf = PostDocument.new(@post)
 
         send_data pdf.render, filename: "Vprasanje_#{@post.id}.pdf",
                   type: "application/pdf",
