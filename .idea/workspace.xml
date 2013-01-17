@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3d83d1c1-4781-4ecf-a6ca-6d497806fb1a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/stylesheets/layout.css" afterPath="$PROJECT_DIR$/app/assets/stylesheets/layout.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/pdfs/post_document.rb" afterPath="$PROJECT_DIR$/app/pdfs/post_document.rb" />
     </list>
     <ignored path="StarostiPrijaznoMesto.iws" />
@@ -22,19 +22,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="post_document.rb" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="post_document.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/pdfs/post_document.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="37" column="6" selection-start="1331" selection-end="1331" vertical-scroll-proportion="0.0">
+            <state line="37" column="21" selection-start="1350" selection-end="1350" vertical-scroll-proportion="0.8179232">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="layout.css" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="layout.css" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/layout.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="613" column="20" selection-start="14014" selection-end="14014" vertical-scroll-proportion="0.42028984">
+            <state line="613" column="20" selection-start="14014" selection-end="14014" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -70,8 +70,8 @@
         <option value="$PROJECT_DIR$/app/views/posts/show.html.haml" />
         <option value="$PROJECT_DIR$/Gemfile" />
         <option value="$PROJECT_DIR$/app/controllers/posts_controller.rb" />
-        <option value="$PROJECT_DIR$/app/pdfs/post_document.rb" />
         <option value="$PROJECT_DIR$/app/assets/stylesheets/layout.css" />
+        <option value="$PROJECT_DIR$/app/pdfs/post_document.rb" />
       </list>
     </option>
   </component>
@@ -781,6 +781,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/layout.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="613" column="20" selection-start="14014" selection-end="14014" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/posts_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="20" column="47" selection-start="472" selection-end="472" vertical-scroll-proportion="0.0">
@@ -790,14 +797,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/pdfs/post_document.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="6" selection-start="1331" selection-end="1331" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/layout.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="613" column="20" selection-start="14014" selection-end="14014" vertical-scroll-proportion="0.42028984">
+        <state line="37" column="21" selection-start="1350" selection-end="1350" vertical-scroll-proportion="0.8179232">
           <folding />
         </state>
       </provider>

@@ -34,8 +34,9 @@ class PostDocument < Prawn::Document
     temp = post.original_post.created_at
     text "<b>Poslano:</b> #{temp}", :inline_format => true
     if post.attachment_added?
-      start_new_page
-      image "#{post.attachment.attachment.url}", :width => 500
+      require "open-uri"
+      start_new_page(:layout => :landscape)
+      image open("#{post.attachment.attachment.url}"),:position => :left, :width=>100
     end
   end
 end
