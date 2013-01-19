@@ -19,16 +19,20 @@ class PostDocument < Prawn::Document
     text "Povzetek" , size: 20
     move_down 10
     text "<b>Vprašanje:</b> #{post.summary}", :inline_format => true
-    move_down 5
-    text "<b>Odgovor:</b> #{post.answer.summary}", :inline_format => true
+    if post.answered?
+      move_down 5
+      text "<b>Odgovor:</b> #{post.answer.summary}", :inline_format => true
+    end
     move_down 20
     text "Podrobnosti" , size: 20
     move_down 5
     text "Objava", size: 10, style: :italic
     text "#{post.text}"
-    move_down 5
-    text "Odgovor", size: 10, style: :italic
-    text "#{post.answer.answer}"
+    if post.answered?
+      move_down 5
+      text "Odgovor", size: 10, style: :italic
+      text "#{post.answer.answer}"
+    end
     move_down 15
     #temp = l post.original_post.created_at, :format => :short_date
     temp = post.original_post.created_at
@@ -36,7 +40,7 @@ class PostDocument < Prawn::Document
     if post.attachment_added?
       require "open-uri"
       start_new_page(:layout => :landscape)
-      image open("#{post.attachment.attachment.url}"),:position => :left, :width=>600
+      #image open("#{post.attachment.attachment.url}"),:position => :left, :width=>500
     end
   end
 end

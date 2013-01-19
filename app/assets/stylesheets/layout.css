@@ -620,6 +620,13 @@ table tbody tr td span{
     right: 0px;
 }
 
+#statistics select {
+    float:left;
+    margin-right: 5px;
+}
+
+/*Islam*/
+
 /* #Media Queries
 ================================================== */
 
