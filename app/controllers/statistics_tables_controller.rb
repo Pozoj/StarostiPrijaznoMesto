@@ -41,22 +41,6 @@ class StatisticsTablesController < ApplicationController
 
     @table = @table.order(sort_column + " " + sort_direction)
 
-    st = 0
-    table_d = [[]]
-    for row in @table
-      my_answer = dateit row.answers_answered_at
-      my_create = dateit row.original_posts_created_at
-      table_d = table_d + [
-          [(st+=1).to_s+".",
-           "#{my_create}",
-           row.original_posts_first_name + ' ' + row.original_posts_last_name,
-           row.posts_title,
-           text_find(TagGroup, row.posts_tag_group_id).to_s,
-           "#{my_answer}",
-           row.institutions_name]
-      ]
-    end
-
     #za spustne menije
     @taggroups = TagGroup.all
     @postkinds = PostKind.all
@@ -66,63 +50,8 @@ class StatisticsTablesController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf do
+        pdf = StatisticsDocument.new(@table,my_year)
 
-        #prikaz enakega seznama, kot je na strani
-        pdf = Prawn::Document.new(:page_size => "A4", :page_layout => :landscape)
-        #pdf = PostDocument.new
-
-        #pdf.font "DejaVuSans"
-        pdf.font_families.update("DejaVuSerif" => {
-            :normal => "#{Rails.root}/app/assets/fonts/DejaVuSerif.ttf",
-            :italic => "#{Rails.root}/app/assets/fonts/DejaVuSerif-Italic.ttf",
-            :bold => "#{Rails.root}/app/assets/fonts/DejaVuSerif-Bold.ttf",
-            :bold_italic => "#{Rails.root}/app/assets/fonts/DejaVuSerif-BoldItalic.ttf"
-        })
-
-        current_date = l Time.now, :format => :short_date
-        pdf.font "DejaVuSerif"
-        table_data = [["Starosti prijazno mesto: VELENJE", "Seznam pobud za leto: #{my_year}", "Datum: #{current_date}", "Stran: 1"]]
-        pdf.table(table_data,:cell_style => { :border_width => 0})
-
-        pdf.move_down 10
-
-        table_d = [["Št.", "Datum vprašanja","Ime in priimek izpraševalca", "Naziv objave", "Področje", "Datum odgovora", "Naslovljena ustanova"]] +
-            table_d
-
-        pdf.table table_d do
-          row(0).font_style = :bold
-          columns(1..3).align = :right
-          self.row_colors = ["FFFFFF", "DDDDDD"]
-          self.header = true
-
-        end
-
-
-
-
-
-
-        #pdf.font "DejaVuSerif"
-        #pdf.text "#{@post.title}", size: 30, style: :bold
-        #pdf.move_down 10
-        #pdf.text "Poslal #{@post.original_post.first_name} #{@post.original_post.last_name}"
-        #pdf.move_down 20
-        #pdf.text "Povzetek" , size: 20
-        #pdf.move_down 10
-        #pdf.text "<b>Vprašanje:</b> #{@post.summary}", :inline_format => true
-        #pdf.move_down 5
-        #pdf.text "<b>Odgovor:</b> #{@post.answer.summary}", :inline_format => true
-        #pdf.move_down 20
-        #pdf.text "Podrobnosti" , size: 20
-        #pdf.move_down 5
-        #pdf.text "Objava", size: 10, style: :italic
-        #pdf.text "#{@post.text}"
-        #pdf.move_down 5
-        #pdf.text "Odgovor", size: 10, style: :italic
-        #pdf.text "#{@post.answer.answer}"
-        #pdf.move_down 15
-        #temp = l @post.original_post.created_at, :format => :short_date
-        #pdf.text "<b>Poslano:</b> #{temp}", :inline_format => true
         send_data pdf.render, filename: "Izbor_pobud.pdf",
                   type: "application/pdf",
                   disposition: "inline"
@@ -138,14 +67,6 @@ class StatisticsTablesController < ApplicationController
 
   def sort_direction
     %w[asc desc].include?(params[:direction]) ? params[:direction] : "desc"
-  end
-
-  def dateit(date)
-    if date.present?
-      l date, :format => :short_date
-    else
-      "X"
-    end
   end
 
   def text_find(klass, value)
