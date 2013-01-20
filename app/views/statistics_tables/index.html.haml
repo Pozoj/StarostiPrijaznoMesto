@@ -27,7 +27,7 @@
     - for row in @table
       - counter+=1
       %tr
-        %td= counter
+        %td= (counter).to_s+"."
         %td= dateit row.original_posts_created_at
         %td= link_to row.original_posts_first_name, original_post_path(row.original_posts_id)
         %td= link_to row.original_posts_last_name, original_post_path(row.original_posts_id)

@@ -101,7 +101,7 @@ sl:
       simple: "%d. %B %Y"
       nice: "%A, %d. %B %Y, ob %H:%M"
       time_only: "%H:%M"
-      short_date: "%d. %m. %y"
+      short_date: "%d. %-m. %y"
     am: "dopoldan"
     pm: "popoldan"
 

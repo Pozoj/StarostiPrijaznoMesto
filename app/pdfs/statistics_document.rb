@@ -27,7 +27,7 @@ class StatisticsDocument < Prawn::Document
       })
 
       #current_date = l Time.now, :format => :short_date
-      current_date = Time.now
+      current_date = Time.now.strftime("%d. %-m. %Y")
       font "DejaVuSerif"
       table_data = [["Starosti prijazno mesto: VELENJE", "Seznam pobud za leto: #{my_year}", "Datum: #{current_date}", "Stran: 1"]]
       table(table_data,:cell_style => { :border_width => 0})
@@ -40,6 +40,9 @@ class StatisticsDocument < Prawn::Document
       table table_d do
         row(0).font_style = :bold
         columns(1..3).align = :right
+        column(0).width = 30
+        column(1).width = 75
+        column(4).width = 100
         self.row_colors = ["FFFFFF", "DDDDDD"]
         self.header = true
 
@@ -57,7 +60,7 @@ class StatisticsDocument < Prawn::Document
     def dateit(date)
       if date.present?
         #l date, :format => :short_date
-        date
+        date.strftime("%d. %-m. %y")
       else
         "X"
       end
