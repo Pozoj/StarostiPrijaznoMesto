@@ -1,6 +1,6 @@
 # Encoding: utf-8
 class StatisticsDocument < Prawn::Document
-    def initialize(table,my_year)
+    def initialize(table,my_year,pdf_list_type)
 
       st = 0
       table_d = [[]]

@@ -33,10 +33,13 @@ class StatisticsTablesController < ApplicationController
       my_post_kind = "Vse pobude"
     end
 
-
     if params[:institution_id].present?
       @table = @table.where(:institutions_id => params[:institution_id])
       @statistics[:institution_id] = params[:institution_id]
+    end
+
+    if params[:pdf_list_type].present?
+      @statistics[:pdf_list_type] = params[:pdf_list_type]
     end
 
     @table = @table.order(sort_column + " " + sort_direction)
@@ -50,7 +53,7 @@ class StatisticsTablesController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf do
-        pdf = StatisticsDocument.new(@table,my_year)
+        pdf = StatisticsDocument.new(@table,my_year,params[:pdf_list_type])
 
         send_data pdf.render, filename: "Izbor_pobud.pdf",
                   type: "application/pdf",

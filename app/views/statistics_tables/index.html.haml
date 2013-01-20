@@ -1,5 +1,5 @@
 %div#pdf
-  = link_to image_tag("pdf.jpg", :border => 0), statistics_tables_path(:tag_group_id => "#{ @statistics[:tag_group_id]}", :year => "#{ @statistics[:year]}", :post_kind_id => "#{ @statistics[:post_kind_id]}", :institution_id => "#{ @statistics[:institution_id]}", format: "pdf"), :target => "_blank"
+  = link_to image_tag("pdf.jpg", :border => 0), statistics_tables_path(:tag_group_id => "#{ @statistics[:tag_group_id]}", :year => "#{ @statistics[:year]}", :post_kind_id => "#{ @statistics[:post_kind_id]}", :institution_id => "#{ @statistics[:institution_id]}", :pdf_list_type => "#{ @statistics[:pdf_list_type]}", format: "pdf"), :target => "_blank"
 
 
 = title "Seznam vseh pobud"
@@ -9,19 +9,20 @@
   = select_tag :year, options_for_select([ "2011", "2012", "2013"], @statistics[:year]), :prompt => "Izberi leto"
   = select_tag :post_kind_id, options_for_select(@postkinds.collect{|x| [x.title,x.id]}, @statistics[:post_kind_id]), :prompt => "Izberi pobudo"
   = select_tag :institution_id, options_for_select(@institutions.collect{|x| [x.name,x.id]}, @statistics[:institution_id]), :prompt => "Izberi ustanovo"
+  = select_tag :pdf_list_type, options_for_select([["Prikaz seznama", "list"], ["Celotni prikaz", "full"]], @statistics[:pdf_list_type])
   = submit_tag "Filtriraj"
 
 %table
   %thead
     %tr
       %th= "Št."
-      %th= sortable("original_posts_created_at",  "Datum vprašanja")
-      %th= sortable("original_posts_first_name",  "Ime izpraševalca")
-      %th= sortable("original_posts_last_name",   "Priimek izpraševalca")
-      %th= sortable("posts_title",                "Naziv objave")
-      %th= sortable("posts_tag_group_id",         "Področje")
-      %th= sortable("answers_answered_at",        "Datum odgovora")
-      %th= sortable("institutions_name",          "Naslovljena ustanova")
+      %th= "Datum vprašanja"
+      %th= "Ime izpraševalca"
+      %th= "Priimek izpraševalca"
+      %th= "Naziv objave"
+      %th= "Področje"
+      %th= "Datum odgovora"
+      %th= "Naslovljena ustanova"
   %tbody
     - counter = 0
     - for row in @table
