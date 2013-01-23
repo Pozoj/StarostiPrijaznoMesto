@@ -35,7 +35,8 @@ class PostDocument < Prawn::Document
     end
     move_down 15
     #temp = l post.original_post.created_at, :format => :short_date
-    temp = post.original_post.created_at
+    temp = post.original_post.created_at.strftime("%d. %-m. %y")
+    #date.strftime("%d. %-m. %y")
     text "<b>Poslano:</b> #{temp}", :inline_format => true
     if post.attachment_added?
       require "open-uri"
