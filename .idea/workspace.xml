@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3d83d1c1-4781-4ecf-a6ca-6d497806fb1a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/pdfs/post_document.rb" afterPath="$PROJECT_DIR$/app/pdfs/post_document.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/pdfs/statistics_document.rb" afterPath="$PROJECT_DIR$/app/pdfs/statistics_document.rb" />
     </list>
@@ -23,10 +22,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="statistics_document.rb" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="statistics_document.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/pdfs/statistics_document.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="97" column="45" selection-start="3866" selection-end="3866" vertical-scroll-proportion="0.52272725">
+            <state line="95" column="12" selection-start="3726" selection-end="3726" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -68,10 +67,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="post_document.rb" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="post_document.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/pdfs/post_document.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="44" column="7" selection-start="95" selection-end="1595" vertical-scroll-proportion="0.0">
+            <state line="43" column="6" selection-start="1507" selection-end="1507" vertical-scroll-proportion="0.79545456">
               <folding />
             </state>
           </provider>
@@ -112,9 +111,9 @@
         <option value="$PROJECT_DIR$/app/controllers/statistics_tables_controller.rb" />
         <option value="$PROJECT_DIR$/config/initializers/devise.rb" />
         <option value="$PROJECT_DIR$/app/views/common/_header.html.haml" />
-        <option value="$PROJECT_DIR$/app/pdfs/post_document.rb" />
         <option value="$PROJECT_DIR$/app/views/statistics_tables/index.html.haml" />
         <option value="$PROJECT_DIR$/app/pdfs/statistics_document.rb" />
+        <option value="$PROJECT_DIR$/app/pdfs/post_document.rb" />
       </list>
     </option>
   </component>
@@ -811,16 +810,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/pdfs/post_document.rb">
+    <entry file="file://$PROJECT_DIR$/app/pdfs/statistics_document.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="44" column="7" selection-start="95" selection-end="1595" vertical-scroll-proportion="0.0">
+        <state line="95" column="12" selection-start="3726" selection-end="3726" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/pdfs/statistics_document.rb">
+    <entry file="file://$PROJECT_DIR$/app/pdfs/post_document.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="97" column="45" selection-start="3866" selection-end="3866" vertical-scroll-proportion="0.52272725">
+        <state line="43" column="6" selection-start="1507" selection-end="1507" vertical-scroll-proportion="0.79545456">
           <folding />
         </state>
       </provider>
