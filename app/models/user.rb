@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  devise :database_authenticatable, :recoverable, :rememberable, :trackable #, :validatable:, registerable 
+  devise :database_authenticatable, :recoverable, :rememberable, :trackable, :token_authenticatable #, :validatable:, registerable
   attr_accessible :first_name, :last_name, :email, :institution, :password, :password_confirmation, :remember_me, :user_kind, :notes, :institution_id
   
   belongs_to :institution
@@ -13,6 +13,8 @@ class User < ActiveRecord::Base
     v.validates_confirmation_of :password
     v.validates_length_of :password, :within => 6..128
   end
+
+  before_save :ensure_authentication_token
   #validates_format_of :email, :with => Configuration::EMAIL_CHECK
   
   # Include default devise modules. Others available are:
