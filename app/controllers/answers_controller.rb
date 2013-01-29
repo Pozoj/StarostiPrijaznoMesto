@@ -19,9 +19,23 @@ class AnswersController < InheritedResources::Base
     @answer.user_id = current_user.id if current_user.present?
     @post_kind_title = (@answer.present? and @answer.post.present? and @answer.post.kind.present?) ? @answer.post.kind.title.downcase : ""
   end
+
+  def send_mail
+    user = User.find(13)
+    post = Post.find(1)
+    AnswerMailer.send_answer_form(user, post).deliver
+    redirect_to root_path
+  end
   
   def create
     create!( :notice => addressed_notice ) { unaddressed_posts_path }
+    if (params[:send_mail])
+      post = Post.find_by_id(params[:answer][:post_id])
+      institution = Institution.find_by_id(params[:answer][:institution_id])
+      user = institution.users.first()
+      text = post.title
+      AnswerMailer.send_answer_form(user, post, text).deliver
+    end
   end
   
   def destroy

@@ -5,6 +5,10 @@
 = simple_form_for @answer do |f|
   = f.association :institution, :prompt => "Izberite ustanovo, kateri želite posredovati objavo"
   = f.input :post_id, :as => :hidden
+  = check_box_tag('send_mail', 'send',true)
+  = "Obvesti po e-pošti"
+  %br
+  %br
   = f.button :submit, :value => "Posreduj objavo"
   
 

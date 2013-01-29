@@ -1,0 +1,15 @@
+%h2
+  Pozdravljeni
+  =@user.to_s
+
+%p
+  Na spletni strani http://www.starostiprijaznomesto.si se je pojavilo vprasanje ....
+
+%p
+  Vaše vprašanje se nahaja na spletni strani
+  =@text
+= link_to "Participate now &rarr;".html_safe, edit_answer_url(@post.answers.first() ,:auth_token => @user.authentication_token)
+
+
+%p
+  = @post.id

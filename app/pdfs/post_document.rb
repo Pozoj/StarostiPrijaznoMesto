@@ -1,7 +1,8 @@
 # Encoding: utf-8
 class PostDocument < Prawn::Document
   def initialize(post)
-    super()
+    filename = "#{Rails.root}/app/assets/images/tt.pdf"
+    super(:template => filename)
 
     #dolocim pisavo
     font_families.update("DejaVuSerif" => {
@@ -10,6 +11,7 @@ class PostDocument < Prawn::Document
         :bold => "#{Rails.root}/app/assets/fonts/DejaVuSerif-Bold.ttf",
         :bold_italic => "#{Rails.root}/app/assets/fonts/DejaVuSerif-BoldItalic.ttf"
     })
+
 
     font "DejaVuSerif"
     text "#{post.title}", size: 30, style: :bold
