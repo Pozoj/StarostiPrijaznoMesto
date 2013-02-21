@@ -65,11 +65,10 @@ Starci::Application.configure do
   config.action_mailer.smtp_settings = {
       :address              => "smtp.gmail.com",
       :port                 => 587,
-      :domain               => 'beta.starostiprijazno.si',
-      :user_name            => 'islam.music',
-      :password             => 'K0ru7a+4',
+      :user_name            => "islam.music",
+      :password             => "K0ru7a+4",
       :authentication       => 'plain',
       :enable_starttls_auto => true  }
-  config.action_mailer.default_url_options = { :host => 'beta.starostiprijazno.si' }
+  #config.action_mailer.default_url_options = { :host => 'beta.starostiprijazno.si' }
 
 end
