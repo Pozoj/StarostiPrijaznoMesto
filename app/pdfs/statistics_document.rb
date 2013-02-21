@@ -49,9 +49,7 @@ class StatisticsDocument < Prawn::Document
           self.header = true
 
         end
-      end
-
-      if pdf_list_type == 'full'
+      else
         super()
         #dolocim pisavo
         font_families.update("DejaVuSerif" => {
@@ -61,13 +59,16 @@ class StatisticsDocument < Prawn::Document
             :bold_italic => "#{Rails.root}/app/assets/fonts/DejaVuSerif-BoldItalic.ttf"
         })
         for row in table
-          post = Post.find_by_id(row.posts_id)
+          #o_post = OriginalPost.find_by_id(row.original_posts_id)
+
+          post = Post.find_by_sql(["SELECT * FROM posts WHERE original_post_id = ?", row.original_posts_id]).first()
 
           font "DejaVuSerif"
           text "#{post.title}", size: 30, style: :bold
           move_down 10
           text "Poslal #{post.original_post.first_name} #{post.original_post.last_name}"
           move_down 20
+
           text "Povzetek" , size: 20
           move_down 10
           text "<b>Vprašanje:</b> #{post.summary}", :inline_format => true
@@ -90,11 +91,13 @@ class StatisticsDocument < Prawn::Document
           temp = post.original_post.created_at.strftime("%d. %-m. %y")
           #date.strftime("%d. %-m. %y")
           text "<b>Poslano:</b> #{temp}", :inline_format => true
+
           if post.attachment_added?
             require "open-uri"
             start_new_page(:layout => :landscape)
-            image open("#{post.attachment.attachment.url}"),:position => :left, :width=>500
+            #image open("#{post.attachment.attachment.url}"),:position => :left, :width=>500
           end
+
           start_new_page(:layout => :portrait)
         end
       end

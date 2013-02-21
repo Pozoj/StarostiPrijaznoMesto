@@ -1,9 +1,9 @@
 # Encoding: utf-8
 class PostDocument < Prawn::Document
   def initialize(post)
-    filename = "#{Rails.root}/app/assets/images/tt.pdf"
-    super(:template => filename)
-
+    #filename = "#{Rails.root}/app/assets/images/tt.pdf"
+    #super(:template => filename)
+    super()
     #dolocim pisavo
     font_families.update("DejaVuSerif" => {
         :normal => "#{Rails.root}/app/assets/fonts/DejaVuSerif.ttf",

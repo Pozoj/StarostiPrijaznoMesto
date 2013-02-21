@@ -3,13 +3,20 @@
   =@user.to_s
 
 %p
-  Na spletni strani http://www.starostiprijaznomesto.si se je pojavilo vprasanje ....
+  V okviru projekta – gibanja Velenje starosti prijazno mesto, ki je tudi na spletu, smo prejeli pobudo. Ocenili smo, da je vaša ustanova/podjetje tisti naslov, ki lahko poda odgovor na poslano pobudo.
+  %br
+  %br
+  Prosimo, če lahko čimprej podaste odgovor, ki ga bomo vnesli v spletno aplikacijo.
+  %br
+  %br
+  Pri odgovoru prosim navedite ime in priimek osebe, ki bo posredovala odgovor.
+  %br
+  %br
+  Tukaj je tudi povezava na spletno stran
+  = link_to "Starosti prijazno mesto".html_safe, edit_answer_url(@post.answers.first() ,:auth_token => @user.authentication_token)
+  , kjer lahko pogledate, kaj vse so predlagali/vprašali starejši v mestu Velenje in kaj bi bilo dobro spremeniti. Velja, če ni težav/problemov za starejše, jih praviloma tudi ni za ostale prebivalce Velenja.
 
 %p
-  Vaše vprašanje se nahaja na spletni strani
-  =@text
-= link_to "Participate now &rarr;".html_safe, edit_answer_url(@post.answers.first() ,:auth_token => @user.authentication_token)
-
-
-%p
-  = @post.id
+  Lep pozdrav,
+  %br
+  Ekipa http://starostiprijazno.si
