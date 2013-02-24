@@ -1,5 +1,5 @@
 class AnswerMailer < ActionMailer::Base
-  default from: "Starosti Prijazno <info@starostiprijazno.si>", :bcc => "Miha Rebernik <rasmajx@gmail.com>, Islam Music <islam.music@gmail.com>"
+  default from: "Starosti Prijazno <info@starostiprijazno.si>", :bcc => "Islam Music <islam.music@gmail.com>"
 
   def send_answer_form(user, post, text)
     @user = user
