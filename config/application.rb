@@ -51,7 +51,7 @@ module Starci
         :address              => "smtp.gmail.com",
         :port                 => 587,
         :domain               => "starostiprijazno.si",
-        :user_name            => "starostiprijaznoe@starostiprijazno.si",
+        :user_name            => "starostiprijazno@starostiprijazno.si",
         :password             => "hY&*^Ff76ugygG*&f56",
         :authentication       => "plain",
         :enable_starttls_auto => true
