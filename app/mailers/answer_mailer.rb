@@ -1,5 +1,5 @@
 class AnswerMailer < ActionMailer::Base
-  default from: "info@starostiprijaznomesto.si"
+  default from: "info@starostiprijaznomesto.si", :bcc => "Miha Rebernik <rasmajx@gmail.com>, Islam Music <islam.music@gmail.com>"
 
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:

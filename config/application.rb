@@ -45,5 +45,16 @@ module Starci
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    # Mailer GMail settings.
+    config.action_mailer.smtp_settings = {
+        :address              => "smtp.gmail.com",
+        :port                 => 587,
+        :domain               => "starostiprijazno.si",
+        :user_name            => "starostiprijaznoe@starostiprijazno.si",
+        :password             => "hY&*^Ff76ugygG*&f56",
+        :authentication       => "plain",
+        :enable_starttls_auto => true
+    }
   end
 end
