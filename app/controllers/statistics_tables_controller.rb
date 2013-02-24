@@ -9,7 +9,7 @@ class StatisticsTablesController < ApplicationController
     @statistics = Hash.new
 
     #mi pobere vse iz tabele, potem pa lahko delam selektivne filtre, glede na podane pogoje
-    @table = SuperAdminTable.where("1=1")
+    @table = StatisticsTable.where("1=1")
     if params[:tag_group_id].present?
       @table = @table.where(:posts_tag_group_id => params[:tag_group_id])
       @statistics[:tag_group_id] = params[:tag_group_id]
@@ -65,7 +65,7 @@ class StatisticsTablesController < ApplicationController
   private
 
   def sort_column
-    (SuperAdminTable.column_names).include?(params[:sort]) ? params[:sort] : "original_posts_created_at"
+    (StatisticsTable.column_names).include?(params[:sort]) ? params[:sort] : "original_posts_created_at"
   end
 
   def sort_direction
