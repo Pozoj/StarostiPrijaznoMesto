@@ -621,7 +621,7 @@ table tbody tr td span{
 }
 
 #statistics select {
-    max-width: 180px;
+    max-width: 210px;
     float:left;
     margin-right: 5px;
 }

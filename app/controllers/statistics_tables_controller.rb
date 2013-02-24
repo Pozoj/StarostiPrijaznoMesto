@@ -53,7 +53,7 @@ class StatisticsTablesController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf do
-        pdf = StatisticsDocument.new(@table,my_year,params[:pdf_list_type])
+        pdf = StatisticsDocument.new(@table,@statistics)
 
         send_data pdf.render, filename: "Izbor_pobud.pdf",
                   type: "application/pdf",

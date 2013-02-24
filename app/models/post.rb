@@ -82,6 +82,30 @@ class Post < ActiveRecord::Base
   def last_answer
     answers.order(:id).last
   end
+
+  def answered_by
+    if answer.present?
+      answers.order(:id).first.institution
+    else
+      ""
+    end
+  end
+
+  def answered_at
+    if answer.present?
+      answer.answered_at
+    else
+      ""
+    end
+  end
+
+  def forwarded_at
+    if answer.present?
+      answer.institutionalized_at
+    else
+      ""
+    end
+  end
   
   def responsible_institution
     answers.last.institution
