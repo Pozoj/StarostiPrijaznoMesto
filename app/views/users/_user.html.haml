@@ -10,6 +10,6 @@
   %ul
     - for user in users
       %li
-        = link_to user, user
+        = link_to "#{user} (#{user.institution})", user
 
   
