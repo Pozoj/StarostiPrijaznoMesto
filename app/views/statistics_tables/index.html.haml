@@ -1,10 +1,10 @@
-= title "Seznam vseh pobud"
+= title "Prikaz pobud z ozirom na izbrane kriterije"
 
 = form_tag '/statistics_tables', :id => 'statistics', :method => :get do
-  = select_tag :tag_group_id, options_for_select(@taggroups.collect{|x| [x.title,x.id]}, @statistics[:tag_group_id]), :prompt => "Izberi področje"
-  = select_tag :year, options_for_select([ "2011", "2012", "2013"], @statistics[:year]), :prompt => "Izberi leto"
-  = select_tag :post_kind_id, options_for_select(@postkinds.collect{|x| [x.title,x.id]}, @statistics[:post_kind_id]), :prompt => "Izberi pobudo"
-  = select_tag :institution_id, options_for_select(@institutions.collect{|x| [x.name,x.id]}, @statistics[:institution_id]), :prompt => "Izberi ustanovo"
+  = select_tag :tag_group_id, options_for_select(@taggroups.collect{|x| [x.title,x.id]}, @statistics[:tag_group_id]), :prompt => "Vsa področja"
+  = select_tag :year, options_for_select([ "2011", "2012", "2013"], @statistics[:year]), :prompt => "Vsa leta"
+  = select_tag :post_kind_id, options_for_select(@postkinds.collect{|x| [x.title,x.id]}, @statistics[:post_kind_id]), :prompt => "Vse pobude"
+  = select_tag :institution_id, options_for_select(@institutions.collect{|x| [x.name,x.id]}, @statistics[:institution_id]), :prompt => "Vse ustanove"
   = #select_tag :pdf_list_type, options_for_select([["Prikaz seznama", "list"], ["Celotni prikaz", "full"]], @statistics[:pdf_list_type])
   = submit_tag "Filtriraj"
 

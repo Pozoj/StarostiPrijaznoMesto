@@ -6,19 +6,22 @@ class OriginalPostsController < InheritedResources::Base
   helper_method :sort_column, :sort_direction
   
   actions :all, :except => [ :show ]
+  #maximalno število priponk
+  MAX_ATTACH = 3
   
   def new
     @original_post = OriginalPost.new
-    @original_post.attachments.build
+    MAX_ATTACH.times {@original_post.attachments.build}
     get_signed_in_user_data if user_signed_in?
   end
 
   def create
     #raise env['REMOTE_ADDR']
-    attachment_attributes = params["original_post"]["attachments_attributes"]["0"] if params["original_post"].present? and params["original_post"]["attachments_attributes"].present? and params["original_post"]["attachments_attributes"]["0"].present?
-    if params["original_post"].present? and og_post = OriginalPost.create( params["original_post"].merge({:ip => env['REMOTE_ADDR'] }).delete_if {|k,v| k == "attachments_attributes"} )
-      if attachment_attributes.present?
-        attachment = Attachment.create({:holder_id => og_post.id, :holder_type => "OriginalPost"}.merge(attachment_attributes))
+    if params["original_post"].present? and og_post = OriginalPost.create(params["original_post"].merge({:ip => env['REMOTE_ADDR']}).delete_if{|k,v| k == "attachments_attributes"})
+      for i in 0..(MAX_ATTACH-1)
+        if params["original_post"].present? and params["original_post"]["attachments_attributes"].present? and params["original_post"]["attachments_attributes"]["#{i}"].present?
+          Attachment.create({:holder_id => og_post.id, :holder_type => "OriginalPost"}.merge(params["original_post"]["attachments_attributes"]["#{i}"]))
+        end
       end
       redirect_to root_path, :notice => "Uspešno ste oddali vprašanje. Hvala za Vaš prispevek."
     else
