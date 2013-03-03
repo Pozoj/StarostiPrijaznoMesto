@@ -23,36 +23,48 @@ class StatisticsDocument < Prawn::Document
       end
 
       super(:page_size => "A4", :page_layout => :landscape)
+
       font_families.update("DejaVuSerif" => {
           :normal => "#{Rails.root}/app/assets/fonts/DejaVuSerif.ttf",
           :italic => "#{Rails.root}/app/assets/fonts/DejaVuSerif-Italic.ttf",
           :bold => "#{Rails.root}/app/assets/fonts/DejaVuSerif-Bold.ttf",
           :bold_italic => "#{Rails.root}/app/assets/fonts/DejaVuSerif-BoldItalic.ttf"
       })
-
-      #current_date = l Time.now, :format => :short_date
-      current_date = Time.now.strftime("%-d. %-m. %Y")
       font "DejaVuSerif"
-      table_data = [["STAROSTI PRIJAZNO MESTO VELENJE", "Datum izpisa: #{current_date}"]]
-      table table_data do
-        row(0..1).font_style = :bold
-        columns(1..1).align = :right
-        #row(0).style(:border_width => 0)
-        row(0).columns(0..1).borders = [:bottom]
-        row(0).width = 382
-        #self.border_width = 0
-      end
-      move_down 10
 
-      table_data = [["Filter iskanje: #{search_filter}"]]
-      table table_data do
-        #row(0).font_style = :bold
-        row(0).columns(0..0).borders = []
-        row(0).columns(0..0).style(:size => 12)
-        row(0).width = 764
-        #self.border_width = 0
+      repeat :all do
+        # header
+        bounding_box [bounds.left, bounds.top], :width  => bounds.width do
+          current_date = Time.now.strftime("%-d. %-m. %Y")
+          table_data = [["STAROSTI PRIJAZNO MESTO VELENJE", "Datum izpisa: #{current_date}"]]
+          table table_data do
+            row(0..1).font_style = :bold
+            columns(1..1).align = :right
+            row(0).columns(0..1).borders = []
+            row(0).width = 382
+          end
+          move_down(5)
+          table_data = [["Filter iskanja: #{search_filter}"]]
+          table table_data do
+            row(0).columns(0..0).borders = []
+            row(0).columns(0..0).style(:size => 12)
+            row(0).width = 764
+          end
+          stroke_horizontal_rule
+        end
+
+        # footer
+        #bounding_box [bounds.left, bounds.bottom + 25], :width  => bounds.width do
+        #  #font "Helvetica"
+        #  stroke_horizontal_rule
+        #  move_down(5)
+        #  text "#{@p_count} in a total of <total>", :size => 9
+        #end
       end
-      move_down 30
+
+      bounding_box([bounds.left, bounds.top - 65], :width  => bounds.width, :height => bounds.height - 100) do
+
+      #move_down 40
 
       table_d = [["Št.", "Datum vprašanja", "Ime in priimek izpraševalca", "Naziv objave", "Področje", "Datum odgovora", "Naslovljena ustanova"]] +
           table_d
@@ -71,8 +83,19 @@ class StatisticsDocument < Prawn::Document
         self.header = true
 
       end
+      end
+
+      #NOW PRINT THE PAGE NUMBER
+      page_count.times do |i|
+        go_to_page(i+1)
+        bounding_box [bounds.left, bounds.bottom + 25], :width  => bounds.width do
+          stroke_horizontal_rule
+          move_down(5)
+          text  "Stran #{(i+1)} od #{page_count}", :size => 9
+        end
+      end
     else
-      super()
+      super(:page_size => "A4",:page_layout => :portrait)
       #dolocim pisavo
       font_families.update("DejaVuSerif" => {
           :normal => "#{Rails.root}/app/assets/fonts/DejaVuSerif.ttf",
@@ -80,15 +103,16 @@ class StatisticsDocument < Prawn::Document
           :bold => "#{Rails.root}/app/assets/fonts/DejaVuSerif-Bold.ttf",
           :bold_italic => "#{Rails.root}/app/assets/fonts/DejaVuSerif-BoldItalic.ttf"
       })
+      font "DejaVuSerif"
       st = 0
       for row in table
         st = st +1
-        start_new_page(:layout => :portrait) unless st == 1
+        start_new_page(:page_layout => :portrait) unless st == 1
         post = Post.find_by_sql(["SELECT * FROM posts WHERE original_post_id = ?", row.original_posts_id]).first()
 
 
         current_date = Time.now.strftime("%-d. %-m. %Y")
-        font "DejaVuSerif"
+
         table_data = [["STAROSTI PRIJAZNO MESTO VELENJE", "Datum izpisa: #{current_date}"]]
         table table_data do
           row(0..1).font_style = :bold
@@ -96,7 +120,7 @@ class StatisticsDocument < Prawn::Document
           #row(0).style(:border_width => 0)
           row(0).columns(0..1).borders = [:bottom]
           row(0).columns(0..1).style(:size => 11)
-          row(0).width = 268
+          row(0).width = 261
           #self.border_width = 0
         end
         move_down 30
@@ -134,21 +158,25 @@ class StatisticsDocument < Prawn::Document
                         ["Povzetek odgovora:", "#{answer_summary}"],
                         ["Odgovor:", "#{answer_answer}"]]
           table table_data do
-            #row(0..1).font_style = :bold
             columns(0).font_style = :bold
-            columns(0).width = 158
+            columns(0).width = 145
             columns(1).width = 378
-            #row(0).style(:border_width => 0)
             row(0..7).columns(0..1).borders = []
             row(0..7).columns(0..1).style(:size => 10)
-            #row(0..7).height = 30
-            #self.border_width = 0
           end
 
           if post.attachment_added?
-            require "open-uri"
-            start_new_page(:layout => :landscape)
-            image open("#{post.attachment.attachment.url}"),:position => :left, :width=>500
+            if post.attachment.is_image?
+              require "open-uri"
+              start_new_page(:layout => :landscape)
+              image open("#{post.attachment.attachment.url}"),:position => :left, :width=>500
+            end
+            if post.attachment.is_pdf?
+              require "open-uri"
+              #filename = "#{Rails.root}/app/assets/images/tt.pdf"
+              filename = "#{post.attachment.attachment.url}"
+              start_new_page(:template => filename)
+            end
           end
         end
       end

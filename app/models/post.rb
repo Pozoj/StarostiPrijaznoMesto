@@ -52,6 +52,12 @@ class Post < ActiveRecord::Base
   def attachment_added?
     original_post.present? and original_post.attachment_added?
   end
+
+  def attachment_pdf?
+    if original_post.present? and original_post.attachment_added?
+
+    end
+  end
   
   def attachment
     if original_post.present? and original_post.attachment_added?

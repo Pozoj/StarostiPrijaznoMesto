@@ -18,7 +18,16 @@ class Attachment < ActiveRecord::Base
   validates_attachment_presence :attachment
   validates_attachment_size :attachment, :less_than => 5.megabytes, :if => Proc.new { |attachment| not attachment.attachment.nil? }
   validates_attachment_content_type :attachment, :content_type => ['application/pdf', 'application/msexcel', 'application/excel', 'application/x-msexcel', 'application/x-excel', 'application/vnd.ms-excel', 'application/msword', 'image/jpeg', 'image/png'], :if => Proc.new { |attachment| not attachment.attachment.nil? }
-  
+
+  def is_image?
+    !(attachment_content_type =~ /^image/).nil?
+  end
+
+  def is_pdf?
+    #%w(application/msword text/rtf).include?(attachment.content_type)
+    %w(application/pdf).include?(attachment_content_type)
+  end
+
   private
   
   def filename_to_permalink
@@ -27,8 +36,6 @@ class Attachment < ActiveRecord::Base
     self.attachment.instance_write(:file_name, file_name.to_permalink + extension)
   end
   
-  def is_image?
-    !(attachment_content_type =~ /^image/).nil?
-  end
+
   
 end
