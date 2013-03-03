@@ -686,3 +686,14 @@ table tbody tr td span{
 	    font-weight: normal;
 	    font-style: normal; }
 */
+
+/*Izgled admin dela prikaza objav*/
+
+span.radio {
+    display: block;
+    padding: 3px;
+}
+
+label.collection_radio_buttons, label.boolean {
+    display: inline;
+}

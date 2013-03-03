@@ -27,6 +27,7 @@ class ApplicationController < ActionController::Base
     if user_signed_in?
       @unaddressed_count = UnaddressedPost.count if can? :read, UnaddressedPost
       @misplaced_count = Misplaced.count if can? :read, Misplaced
+      #@unapproved_count = Unapproved.count if can? :read, Unapproved
       @original_count = OriginalPost.untreated.count if can? :read, OriginalPost
       if current_user.user_kind.present? and current_user.institution_id.present? and current_user.user_kind.institution_admin?
         @addressed_count = Institutionalized.for_institution(current_user.institution_id).count if can? :read, Institutionalized

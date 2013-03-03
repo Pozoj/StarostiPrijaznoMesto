@@ -31,7 +31,7 @@ class StatisticsDocument < Prawn::Document
       })
 
       #current_date = l Time.now, :format => :short_date
-      current_date = Time.now.strftime("%d. %-m. %Y")
+      current_date = Time.now.strftime("%-d. %-m. %Y")
       font "DejaVuSerif"
       table_data = [["STAROSTI PRIJAZNO MESTO VELENJE", "Datum izpisa: #{current_date}"]]
       table table_data do
@@ -87,7 +87,7 @@ class StatisticsDocument < Prawn::Document
         post = Post.find_by_sql(["SELECT * FROM posts WHERE original_post_id = ?", row.original_posts_id]).first()
 
 
-        current_date = Time.now.strftime("%d. %-m. %Y")
+        current_date = Time.now.strftime("%-d. %-m. %Y")
         font "DejaVuSerif"
         table_data = [["STAROSTI PRIJAZNO MESTO VELENJE", "Datum izpisa: #{current_date}"]]
         table table_data do
@@ -222,7 +222,7 @@ class StatisticsDocument < Prawn::Document
   def dateit(date)
     if date.present?
       #l date, :format => :short_date
-      date.strftime("%d. %-m. %y")
+      date.strftime("%-d. %-m. %y")
     else
       "X"
     end

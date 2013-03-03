@@ -56,8 +56,8 @@ class StatisticsTablesController < ApplicationController
         pdf = StatisticsDocument.new(@table,@statistics)
 
         send_data pdf.render, filename: "Izbor_pobud.pdf",
-                  type: "application/pdf",
-                  disposition: "inline"
+                  type: "application/pdf" #,
+                  #disposition: "inline"
       end
     end
   end
