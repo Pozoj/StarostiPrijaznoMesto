@@ -107,9 +107,9 @@ class StatisticsDocument < Prawn::Document
       st = 0
       for row in table
         st = st +1
-        start_new_page(:page_layout => :portrait) unless st == 1
-        post = Post.find_by_sql(["SELECT * FROM posts WHERE original_post_id = ?", row.original_posts_id]).first()
+        start_new_page(:page_size => "A4",:page_layout => :portrait) unless st == 1
 
+        post = Post.find_by_sql(["SELECT * FROM posts WHERE original_post_id = ?", row.original_posts_id]).first()
 
         current_date = Time.now.strftime("%-d. %-m. %Y")
 
@@ -169,7 +169,20 @@ class StatisticsDocument < Prawn::Document
             require "open-uri"
 
             if post.attachment.is_image?
-              start_new_page(:layout => :landscape)
+              start_new_page(:page_size => "A4",:page_layout => :landscape)
+
+              table_data = [["STAROSTI PRIJAZNO MESTO VELENJE", "Datum izpisa: #{current_date}"]]
+              table table_data do
+                row(0..1).font_style = :bold
+                columns(1..1).align = :right
+                #row(0).style(:border_width => 0)
+                row(0).columns(0..1).borders = [:bottom]
+                row(0).columns(0..1).style(:size => 11)
+                row(0).width = 382
+                #self.border_width = 0
+              end
+              move_down 15
+
               image open("#{post.attachment.attachment.url}"),:position => :left, :width=>370
             end
             if post.attachment.is_pdf?
