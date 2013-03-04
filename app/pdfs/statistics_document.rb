@@ -169,7 +169,7 @@ class StatisticsDocument < Prawn::Document
             require "open-uri"
 
             if post.attachment.is_image?
-              start_new_page(:page_size => "A4",:page_layout => :landscape)
+              start_new_page(:page_size => "A4", :page_layout => :landscape)
 
               table_data = [["STAROSTI PRIJAZNO MESTO VELENJE", "Datum izpisa: #{current_date}"]]
               table table_data do
@@ -178,7 +178,7 @@ class StatisticsDocument < Prawn::Document
                 #row(0).style(:border_width => 0)
                 row(0).columns(0..1).borders = [:bottom]
                 row(0).columns(0..1).style(:size => 11)
-                row(0).width = 382
+                row(0).width = 261
                 #self.border_width = 0
               end
               move_down 15
