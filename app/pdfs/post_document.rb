@@ -73,7 +73,7 @@ class PostDocument < Prawn::Document
           require "open-uri"
           if post.attachment.is_image?
             start_new_page(:layout => :landscape)
-            image open("#{post.attachment.attachment.url}"),:position => :left, :width=>300
+            image open("#{post.attachment.attachment.url}"),:position => :left, :width=>370
           end
           if post.attachment.is_pdf?
             #filename = "#{Rails.root}/app/assets/images/tt.pdf"

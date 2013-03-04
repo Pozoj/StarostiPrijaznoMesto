@@ -170,7 +170,7 @@ class StatisticsDocument < Prawn::Document
 
             if post.attachment.is_image?
               start_new_page(:layout => :landscape)
-              image open("#{post.attachment.attachment.url}"),:position => :left, :width=>500
+              image open("#{post.attachment.attachment.url}"),:position => :left, :width=>370
             end
             if post.attachment.is_pdf?
               filename = "#{post.attachment.attachment.url}"
