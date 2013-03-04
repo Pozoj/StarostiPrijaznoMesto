@@ -166,6 +166,7 @@ class StatisticsDocument < Prawn::Document
           end
 
           if post.attachment_added?
+            unless Rails.application.assets.find_asset("#{post.attachment.attachment.url}").nil?
             if post.attachment.is_image?
               require "open-uri"
               start_new_page(:layout => :landscape)
@@ -177,6 +178,7 @@ class StatisticsDocument < Prawn::Document
               filename = "#{post.attachment.attachment.url}"
               start_new_page(:template => filename)
             end
+              end
           end
         end
       end
