@@ -35,7 +35,7 @@ class StatisticsDocument < Prawn::Document
 
       repeat :all do
         # header
-        bounding_box [bounds.left, bounds.top], :width  => bounds.width do
+        bounding_box [bounds.left, bounds.top], :width => bounds.width do
           current_date = Time.now.strftime("%-d. %-m. %Y")
           table_data = [["STAROSTI PRIJAZNO MESTO VELENJE", "Datum izpisa: #{current_date}"]]
           table table_data do
@@ -63,142 +63,147 @@ class StatisticsDocument < Prawn::Document
         #end
       end
 
-      bounding_box([bounds.left, bounds.top - 55], :width  => bounds.width, :height => bounds.height - 100) do
+      bounding_box([bounds.left, bounds.top - 55], :width => bounds.width, :height => bounds.height - 100) do
 
-      #move_down 40
+        #move_down 40
 
-      table_d = [["Št.", "Datum vprašanja", "Ime in priimek izpraševalca", "Naziv objave", "Področje", "Datum odgovora", "Naslovljena ustanova"]] +
-          table_d
+        table_d = [["Št.", "Datum vprašanja", "Ime in priimek izpraševalca", "Naziv objave", "Področje", "Datum odgovora", "Naslovljena ustanova"]] +
+            table_d
 
-      table table_d do
-        row(0).font_style = :bold
-        #columns(1..3).align = :right
-        column(0).width = 36
-        column(1).width = 75
-        column(4).width = 100
-        column(5).width = 75
-        columns(0..6).style(:border_width => 0, :size => 9)
-        columns(0..6).height = 18
-        row(0).height = 35
-        self.row_colors = ["FFFFFF", "DDDDDD"]
-        self.header = true
+        table table_d do
+          row(0).font_style = :bold
+          #columns(1..3).align = :right
+          column(0).width = 36
+          column(1).width = 75
+          column(4).width = 100
+          column(5).width = 75
+          columns(0..6).style(:border_width => 0, :size => 9)
+          columns(0..6).height = 18
+          row(0).height = 35
+          self.row_colors = ["FFFFFF", "DDDDDD"]
+          self.header = true
 
-      end
+        end
       end
 
       #NOW PRINT THE PAGE NUMBER
       page_count.times do |i|
         go_to_page(i+1)
-        bounding_box [bounds.left, bounds.bottom + 25], :width  => bounds.width do
+        bounding_box [bounds.left, bounds.bottom + 25], :width => bounds.width do
           stroke_horizontal_rule
           move_down(5)
-          text  "Stran #{(i+1)} od #{page_count}", :size => 9
+          text "Stran #{(i+1)} od #{page_count}", :size => 9
         end
       end
     end
     if pdf_list_type == 'full'
-      super(:page_size => "A4",:page_layout => :portrait)
+      super(:page_size => "A4", :page_layout => :portrait)
       #dolocim pisavo
       font "DejaVuSerif"
       st = 0
+      current_date = Time.now.strftime("%-d. %-m. %Y")
 
       repeat :all do
-      for row in table
-        st = st +1
-        start_new_page(:page_size => "A4",:page_layout => :portrait) unless st == 1
-
-        post = Post.find_by_sql(["SELECT * FROM posts WHERE original_post_id = ?", row.original_posts_id]).first()
-
-        current_date = Time.now.strftime("%-d. %-m. %Y")
-
-        table_data = [["STAROSTI PRIJAZNO MESTO VELENJE", "Datum izpisa: #{current_date}"]]
-        table table_data do
-          row(0..1).font_style = :bold
-          columns(1..1).align = :right
-          #row(0).style(:border_width => 0)
-          row(0).columns(0..1).borders = [:bottom]
-          row(0).columns(0..1).style(:size => 11)
-          row(0).width = 261
-          #self.border_width = 0
-        end
-        move_down 30
-
-        unless post.present?
-          text "ERROR: #{row.original_posts_id}"
-        else
-          font "DejaVuSerif"
-          text "#{post.title}", size: 14, style: :bold
-          move_down 15
-
-          post_created_at = ""
-          post_answered_at = ""
-          post_forwarded_at = ""
-
-          post_created_at = post.original_post.created_at.strftime("%d. %-m. %y") unless post.created_at == ""
-          post_answered_at = post.answered_at.strftime("%d. %-m. %y") unless post.answered_at == ""
-          post_forwarded_at = post.forwarded_at.strftime("%d. %-m. %y") unless post.forwarded_at == ""
-
-          post_forwarded = ""
-          post_answered = ""
-          answer_summary = ""
-          answer_answer = ""
-          post_forwarded = "#{post_forwarded_at}, #{post.responsible_institution}" unless post.forwarded_at == ""
-          post_answered = "#{post_answered_at}, #{post.answered_by}" unless post.answered_at == ""
-          answer_summary = "#{post.answer.summary}" if post.answered?
-          answer_answer = "#{post.answer.answer}" if post.answered?
-
-          table_data = [["Pobudo podal/a:", "#{post_created_at}, #{post.sender}"],
-                        ["Področje:", "#{post.tag_group}"],
-                        ["Pobuda posredovana:", "#{post_forwarded}"],
-                        ["Odgovor posredovala:", "#{post_answered}"],
-                        ["Povzetek vprašanja:", "#{post.summary}"],
-                        ["Vprašanje:", "#{post.text}"],
-                        ["Povzetek odgovora:", "#{answer_summary}"],
-                        ["Odgovor:", "#{answer_answer}"]]
-          table table_data do
-            columns(0).font_style = :bold
-            columns(0).width = 145
-            columns(1).width = 378
-            row(0..7).columns(0..1).borders = []
-            row(0..7).columns(0..1).style(:size => 10)
+          bounding_box [bounds.left, bounds.top], :width => bounds.width do
+            table_data = [["STAROSTI PRIJAZNO MESTO VELENJE", "Datum izpisa: #{current_date}"]]
+            table table_data do
+              row(0..1).font_style = :bold
+              columns(1..1).align = :right
+              #row(0).style(:border_width => 0)
+              row(0).columns(0..1).borders = [:bottom]
+              row(0).columns(0..1).style(:size => 11)
+              row(0).width = 261
+              #self.border_width = 0
+            end
           end
+          move_down 30
+        end
+        bounding_box([bounds.left, bounds.top - 55], :width => bounds.width, :height => bounds.height - 100) do
 
-          if post.attachment_added?
-            require "open-uri"
+          for row in table
+            st = st +1
+            start_new_page(:page_size => "A4", :page_layout => :portrait) unless st == 1
 
-            for attachment in post.attachments
-              if attachment.is_image?
-                start_new_page(:page_size => "A4", :page_layout => :landscape)
+            post = Post.find_by_sql(["SELECT * FROM posts WHERE original_post_id = ?", row.original_posts_id]).first()
 
-                table_data = [["STAROSTI PRIJAZNO MESTO VELENJE", "Datum izpisa: #{current_date}"]]
-                table table_data do
-                  row(0..1).font_style = :bold
-                  columns(1..1).align = :right
-                  #row(0).style(:border_width => 0)
-                  row(0).columns(0..1).borders = [:bottom]
-                  row(0).columns(0..1).style(:size => 11)
-                  row(0).width = 261
-                  #self.border_width = 0
+
+
+          unless post.present?
+            text "ERROR: #{row.original_posts_id}"
+          else
+            font "DejaVuSerif"
+            text "#{post.title}", size: 14, style: :bold
+            move_down 15
+
+            post_created_at = ""
+            post_answered_at = ""
+            post_forwarded_at = ""
+
+            post_created_at = post.original_post.created_at.strftime("%d. %-m. %y") unless post.created_at == ""
+            post_answered_at = post.answered_at.strftime("%d. %-m. %y") unless post.answered_at == ""
+            post_forwarded_at = post.forwarded_at.strftime("%d. %-m. %y") unless post.forwarded_at == ""
+
+            post_forwarded = ""
+            post_answered = ""
+            answer_summary = ""
+            answer_answer = ""
+            post_forwarded = "#{post_forwarded_at}, #{post.responsible_institution}" unless post.forwarded_at == ""
+            post_answered = "#{post_answered_at}, #{post.answered_by}" unless post.answered_at == ""
+            answer_summary = "#{post.answer.summary}" if post.answered?
+            answer_answer = "#{post.answer.answer}" if post.answered?
+
+            table_data = [["Pobudo podal/a:", "#{post_created_at}, #{post.sender}"],
+                          ["Področje:", "#{post.tag_group}"],
+                          ["Pobuda posredovana:", "#{post_forwarded}"],
+                          ["Odgovor posredovala:", "#{post_answered}"],
+                          ["Povzetek vprašanja:", "#{post.summary}"],
+                          ["Vprašanje:", "#{post.text}"],
+                          ["Povzetek odgovora:", "#{answer_summary}"],
+                          ["Odgovor:", "#{answer_answer}"]]
+            table table_data do
+              columns(0).font_style = :bold
+              columns(0).width = 145
+              columns(1).width = 378
+              row(0..7).columns(0..1).borders = []
+              row(0..7).columns(0..1).style(:size => 10)
+            end
+
+            if post.attachment_added?
+              require "open-uri"
+
+              for attachment in post.attachments
+                if attachment.is_image?
+                  start_new_page(:page_size => "A4", :page_layout => :portrait)
+
+                  table_data = [["STAROSTI PRIJAZNO MESTO VELENJE", "Datum izpisa: #{current_date}"]]
+                  table table_data do
+                    row(0..1).font_style = :bold
+                    columns(1..1).align = :right
+                    #row(0).style(:border_width => 0)
+                    row(0).columns(0..1).borders = [:bottom]
+                    row(0).columns(0..1).style(:size => 11)
+                    row(0).width = 261
+                    #self.border_width = 0
+                  end
+                  move_down 15
+                  image open("#{attachment.attachment.url}"), :position => :left, :width => 370
                 end
-                move_down 15
-                image open("#{attachment.attachment.url}"),:position => :left, :width=>370
-              end
-              if attachment.is_pdf?
-                filename = "#{attachment.url}"
-                start_new_page(:template => filename)
+                if attachment.is_pdf?
+                  filename = "#{attachment.url}"
+                  start_new_page(:template => filename)
+                end
               end
             end
           end
         end
       end
-      end
       #NOW PRINT THE PAGE NUMBER
       page_count.times do |i|
         go_to_page(i+1)
-        bounding_box [bounds.left, bounds.bottom + 25], :width  => bounds.width do
+        bounding_box [bounds.left, bounds.bottom + 25], :width => bounds.width do
           stroke_horizontal_rule
           move_down(5)
-          text  "Stran #{(i+1)} od #{page_count}", :size => 9
+          text "Stran #{(i+1)} od #{page_count}", :size => 9
         end
       end
     end
@@ -230,7 +235,7 @@ class StatisticsDocument < Prawn::Document
 
       repeat :all do
         # header
-        bounding_box [bounds.left, bounds.top], :width  => bounds.width do
+        bounding_box [bounds.left, bounds.top], :width => bounds.width do
           current_date = Time.now.strftime("%-d. %-m. %Y")
           table_data = [["STAROSTI PRIJAZNO MESTO VELENJE", "Datum izpisa: #{current_date}"]]
           table table_data do
@@ -251,7 +256,7 @@ class StatisticsDocument < Prawn::Document
         end
       end
 
-      bounding_box([bounds.left, bounds.top - 65], :width  => bounds.width, :height => bounds.height - 100) do
+      bounding_box([bounds.left, bounds.top - 65], :width => bounds.width, :height => bounds.height - 100) do
 
         move_down 10
 
@@ -262,8 +267,8 @@ class StatisticsDocument < Prawn::Document
         #post_kind_id
         table_data = []
         PostKind.all.each do |kind|
-          count =  overall_table.where(:posts_post_kind_id => kind.id).count
-          table_data<<["#{kind.title}","#{count}"]
+          count = overall_table.where(:posts_post_kind_id => kind.id).count
+          table_data<<["#{kind.title}", "#{count}"]
         end
 
         table table_data do
@@ -277,13 +282,13 @@ class StatisticsDocument < Prawn::Document
 
         move_down 40
 
-        text "Pobude, ki so bile podane v tem obdobju po posameznih področjih:",style: :bold
+        text "Pobude, ki so bile podane v tem obdobju po posameznih področjih:", style: :bold
 
         #tag_group_id
         table_data = []
         TagGroup.all.each do |tag|
-          count =  overall_table.where(:posts_tag_group_id => tag.id).count
-          table_data<<["#{tag.title}","#{count}"]
+          count = overall_table.where(:posts_tag_group_id => tag.id).count
+          table_data<<["#{tag.title}", "#{count}"]
         end
 
         table table_data do
@@ -300,11 +305,11 @@ class StatisticsDocument < Prawn::Document
         table_data = [["Pobude podane po spolu so naslednje:", "Moški", "Ženske", "ni bil podan"]]
         TagGroup.all.each do |tag|
           temp_table = overall_table.where(:posts_tag_group_id => tag.id)
-          count_m =  temp_table.where(:posts_sex_id => "man").count
-          count_w =  temp_table.where(:posts_sex_id => "woman").count
-          count_u =  temp_table.where(:posts_sex_id => "unknown").count
+          count_m = temp_table.where(:posts_sex_id => "man").count
+          count_w = temp_table.where(:posts_sex_id => "woman").count
+          count_u = temp_table.where(:posts_sex_id => "unknown").count
 
-          table_data<<["#{tag.title}","#{count_m}","#{count_w}","#{count_u}"]
+          table_data<<["#{tag.title}", "#{count_m}", "#{count_w}", "#{count_u}"]
         end
         table table_data do
           #columns(0).font_style = :bold
@@ -323,10 +328,10 @@ class StatisticsDocument < Prawn::Document
       #NOW PRINT THE PAGE NUMBER
       page_count.times do |i|
         go_to_page(i+1)
-        bounding_box [bounds.left, bounds.bottom + 25], :width  => bounds.width do
+        bounding_box [bounds.left, bounds.bottom + 25], :width => bounds.width do
           stroke_horizontal_rule
           move_down(5)
-          text  "Stran #{(i+1)} od #{page_count}", :size => 9
+          text "Stran #{(i+1)} od #{page_count}", :size => 9
         end
       end
     end
