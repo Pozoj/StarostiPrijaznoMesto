@@ -34,7 +34,9 @@ class AnswersController < InheritedResources::Base
       institution = Institution.find_by_id(params[:answer][:institution_id])
       user = institution.users.first()
       text = post.title
-      AnswerMailer.send_answer_form(user, post, text).deliver
+      if user
+        AnswerMailer.send_answer_form(user, post, text).deliver
+      end
     end
   end
   
