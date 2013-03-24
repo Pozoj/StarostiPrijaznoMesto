@@ -11,6 +11,7 @@
 %div
   = link_to image_tag('pdf.jpg', :border => 0) + " Natisni pobude v obliki seznama", statistics_tables_path(:tag_group_id => "#{ @statistics[:tag_group_id]}", :year => "#{ @statistics[:year]}", :post_kind_id => "#{ @statistics[:post_kind_id]}", :institution_id => "#{ @statistics[:institution_id]}", :pdf_list_type => "list", format: "pdf"), :target => "_blank"
   = link_to image_tag("pdf.jpg", :border => 0) + " Natisni pobude v polni obliki", statistics_tables_path(:tag_group_id => "#{ @statistics[:tag_group_id]}", :year => "#{ @statistics[:year]}", :post_kind_id => "#{ @statistics[:post_kind_id]}", :institution_id => "#{ @statistics[:institution_id]}", :pdf_list_type => "full", format: "pdf"), :target => "_blank"
+  = link_to image_tag("pdf.jpg", :border => 0) + " Splošna statistika", statistics_tables_path(:tag_group_id => "#{ @statistics[:tag_group_id]}", :year => "#{ @statistics[:year]}", :post_kind_id => "#{ @statistics[:post_kind_id]}", :institution_id => "#{ @statistics[:institution_id]}", :pdf_list_type => "overall", format: "pdf"), :target => "_blank"
 
 %table
   %thead

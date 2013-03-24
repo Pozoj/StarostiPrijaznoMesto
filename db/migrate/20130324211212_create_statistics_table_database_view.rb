@@ -14,6 +14,7 @@ class CreateStatisticsTableDatabaseView < ActiveRecord::Migration
                  posts.post_kind_id AS posts_post_kind_id,
                  posts.title AS posts_title,
                  posts.tag_group_id AS posts_tag_group_id,
+                 posts.sex_id AS posts_sex_id,
                  institutions.id AS institutions_id,
                  institutions.name AS institutions_name,
                  responders.id AS responders_id,

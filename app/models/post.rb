@@ -58,7 +58,13 @@ class Post < ActiveRecord::Base
 
     end
   end
-  
+
+  def attachments
+    if original_post.present? and original_post.attachment_added?
+      return original_post.attachments.all
+    end
+  end
+
   def attachment
     if original_post.present? and original_post.attachment_added?
       return original_post.attachment

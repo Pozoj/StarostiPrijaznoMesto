@@ -1,10 +1,18 @@
 # Encoding: utf-8
 class StatisticsDocument < Prawn::Document
-  def initialize(table, statistics)
+  def initialize(table, statistics, overall_table)
 
     pdf_list_type = statistics[:pdf_list_type]
     search_filter = get_filter(statistics)
     #search_filter = ""
+
+    font_families.update("DejaVuSerif" => {
+        :normal => "#{Rails.root}/app/assets/fonts/DejaVuSerif.ttf",
+        :italic => "#{Rails.root}/app/assets/fonts/DejaVuSerif-Italic.ttf",
+        :bold => "#{Rails.root}/app/assets/fonts/DejaVuSerif-Bold.ttf",
+        :bold_italic => "#{Rails.root}/app/assets/fonts/DejaVuSerif-BoldItalic.ttf"
+    })
+
     if pdf_list_type == 'list'
       st = 0
       table_d = [[]]
@@ -23,13 +31,6 @@ class StatisticsDocument < Prawn::Document
       end
 
       super(:page_size => "A4", :page_layout => :landscape)
-
-      font_families.update("DejaVuSerif" => {
-          :normal => "#{Rails.root}/app/assets/fonts/DejaVuSerif.ttf",
-          :italic => "#{Rails.root}/app/assets/fonts/DejaVuSerif-Italic.ttf",
-          :bold => "#{Rails.root}/app/assets/fonts/DejaVuSerif-Bold.ttf",
-          :bold_italic => "#{Rails.root}/app/assets/fonts/DejaVuSerif-BoldItalic.ttf"
-      })
       font "DejaVuSerif"
 
       repeat :all do
@@ -47,7 +48,7 @@ class StatisticsDocument < Prawn::Document
           table_data = [["Filter iskanja: #{search_filter}"]]
           table table_data do
             row(0).columns(0..0).borders = []
-            row(0).columns(0..0).style(:size => 12)
+            row(0).columns(0..0).style(:size => 9)
             row(0).width = 764
           end
           stroke_horizontal_rule
@@ -62,7 +63,7 @@ class StatisticsDocument < Prawn::Document
         #end
       end
 
-      bounding_box([bounds.left, bounds.top - 65], :width  => bounds.width, :height => bounds.height - 100) do
+      bounding_box([bounds.left, bounds.top - 55], :width  => bounds.width, :height => bounds.height - 100) do
 
       #move_down 40
 
@@ -94,17 +95,14 @@ class StatisticsDocument < Prawn::Document
           text  "Stran #{(i+1)} od #{page_count}", :size => 9
         end
       end
-    else
+    end
+    if pdf_list_type == 'full'
       super(:page_size => "A4",:page_layout => :portrait)
       #dolocim pisavo
-      font_families.update("DejaVuSerif" => {
-          :normal => "#{Rails.root}/app/assets/fonts/DejaVuSerif.ttf",
-          :italic => "#{Rails.root}/app/assets/fonts/DejaVuSerif-Italic.ttf",
-          :bold => "#{Rails.root}/app/assets/fonts/DejaVuSerif-Bold.ttf",
-          :bold_italic => "#{Rails.root}/app/assets/fonts/DejaVuSerif-BoldItalic.ttf"
-      })
       font "DejaVuSerif"
       st = 0
+
+      repeat :all do
       for row in table
         st = st +1
         start_new_page(:page_size => "A4",:page_layout => :portrait) unless st == 1
@@ -168,28 +166,167 @@ class StatisticsDocument < Prawn::Document
           if post.attachment_added?
             require "open-uri"
 
-            if post.attachment.is_image?
-              start_new_page(:page_size => "A4", :page_layout => :landscape)
+            for attachment in post.attachments
+              if attachment.is_image?
+                start_new_page(:page_size => "A4", :page_layout => :landscape)
 
-              table_data = [["STAROSTI PRIJAZNO MESTO VELENJE", "Datum izpisa: #{current_date}"]]
-              table table_data do
-                row(0..1).font_style = :bold
-                columns(1..1).align = :right
-                #row(0).style(:border_width => 0)
-                row(0).columns(0..1).borders = [:bottom]
-                row(0).columns(0..1).style(:size => 11)
-                row(0).width = 261
-                #self.border_width = 0
+                table_data = [["STAROSTI PRIJAZNO MESTO VELENJE", "Datum izpisa: #{current_date}"]]
+                table table_data do
+                  row(0..1).font_style = :bold
+                  columns(1..1).align = :right
+                  #row(0).style(:border_width => 0)
+                  row(0).columns(0..1).borders = [:bottom]
+                  row(0).columns(0..1).style(:size => 11)
+                  row(0).width = 261
+                  #self.border_width = 0
+                end
+                move_down 15
+                image open("#{attachment.attachment.url}"),:position => :left, :width=>370
               end
-              move_down 15
-
-              image open("#{post.attachment.attachment.url}"),:position => :left, :width=>370
-            end
-            if post.attachment.is_pdf?
-              filename = "#{post.attachment.attachment.url}"
-              start_new_page(:template => filename)
+              if attachment.is_pdf?
+                filename = "#{attachment.url}"
+                start_new_page(:template => filename)
+              end
             end
           end
+        end
+      end
+      end
+      #NOW PRINT THE PAGE NUMBER
+      page_count.times do |i|
+        go_to_page(i+1)
+        bounding_box [bounds.left, bounds.bottom + 25], :width  => bounds.width do
+          stroke_horizontal_rule
+          move_down(5)
+          text  "Stran #{(i+1)} od #{page_count}", :size => 9
+        end
+      end
+    end
+    if pdf_list_type == 'overall'
+      st = 0
+      table_d = [[]]
+      for row in table
+        my_answer = dateit row.answers_answered_at
+        my_create = dateit row.original_posts_created_at
+        table_d = table_d + [
+            [(st+=1).to_s+".",
+             "#{my_create}",
+             row.original_posts_first_name + ' ' + row.original_posts_last_name,
+             row.posts_title,
+             text_find(TagGroup, row.posts_tag_group_id).to_s,
+             "#{my_answer}",
+             row.institutions_name]
+        ]
+      end
+
+      super(:page_size => "A4", :page_layout => :portrait)
+      font "DejaVuSerif"
+
+      if statistics[:year].present?
+        filter = "Leto: #{statistics[:year]}"
+      else
+        filter = "Leto: Vsa leta"
+      end
+
+      repeat :all do
+        # header
+        bounding_box [bounds.left, bounds.top], :width  => bounds.width do
+          current_date = Time.now.strftime("%-d. %-m. %Y")
+          table_data = [["STAROSTI PRIJAZNO MESTO VELENJE", "Datum izpisa: #{current_date}"]]
+          table table_data do
+            row(0..1).font_style = :bold
+            columns(1..1).align = :right
+            row(0).columns(0..1).borders = []
+            row(0).width = 261
+          end
+          move_down(5)
+          table_data = [["Filter iskanja: #{filter}"]]
+          table table_data do
+            row(0).columns(0..0).borders = []
+            row(0).columns(0..0).style(:size => 12)
+            row(0).width = 523
+            row(0).style(:size => 9)
+          end
+          stroke_horizontal_rule
+        end
+      end
+
+      bounding_box([bounds.left, bounds.top - 65], :width  => bounds.width, :height => bounds.height - 100) do
+
+        move_down 10
+
+        all_count = overall_table.count
+
+        text "V tem obdobju je bilo podanih #{all_count} pobud in sicer:", style: :bold
+
+        #post_kind_id
+        table_data = []
+        PostKind.all.each do |kind|
+          count =  overall_table.where(:posts_post_kind_id => kind.id).count
+          table_data<<["#{kind.title}","#{count}"]
+        end
+
+        table table_data do
+          #columns(0).font_style = :bold
+          columns(0).width = 85
+          columns(1).width = 378
+          row(0..2).columns(0..1).borders = []
+          row(0..2).columns(0..1).style(:size => 10)
+          row(0..2).height = 19
+        end
+
+        move_down 40
+
+        text "Pobude, ki so bile podane v tem obdobju po posameznih področjih:",style: :bold
+
+        #tag_group_id
+        table_data = []
+        TagGroup.all.each do |tag|
+          count =  overall_table.where(:posts_tag_group_id => tag.id).count
+          table_data<<["#{tag.title}","#{count}"]
+        end
+
+        table table_data do
+          #columns(0).font_style = :bold
+          columns(0).width = 235
+          columns(1).width = 178
+          row(0..20).columns(0..1).borders = []
+          row(0..20).columns(0..1).style(:size => 10)
+          row(0..20).height = 19
+        end
+
+        move_down 40
+
+        table_data = [["Pobude podane po spolu so naslednje:", "Moški", "Ženske", "ni bil podan"]]
+        TagGroup.all.each do |tag|
+          temp_table = overall_table.where(:posts_tag_group_id => tag.id)
+          count_m =  temp_table.where(:posts_sex_id => "man").count
+          count_w =  temp_table.where(:posts_sex_id => "woman").count
+          count_u =  temp_table.where(:posts_sex_id => "unknown").count
+
+          table_data<<["#{tag.title}","#{count_m}","#{count_w}","#{count_u}"]
+        end
+        table table_data do
+          #columns(0).font_style = :bold
+          row(0).font_style = :bold
+          columns(0).width = 240
+          columns(1).width = 50
+          columns(2).width = 50
+          columns(3).width = 110
+          row(0..20).columns(0..3).borders = []
+          row(0..20).columns(0..3).style(:size => 10)
+          row(0..20).height = 19
+        end
+
+      end
+
+      #NOW PRINT THE PAGE NUMBER
+      page_count.times do |i|
+        go_to_page(i+1)
+        bounding_box [bounds.left, bounds.bottom + 25], :width  => bounds.width do
+          stroke_horizontal_rule
+          move_down(5)
+          text  "Stran #{(i+1)} od #{page_count}", :size => 9
         end
       end
     end

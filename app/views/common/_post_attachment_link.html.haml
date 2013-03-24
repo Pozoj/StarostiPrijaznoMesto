@@ -1,1 +1,3 @@
-= link_to post.attachment_name, post.attachment.attachment.url
+- for attachment in post.attachments
+  %br
+  = link_to attachment.attachment_file_name, attachment.attachment.url

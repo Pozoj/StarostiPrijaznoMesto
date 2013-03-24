@@ -10,6 +10,8 @@ class StatisticsTablesController < ApplicationController
 
     #mi pobere vse iz tabele, potem pa lahko delam selektivne filtre, glede na podane pogoje
     @table = StatisticsTable.where("1=1")
+    #overall statistics
+    @overall_table = StatisticsTable.where("1=1")
     if params[:tag_group_id].present?
       @table = @table.where(:posts_tag_group_id => params[:tag_group_id])
       @statistics[:tag_group_id] = params[:tag_group_id]
@@ -20,6 +22,7 @@ class StatisticsTablesController < ApplicationController
       correct_date_from = params[:year] + '-01-01'
       correct_date_to = params[:year] + '-12-31'
       @table = @table.where(:original_posts_created_at => correct_date_from..correct_date_to)
+      @overall_table = @overall_table.where(:original_posts_created_at => correct_date_from..correct_date_to)
       @statistics[:year] = params[:year]
     else
       my_year = "Vsa leta"
@@ -53,11 +56,11 @@ class StatisticsTablesController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf do
-        pdf = StatisticsDocument.new(@table,@statistics)
+        pdf = StatisticsDocument.new(@table,@statistics, @overall_table)
 
         send_data pdf.render, filename: "Izbor_pobud.pdf",
-                  type: "application/pdf" #,
-                  #disposition: "inline"
+                  type: "application/pdf",
+                  disposition: "inline"
       end
     end
   end

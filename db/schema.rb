@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130228114643) do
+ActiveRecord::Schema.define(:version => 20130324211212) do
 
   create_table "abouts", :force => true do |t|
     t.text     "content"
@@ -231,6 +231,7 @@ ActiveRecord::Schema.define(:version => 20130228114643) do
     t.string   "posts_post_kind_id"
     t.string   "posts_title"
     t.string   "posts_tag_group_id"
+    t.string   "posts_sex_id"
     t.integer  "institutions_id",              :default => 0
     t.string   "institutions_name"
     t.integer  "responders_id",                :default => 0
