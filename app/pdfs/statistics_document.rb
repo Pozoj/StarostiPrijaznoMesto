@@ -174,18 +174,6 @@ class StatisticsDocument < Prawn::Document
               for attachment in post.attachments
                 if attachment.is_image?
                   start_new_page(:page_size => "A4", :page_layout => :portrait)
-
-                  table_data = [["STAROSTI PRIJAZNO MESTO VELENJE", "Datum izpisa: #{current_date}"]]
-                  table table_data do
-                    row(0..1).font_style = :bold
-                    columns(1..1).align = :right
-                    #row(0).style(:border_width => 0)
-                    row(0).columns(0..1).borders = [:bottom]
-                    row(0).columns(0..1).style(:size => 11)
-                    row(0).width = 261
-                    #self.border_width = 0
-                  end
-                  move_down 15
                   image open("#{attachment.attachment.url}"), :position => :left, :width => 370
                 end
                 if attachment.is_pdf?

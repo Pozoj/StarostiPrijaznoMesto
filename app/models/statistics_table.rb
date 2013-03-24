@@ -3,7 +3,7 @@ class StatisticsTable < ActiveRecord::Base
   scope :approved, where(:posts_post_status_id => "approved" )
   # Querry for super_admin_table_v
   # ---
-  # CREATE VIEW super_admin_table_v AS
+  # CREATE VIEW statistics_table_v AS
   #  SELECT  original_posts.id AS original_posts_id,
   #          original_posts.created_at AS original_posts_created_at,
   #          original_posts.first_name AS original_posts_first_name,
@@ -14,6 +14,7 @@ class StatisticsTable < ActiveRecord::Base
   #          posts.post_kind_id AS posts_post_kind_id,
   #          posts.title AS posts_title,
   #          posts.tag_group_id AS posts_tag_group_id,
+  #          posts.sex_id AS posts_sex_id,
   #          institutions.id AS institutions_id,
   #          institutions.name AS institutions_name,
   #          responders.id AS responders_id,
@@ -28,7 +29,7 @@ class StatisticsTable < ActiveRecord::Base
   #          answers.misplaced_at AS answers_misplaced_at,
   #          answers.answered_at AS answers_answered_at,
   #          attachments.id AS attachments_id
-  #  FROM ()original_posts
+  #  FROM (original_posts
   #    INNER JOIN posts   ON original_posts.id = posts.original_post_id)
   #    LEFT JOIN answers ON posts.id = answers.post_id
   #    LEFT JOIN institutions ON answers.institution_id = institutions.id

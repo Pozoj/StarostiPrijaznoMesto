@@ -9,9 +9,9 @@ class StatisticsTablesController < ApplicationController
     @statistics = Hash.new
 
     #mi pobere vse iz tabele, potem pa lahko delam selektivne filtre, glede na podane pogoje
-    @table = StatisticsTable.where("1=1")
+    @table = StatisticsTable.where(:posts_post_status_id => "approved")
     #overall statistics
-    @overall_table = StatisticsTable.where("1=1")
+    @overall_table = @table
     if params[:tag_group_id].present?
       @table = @table.where(:posts_tag_group_id => params[:tag_group_id])
       @statistics[:tag_group_id] = params[:tag_group_id]
