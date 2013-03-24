@@ -78,7 +78,7 @@ class PostDocument < Prawn::Document
           if post.attachment.is_pdf?
             #filename = "#{Rails.root}/app/assets/images/tt.pdf"
             filename = "#{post.attachment.attachment.url}"
-            start_new_page(:template => filename)
+            #start_new_page(:template => filename)
           end
           #end
         end

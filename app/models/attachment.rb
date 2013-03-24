@@ -11,7 +11,9 @@ class Attachment < ActiveRecord::Base
                       :access_key_id => AWS_S3['access_key_id'],
                       :secret_access_key => AWS_S3['secret_access_key']
                     },
-                    :path => '/assets/attachments/:id/:style/:basename.:extension'
+                    :path => '/assets/attachments/:id/:style/:basename.:extension',
+                    :url => '/attachments/:id/:style/:basename.:extension'
+
 
   
   before_post_process :is_image?
