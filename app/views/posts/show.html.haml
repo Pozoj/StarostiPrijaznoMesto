@@ -1,6 +1,6 @@
 %div#pdf
   = link_to image_tag("pdf.jpg", :border => 0), resource_path(resource, format: "pdf"), :target => "_blank"
-
+%br
 = title resource
 
 - if can?(:update, resource) or can?(:update, Answer) or can?(:create, Answer)

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130324211212) do
+ActiveRecord::Schema.define(:version => 20130325225412) do
 
   create_table "abouts", :force => true do |t|
     t.text     "content"
@@ -245,7 +245,6 @@ ActiveRecord::Schema.define(:version => 20130324211212) do
     t.datetime "answers_institutionalized_at"
     t.datetime "answers_misplaced_at"
     t.datetime "answers_answered_at"
-    t.integer  "attachments_id",               :default => 0
   end
 
   create_table "super_admin_table_v", :id => false, :force => true do |t|

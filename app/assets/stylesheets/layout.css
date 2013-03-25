@@ -618,6 +618,7 @@ table tbody tr td span{
     position: absolute;
     top: 0px;
     right: 0px;
+    margin-top: -7px;
 }
 
 #statistics select {
