@@ -26,15 +26,13 @@ class CreateSuperAdminTableDatabaseView < ActiveRecord::Migration
                  answers.answer_status AS answers_answer_status, 
                  answers.institutionalized_at AS answers_institutionalized_at, 
                  answers.misplaced_at AS answers_misplaced_at, 
-                 answers.answered_at AS answers_answered_at,
-                 attachments.id AS attachments_id
+                 answers.answered_at AS answers_answered_at
          FROM original_posts
            LEFT JOIN posts   ON original_posts.id = posts.original_post_id
            LEFT JOIN answers ON posts.id = answers.post_id
            LEFT JOIN institutions ON answers.institution_id = institutions.id
            LEFT JOIN users AS responders ON answers.user_id = responders.id
-           LEFT JOIN users AS info_admins ON posts.info_admin_id = info_admins.id
-           LEFT JOIN attachments ON original_posts.id = attachments.holder_id;")
+           LEFT JOIN users AS info_admins ON posts.info_admin_id = info_admins.id;")
   end
 
   def down

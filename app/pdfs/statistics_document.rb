@@ -177,8 +177,8 @@ class StatisticsDocument < Prawn::Document
                   image open("#{attachment.attachment.url}"), :position => :left, :width => 370
                 end
                 if attachment.is_pdf?
-                  filename = "#{attachment.url}"
-                  #start_new_page(:template => filename)
+                  filename = "#{attachment.attachment.url}"
+                  start_new_page(:template => filename)
                 end
               end
             end

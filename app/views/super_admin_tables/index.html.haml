@@ -59,7 +59,8 @@
           - if row.institutions_id.present?
             = link_to row.institutions_name, institution_path(row.institutions_id)
           - else
-            ✗ 
-        %td= yes_no(row.attachments_id)
+            ✗
+        - attachment = OriginalPost.find(row.original_posts_id).attachment
+        %td= yes_no(attachment)
 
 
