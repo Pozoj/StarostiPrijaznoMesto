@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130325230107) do
+ActiveRecord::Schema.define(:version => 20130328091350) do
 
   create_table "abouts", :force => true do |t|
     t.text     "content"
@@ -37,9 +37,7 @@ ActiveRecord::Schema.define(:version => 20130325230107) do
     t.string   "posts_tag_group_id"
     t.string   "posts_title"
     t.string   "posts_post_kind_id"
-    t.integer  "institutions_id",           :default => 0
     t.string   "institutions_name"
-    t.integer  "attachments_id",            :default => 0
     t.integer  "answers_id",                :default => 0
     t.string   "answers_answer_status"
   end
@@ -216,7 +214,6 @@ ActiveRecord::Schema.define(:version => 20130325230107) do
     t.string  "original_posts_first_name"
     t.string  "original_posts_last_name"
     t.string  "original_posts_email"
-    t.integer "attachments_id",            :default => 0
     t.integer "posts_id",                  :default => 0
   end
 
@@ -289,7 +286,6 @@ ActiveRecord::Schema.define(:version => 20130325230107) do
     t.string   "posts_tag_group_id"
     t.string   "posts_title"
     t.string   "posts_post_kind_id"
-    t.integer  "attachments_id",            :default => 0
   end
 
   create_table "users", :force => true do |t|

@@ -18,4 +18,5 @@
           %td= link_to post.original_posts_first_name, post_path(post.posts_id)
           %td= link_to post.original_posts_last_name, post_path(post.posts_id)
           %td= textit post.original_posts_email
-          %td= yes_no post.attachments_id
+          - attachment = Post.find(post.posts_id).original_post.attachment
+          %td= yes_no(attachment)

@@ -30,7 +30,8 @@
           %td= textit post.posts_title
           %td= post.original_posts_first_name
           %td= post.original_posts_last_name
-          %td= yes_no(post.attachments_id)
+          - attachment = OriginalPost.find(post.original_posts_id).attachment
+          %td= yes_no(attachment)
           %td.admin
             = link_to "Naslovi",  new_answer_path(:post_id => post.posts_id)
             = link_to "Uredi", edit_post_path(post.posts_id)

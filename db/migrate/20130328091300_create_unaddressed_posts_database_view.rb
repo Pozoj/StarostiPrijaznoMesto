@@ -12,11 +12,9 @@ class CreateUnaddressedPostsDatabaseView < ActiveRecord::Migration
         posts.created_at AS posts_created_at,
         posts.tag_group_id AS posts_tag_group_id,
         posts.title AS posts_title,
-        posts.post_kind_id AS posts_post_kind_id,
-        attachments.id AS attachments_id 
+        posts.post_kind_id AS posts_post_kind_id
       FROM original_posts
         LEFT JOIN posts ON original_posts.id = posts.original_post_id
-        LEFT JOIN attachments ON original_posts.id = attachments.holder_id
         LEFT JOIN answers ON answers.post_id = posts.id
       WHERE answers.id IS NULL
       AND posts.post_status_id = 'approved';")

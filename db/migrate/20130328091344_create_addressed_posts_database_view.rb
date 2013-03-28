@@ -14,14 +14,14 @@ class CreateAddressedPostsDatabaseView < ActiveRecord::Migration
         posts.title AS posts_title,
         posts.post_kind_id AS posts_post_kind_id,
         institutions.name AS institutions_name,
-        attachments.id AS attachments_id,
+
         answers.id AS answers_id,
         answers.answer_status AS answers_answer_status
       FROM original_posts
         LEFT JOIN posts ON original_posts.id = posts.original_post_id
         LEFT JOIN answers ON posts.id = answers.post_id
         LEFT JOIN institutions ON answers.institution_id = institutions.id
-        LEFT JOIN attachments ON original_posts.id = attachments.holder_id
+
       WHERE posts.post_status_id = 'approved'
       AND answers.id IS NOT NULL;")
   end

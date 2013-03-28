@@ -178,7 +178,7 @@ class StatisticsDocument < Prawn::Document
                 end
                 if attachment.is_pdf?
                   filename = "#{attachment.attachment.url}"
-                  start_new_page(:template => filename)
+                  #start_new_page(:template => filename)
                 end
               end
             end

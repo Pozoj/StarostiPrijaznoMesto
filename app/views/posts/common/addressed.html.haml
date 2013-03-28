@@ -31,4 +31,5 @@
           %td= post.original_posts_first_name
           %td= post.original_posts_last_name
           %td= post.institutions_name
-          %td= yes_no(post.attachments_id)
+          - attachment = OriginalPost.find(post.original_posts_id).attachment
+          %td= yes_no(attachment)
