@@ -631,6 +631,10 @@ table tbody tr td span{
     display: none;
 }
 
+input.destroy {
+    background-color:#d00;
+}
+
 /*Islam*/
 
 /* #Media Queries

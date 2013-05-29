@@ -72,19 +72,19 @@ class PostDocument < Prawn::Document
           #unless Rails.application.assets.find_asset("#{post.attachment.attachment.url}").nil?
           require "open-uri"
           if post.attachment.is_image?
-            start_new_page(:layout => :landscape)
+            start_new_page(:layout => :portrait)
             image open("#{post.attachment.attachment.url}"),:position => :left, :width=>370
           end
           if post.attachment.is_pdf?
             #filename = "#{Rails.root}/app/assets/images/tt.pdf"
             filename = "#{post.attachment.attachment.url}"
-            #start_new_page(:template => filename)
+            start_new_page(:template => filename)
+            # monkey patching
           end
-          #end
         end
+          #end
       end
-    end
-
+  end
 
   #  #filename = "#{Rails.root}/app/assets/images/tt.pdf"
   #  #super(:template => filename)

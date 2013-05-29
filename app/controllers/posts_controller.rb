@@ -29,6 +29,16 @@ class PostsController < InheritedResources::Base
       end
     end
   end
+
+  def destroy
+    @post = Post.find(params[:id])
+    @post.destroy
+
+    respond_to do |format|
+      format.html { redirect_to :action => :unapproved}
+      format.xml  { head :ok }
+    end
+  end
   
   def questions
     @posts = PublicPost.questions.order(klass_sort_column(PublicPost) + " " + sort_direction)

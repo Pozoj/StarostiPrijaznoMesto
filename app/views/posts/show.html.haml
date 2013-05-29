@@ -3,6 +3,10 @@
 %br
 = title resource
 
+-if resource.rejected?
+  - if can? :read, SuperAdminTable
+    =button_to "Izbriši", @post, :method=>:delete, :class=>:destroy, :confirm => 'Ste prepričani?'
+
 - if can?(:update, resource) or can?(:update, Answer) or can?(:create, Answer)
   %nav#editors-resource-menu
     %ul        

@@ -135,6 +135,7 @@ sl:
         suggestion: "Predlog"
         summary: "Povzetek odgovora"
         answer: "Odgovor"
+        institution: "Ustanova - Institucija, ki bo posredovala odgovor"
       access_right:
         user_kind_right: "Pravica dostopa"
       city:
@@ -156,6 +157,7 @@ sl:
         post_kind_id: "Vrsta objave"
         post_status_id: "Status objave"
         sex_id: "Spol pošiljatelja"
+        tag_group_id: "Področje"
       region:
         name: "Naziv regije"
       user:
