@@ -3,7 +3,7 @@ class HomeController < ApplicationController
   def index
     @institutions = Institution.all #TODO:select juristiction
     @show_institution = Institution.find_by_id(params[:show_institution])
-    @posts = HomescreenPost.page(params[:page])
+    @posts = HomescreenPost.desc.page(params[:page])
     @events = Event.till_end_of_month.order("date_and_time_at ASC")
   end
 

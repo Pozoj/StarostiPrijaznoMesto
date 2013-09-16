@@ -18,4 +18,5 @@ class HomescreenPost < ActiveRecord::Base
   #     LEFT JOIN institutions ON answers.institution_id = institutions.id
   #   WHERE posts.post_status_id = 'approved'
   #   AND answers.answer_status = 'answered';
+  scope :desc, order("homescreen_posts_v.original_posts_created_at DESC")
 end
