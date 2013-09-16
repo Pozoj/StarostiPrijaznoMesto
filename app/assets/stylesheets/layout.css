@@ -404,8 +404,8 @@ transition: all 0.2s ease-in-out;
 table{width:100%;margin:0 0 10px 0;text-align:left;border-collapse: collapse;}
 	thead, tbody{margin:0;padding:0;}
 	
-	th, td{padding:7px 10px;font-size:0.9em;border-bottom:1px dotted #ddd;text-align:left;}
-	thead th{font-size:0.9em;padding:3px 10px;border-bottom:1px solid #ddd; background:#222; color:#fff;}
+	th, td{padding:7px 4px;font-size:0.7em;border-bottom:1px dotted #ddd;text-align:left;}
+	thead th{font-size:0.7em;padding:3px 4px;border-bottom:1px solid #ddd; background:#222; color:#fff;}
 	tbody tr.last th,
 	tbody tr.last td{border-bottom:0;}
 	

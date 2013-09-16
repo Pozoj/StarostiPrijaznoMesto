@@ -1,4 +1,4 @@
-class HomescreenPost < ActiveRecord::Base
+class git add .HomescreenPost < ActiveRecord::Base
   set_table_name "homescreen_posts_v"
   # CREATE VIEW homescreen_posts_v AS
   #   SELECT  
