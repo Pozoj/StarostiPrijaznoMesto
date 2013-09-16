@@ -19,6 +19,8 @@ gem "yahoo_weatherman", "~> 1.1.4"
 gem 'aws-sdk'
 gem 'thin'
 gem 'prawn'
+gem 'rack-policy'
+
 
 group :production do
   gem 'pg'
