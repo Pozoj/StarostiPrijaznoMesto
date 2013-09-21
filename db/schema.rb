@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130328091350) do
+ActiveRecord::Schema.define(:version => 20130921175523) do
 
   create_table "abouts", :force => true do |t|
     t.text     "content"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(:version => 20130328091350) do
     t.string   "posts_title"
     t.string   "posts_post_kind_id"
     t.string   "institutions_name"
+    t.integer  "institutions_id",           :default => 0
     t.integer  "answers_id",                :default => 0
     t.string   "answers_answer_status"
   end
@@ -98,6 +99,7 @@ ActiveRecord::Schema.define(:version => 20130328091350) do
     t.string   "url"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "institution_id"
   end
 
   create_table "events", :force => true do |t|

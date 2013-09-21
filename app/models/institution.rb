@@ -5,6 +5,7 @@ class Institution < ActiveRecord::Base
   has_many :answers
   has_many :work_hours
   has_many :attachments, :as => :holder, :dependent => :destroy
+  has_many :contacts
   
   has_and_belongs_to_many :cities
   

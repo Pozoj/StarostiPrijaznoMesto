@@ -1,7 +1,7 @@
 # Encoding: utf-8
 class AccessRight < ActiveRecord::Base
   validates_presence_of :user_kind_id, :name, :right
-  validate :validate_selected_right
+ # validate :validate_selected_right
 
   RIGHTS = [
     "read",

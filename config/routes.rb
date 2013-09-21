@@ -4,6 +4,7 @@ Starci::Application.routes.draw do
 
   devise_for  :users, :path => "admins", :controllers => { :sessions => "sessions" }
   resources   :access_rights,   :except => [:index, :show, :edit]
+  resources :contacts,  :except => [:index, :show]
   
   match 'super_admin_tables' => 'super_admin_tables#index', :via => :get
   match 'statistics_tables' => 'statistics_tables#index', :via => :get

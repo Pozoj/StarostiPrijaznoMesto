@@ -1,0 +1,25 @@
+- unless @contacts.present?
+  %p.message= @no_posts_message
+- else
+  %table
+    %thead
+      %tr
+        %th= "Ime"
+        %th= "Naslov"
+        %th= "Davčna"
+        %th= "Telefon"
+        %th= "Fax"
+        %th= "Mobilna"
+        %th= "e-pošta"
+        %th= "Splet"
+    %tbody
+      - for contact in @contacts
+        %tr
+          %td= contact.name
+          %td= contact.address
+          %td= contact.tax_nr
+          %td= contact.telephone
+          %td= contact.fax
+          %td= contact.mobile
+          %td= contact.email
+          %td= contact.url

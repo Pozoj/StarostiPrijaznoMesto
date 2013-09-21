@@ -78,5 +78,11 @@
 
   %h3 Naloge
   = render "common/redcloth_it", :content => resource.tasks
-  
+
+  %h4 Kontakti
+  = render "contacts/common/contacts_list"
+  - if can? :update, WorkHour and resource.work_hours.present?
+    = link_to "Dodaj nov kontakt", new_contact_path(:institution_id => resource.id)
+
+  %h3 Objave
   = render "posts/common/public_table"

@@ -79,7 +79,7 @@ sl:
       simple: "%d. %b %Y"
       month_year: "%B %Y"
       month: "%B"
-      short_date: "%d. %m. %y"
+      short_date: "%-d. %-m. %y"
 
     day_names: [nedelja, ponedeljek, torek, sreda, četrtek, petek, sobota]
     abbr_day_names: [ned, pon, tor, sre, čet, pet, sob]
