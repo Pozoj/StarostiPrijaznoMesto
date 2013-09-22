@@ -41,7 +41,7 @@
       %h5 Odgovor
       = render "common/redcloth_it", :content => resource.answer.answer
 
-  - if resource.attachment_added?  
+  - if resource.approved_attachment
     .attachment
       %p
         %strong Priloge:

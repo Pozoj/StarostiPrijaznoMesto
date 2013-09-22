@@ -5,8 +5,9 @@ class Post < ActiveRecord::Base
   #has_many :attachments, :as => :holder, :dependent => :destroy  
   
   validates_presence_of :post_status_id
-  validates_presence_of :title, :summary, :text, :post_kind_id, :sex_id, :tag_group_id, :if => :approved_without_attachment?
-  validates_presence_of :approved_attachment, :title, :summary, :text, :post_kind_id, :sex_id, :tag_group_id, :if => :approved_with_attachment?
+  validates_presence_of :title, :summary, :text, :post_kind_id, :sex_id, :tag_group_id
+  #validates_presence_of :title, :summary, :text, :post_kind_id, :sex_id, :tag_group_id, :if => :approved_without_attachment?
+  #validates_presence_of :approved_attachment, :title, :summary, :text, :post_kind_id, :sex_id, :tag_group_id, :if => :approved_with_attachment?
   
   scope :rejected,    where(:post_status_id => "rejected")
   scope :approved,    where(:post_status_id => "approved")  
