@@ -1,8 +1,8 @@
 # Encoding: utf-8
 class PostsController < InheritedResources::Base
   load_and_authorize_resource
-  skip_load_resource :only => [:questions, :comments, :suggestions]
-  skip_before_filter :authenticate_user!, :only => [:questions, :comments, :suggestions]
+  skip_load_resource :only => [:questions, :comments, :suggestions, :waiting]
+  skip_before_filter :authenticate_user!, :only => [:questions, :comments, :suggestions, :waiting]
   
   
   def new
@@ -99,11 +99,20 @@ class PostsController < InheritedResources::Base
     render "posts/common/addressed"
   end
   
+  #def waiting
+  #  @title = "Pobude v čakanju"
+  #  @no_posts_message = "Trenutno ni pobud v čakanju."
+  #  post_scope_and_order_for(Waiting)
+  #  render "posts/common/addressed"
+  #end
+
   def waiting
-    @title = "Pobude v čakanju"
-    @no_posts_message = "Trenutno ni pobud v čakanju."
-    post_scope_and_order_for(Waiting)
-    render "posts/common/addressed"
+    @posts = PublicPost.waiting.order(klass_sort_column(PublicPost) + " " + sort_direction)
+    @no_posts_message = "Trenutno ni čakajočih pobud."
+    @title = "Vsa čakajoče pobude"
+    @post_kind_title = "Naziv "
+    @created_at_title = "Datum "
+    render "posts/common/public"
   end
   
   def unapproved

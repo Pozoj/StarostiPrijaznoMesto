@@ -14,6 +14,7 @@ class Post < ActiveRecord::Base
   scope :comments,    where(:post_kind_id => "comment")
   scope :questions,   where(:post_kind_id => "question")
   scope :suggestions, where(:post_kind_id => "suggestion")
+  scope :waiting,     where(:post_kind_id => "waiting")
   
   
   class << self

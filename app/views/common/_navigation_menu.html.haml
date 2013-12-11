@@ -1,8 +1,10 @@
 %ul
+  %li= link_to "Domov", root_path
   %li= link_to "Vprašanja", questions_posts_path
   %li= link_to "Predlogi", suggestions_posts_path
   %li= link_to "Komentarji", comments_posts_path
+  %li= link_to "V čakanju", waiting_posts_path
   =#%li= link_to "Dogodki", events_path
   %li= link_to "Ustanove", institutions_path
-  - if user_signed_in?
-    %li= link_to "Statistika", statistics_tables_path
+  -# if user_signed_in?
+  %li= link_to "Statistika", statistics_tables_path
