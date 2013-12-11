@@ -7,7 +7,7 @@ class Ability
     #Everyone can do this
     can :create, OriginalPost
     can :read, [About, Condition, Contact, Event, HomescreenPost, Institution, Post, PublicPost, RedButton]
-    can [:questions, :comments, :suggestions], Post
+    can [:questions, :comments, :suggestions, :waiting], Post
     
     if user.admin? # User is an admin
       can :manage, :all

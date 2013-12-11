@@ -635,6 +635,18 @@ input.destroy {
     background-color:#d00;
 }
 
+div.help {
+    background: #0071b1;
+    margin-top: 10px;
+    margin-bottom: 0;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    color: #fff;
+    padding: 5px 5px 5px 8px;
+    width: 96.5%;
+}
+
 /*Islam*/
 
 /* #Media Queries

@@ -3,7 +3,7 @@ class PublicPost < ActiveRecord::Base
   scope :comments,    where(:post_kind_id => "comment")
   scope :questions,   where(:post_kind_id => "question")
   scope :suggestions, where(:post_kind_id => "suggestion")
-  scope :waiting,     where(:post_kind_id => "waiting")
+  scope :waiting,     where(:answers_answer_status => "waiting")
   scope :for_institution, lambda { |institution_id| where(:institutions_id => institution_id) }
   
   # Querry for public_posts_v 
