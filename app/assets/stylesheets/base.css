@@ -322,7 +322,7 @@
 		-webkit-box-shadow: 0 0 3px rgba(0,0,0,.2);
 		box-shadow:  0 0 3px rgba(0,0,0,.2); }
 	textarea {
-		min-height: 80px; }
+		min-height: 40px; }
 	label,
 	legend {
 		display: block;
@@ -344,4 +344,10 @@
 	.half-bottom { margin-bottom: 10px !important; }
 	.add-bottom { margin-bottom: 20px !important; }
 
-
+/* #textarea width
+================================================== */
+    .boxsizingBorder {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }

@@ -903,3 +903,19 @@ label.collection_radio_buttons, label.boolean {
     display: block;
 }
 /**** OPOZORILO ******/
+
+/***** RAZŠIRITEV POLJA za vnos vprašanja ********/
+textarea.text {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 80%;
+}
+textarea {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 80%;
+}
+
+/***** RAZŠIRITEV POLJA ********/

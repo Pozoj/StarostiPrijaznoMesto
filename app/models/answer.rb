@@ -32,7 +32,11 @@ class Answer < ActiveRecord::Base
   def range=(r)
     self.answer_range = AnswerRange.find(r).id if AnswerRange.find(r)
   end
-  
+
+  def note
+    @note =  post.note
+  end
+
   private
   
   def institutionalize_or_clear_answer_status

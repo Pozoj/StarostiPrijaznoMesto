@@ -158,6 +158,7 @@ sl:
         post_status_id: "Status objave"
         sex_id: "Spol pošiljatelja"
         tag_group_id: "Področje"
+        note: "Beležka"
       region:
         name: "Naziv regije"
       user:

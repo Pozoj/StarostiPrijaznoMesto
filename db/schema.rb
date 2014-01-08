@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130921175523) do
+ActiveRecord::Schema.define(:version => 20131218082436) do
 
   create_table "abouts", :force => true do |t|
     t.text     "content"
@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(:version => 20130921175523) do
     t.datetime "updated_at"
     t.text     "summary"
     t.string   "answer_range"
-    t.text     "notes"
+    t.text     "note"
     t.datetime "institutionalized_at"
     t.datetime "answered_at"
     t.datetime "misplaced_at"
@@ -175,6 +175,7 @@ ActiveRecord::Schema.define(:version => 20130921175523) do
     t.string   "sex_id"
     t.string   "tag_group_id"
     t.boolean  "approved_attachment", :default => false
+    t.text     "note"
   end
 
   create_table "project_infos", :force => true do |t|

@@ -5,6 +5,7 @@ class AnswersController < InheritedResources::Base
   def new
     @answer = Answer.new
     @answer.post = Post.find_by_id(params[:post_id]) if params[:post_id]
+    @answer.note = @answer.post.note
   end
   
   def update
@@ -18,6 +19,9 @@ class AnswersController < InheritedResources::Base
     @answer = Answer.find_by_id(params[:id])
     @answer.user_id = current_user.id if current_user.present?
     @post_kind_title = (@answer.present? and @answer.post.present? and @answer.post.kind.present?) ? @answer.post.kind.title.downcase : ""
+    post = Post.find_by_id(@answer.post_id)
+    post.note =  @answer.note
+    post.save
   end
 
   def send_mail
@@ -28,7 +32,10 @@ class AnswersController < InheritedResources::Base
   end
   
   def create
-    create!( :notice => addressed_notice ) { unaddressed_posts_path }
+    create! #( :notice => addressed_notice ) { unaddressed_posts_path }
+    post = Post.find_by_id(params[:answer][:post_id])
+    post.note =  params[:answer][:note]
+    post.save
     if (params[:send_mail])
       post = Post.find_by_id(params[:answer][:post_id])
       institution = Institution.find_by_id(params[:answer][:institution_id])

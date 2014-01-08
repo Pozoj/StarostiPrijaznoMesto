@@ -2,7 +2,7 @@
   = f.input :first_name
   = f.input :last_name
   = f.input :email
-  = f.input :text
+  = f.input :text, :input_html => { :rows => 8 }
 
   = f.simple_fields_for :attachments do |attachment_fields|
     = attachment_fields.input :attachment

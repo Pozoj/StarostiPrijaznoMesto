@@ -10,7 +10,9 @@ class PostsController < InheritedResources::Base
   end
   
   def create
-    create! { original_posts_path }
+    @post = Post.new(params[:post])
+    @post.save
+    redirect_to new_answer_path(:post_id => @post.id)
   end
 
   def show

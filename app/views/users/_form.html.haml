@@ -8,6 +8,6 @@
   = f.input :password_confirmation
   - unless resource.admin?
     = f.input :user_kind, :collection => UserKind.all, :prompt => "Izberite vrsto uporabnika", :value_method => Proc.new {|user_kind| user_kind.id }
-  = f.input :notes
+  = f.input :notes, :input_html => { :rows => 8 }
   
   = f.submit

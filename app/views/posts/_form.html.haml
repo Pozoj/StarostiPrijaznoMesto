@@ -1,11 +1,11 @@
 = simple_form_for resource do |f|
   = f.input :title
-  = f.input :summary
+  = f.input :summary, :input_html => { :rows => 8 }
   %p.original-content
     %strong Izvorna objava
     %br
     = resource.original_post.text
-  = f.input :text
+  = f.input :text, :input_html => { :rows => 8 }
   = f.input :tag_group_id, :as => :select, :collection => TagGroup.all, :prompt => "Izberite v katero skupino oznak spada vprašanje"
   
   %p.original-content
@@ -23,12 +23,18 @@
         %strong Email pošiljatelja:
         #{ mail_to(resource.original_post.email)}
   
-  = f.input :sex_id, :as => :radio, :collection => Sex.all
+  - if resource.id.nil?
+    = f.input :sex_id, :as => :radio, :collection => Sex.all, :checked => Sex.unknown
+  - else
+    = f.input :sex_id, :as => :radio, :collection => Sex.all
   = f.input :post_kind_id, :as => :radio, :collection => PostKind.all
 
   = f.input :post_status_id, :as => :select, :collection => PostStatus.all, :prompt => "Določite status objave"
   
   = f.input :original_post_id, :as => :hidden
   = f.input :info_admin_id, :as => :hidden
+  %strong Beležka
+  %br
+  = f.text_area :note, :rows => 8
   
   = f.submit
