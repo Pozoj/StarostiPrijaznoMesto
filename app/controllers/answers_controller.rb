@@ -5,7 +5,7 @@ class AnswersController < InheritedResources::Base
   def new
     @answer = Answer.new
     @answer.post = Post.find_by_id(params[:post_id]) if params[:post_id]
-    @answer.note = @answer.post.note
+    @answer.note = @answer.post.note if params[:post_id]
   end
   
   def update
