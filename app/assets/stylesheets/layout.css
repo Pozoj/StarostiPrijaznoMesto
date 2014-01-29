@@ -647,6 +647,12 @@ div.help {
     width: 96.5%;
 }
 
+div.help a {
+    color: white;
+    float: right;
+    padding-right: 10px;
+}
+
 /*Islam*/
 
 /* #Media Queries
