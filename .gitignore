@@ -8,6 +8,7 @@ TODO.txt
 *.PDFlog
 public/assets/
 config/database.yml
+config/s3.yml
 config/setup_load_paths.rb
 log
 .redcar/
