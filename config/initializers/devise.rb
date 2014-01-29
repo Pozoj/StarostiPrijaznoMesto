@@ -206,4 +206,7 @@ Devise.setup do |config|
   #   manager.intercept_401 = false
   #   manager.default_strategies(:scope => :user).unshift :some_external_strategy
   # end
+  #
+  # Devise.secret_key was not set. Please add the following to your Devise initializer:
+  config.secret_key = 'cc0556c0091f88adddb7466e09ed54cff214681652ead8ba7c2748d133c263cf0a5d66a7e04247063f48a59f6305866d5aa4aa15f207110c1390a1ef5d6927ab'
 end
