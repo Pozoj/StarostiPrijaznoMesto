@@ -19,9 +19,9 @@ class AnswersController < InheritedResources::Base
     @answer = Answer.find_by_id(params[:id])
     @answer.user_id = current_user.id if current_user.present?
     @post_kind_title = (@answer.present? and @answer.post.present? and @answer.post.kind.present?) ? @answer.post.kind.title.downcase : ""
-    post = Post.find_by_id(@answer.post_id)
-    post.note =  @answer.note
-    post.save
+    #post = Post.find_by_id(@answer.post_id)
+    #post.note =  @answer.note
+    #post.save
   end
 
   def send_mail
