@@ -16,12 +16,13 @@ class AnswersController < InheritedResources::Base
   end
   
   def edit
+    #params[:answer].delete(:note)
     @answer = Answer.find_by_id(params[:id])
     @answer.user_id = current_user.id if current_user.present?
     @post_kind_title = (@answer.present? and @answer.post.present? and @answer.post.kind.present?) ? @answer.post.kind.title.downcase : ""
-    #post = Post.find_by_id(@answer.post_id)
-    #post.note =  @answer.note
-    #post.save
+    post = Post.find_by_id(@answer.post_id)
+    post.note =  @answer.note
+    post.save
   end
 
   def send_mail
@@ -32,7 +33,9 @@ class AnswersController < InheritedResources::Base
   end
   
   def create
-    create! #( :notice => addressed_notice ) { unaddressed_posts_path }
+    #note = params[:answer][:note]
+    #params[:answer].delete(:note)
+    create! { unaddressed_posts_path }
     post = Post.find_by_id(params[:answer][:post_id])
     post.note =  params[:answer][:note]
     post.save

@@ -10,7 +10,7 @@ class Answer < ActiveRecord::Base
   belongs_to :user
   belongs_to :post
   belongs_to :institution
-  
+
   scope :answered,          where(:answer_status => "answered")
   scope :misplaced,         where(:answer_status => "misplaced")
   scope :waiting,           where(:answer_status => "waiting")
@@ -31,10 +31,6 @@ class Answer < ActiveRecord::Base
   
   def range=(r)
     self.answer_range = AnswerRange.find(r).id if AnswerRange.find(r)
-  end
-
-  def note
-    @note =  post.note
   end
 
   private

@@ -1,9 +1,11 @@
 class OriginalPost < ActiveRecord::Base
-  has_many :posts
-  has_many :attachments, :as => :holder, :dependent => :destroy  
-  
+  has_one :posts
+  has_many :attachments, :as => :holder, :dependent => :destroy
+  #attr_accessible :note
   validates_presence_of :first_name, :last_name, :text
   accepts_nested_attributes_for :attachments
+
+
   
   class << self
     

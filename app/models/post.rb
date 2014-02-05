@@ -2,7 +2,9 @@ class Post < ActiveRecord::Base
   belongs_to :original_post, :dependent => :destroy
   belongs_to :user, :foreign_key => "info_admin_id"
   has_many :answers, :dependent => :destroy
-  #has_many :attachments, :as => :holder, :dependent => :destroy  
+  #has_many :attachments, :as => :holder, :dependent => :destroy
+  accepts_nested_attributes_for  :answers
+
   
   validates_presence_of :post_status_id
   validates_presence_of :title, :summary, :text, :post_kind_id, :sex_id, :tag_group_id
@@ -38,7 +40,11 @@ class Post < ActiveRecord::Base
     end
     
   end # class << self
-  
+
+  #def note
+  #  original_post.note
+  #end
+
   def approved_without_attachment?
     status.approved? and not attachment_added?
   end
