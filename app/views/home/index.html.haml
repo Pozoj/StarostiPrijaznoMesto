@@ -1,7 +1,7 @@
 .container
   .help
     Starosti prijazna mesta je projekt – gibanje, ki teče pod okriljem Svetovne zdravstvene organizacije pri OZN od 2007.
-    = link_to 'Preberi več ...', 'help'
+    = link_to 'Preberi več ...', help_path
   .ten.columns
     = render "posts"
     = render "paginate", :collection => @posts

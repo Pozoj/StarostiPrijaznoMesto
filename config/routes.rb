@@ -4,6 +4,7 @@ Starci::Application.routes.draw do
   resources :help_pages
 
   devise_for  :users, :path => "admins", :controllers => { :sessions => "sessions" }
+  #devise_for  :help_pages, :path => "help", :controllers => { :sessions => "sessions" }
   resources   :access_rights,   :except => [:index, :show, :edit]
   resources :contacts,  :except => [:index, :show]
   

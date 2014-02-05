@@ -3,15 +3,16 @@
     %h4 NAVIGACIJA
     = render "common/navigation_menu"
   .one-third.column
-    %h4 RDEČ GUMB
-    = link_to "Rdeč gumb", red_buttons_path
+    /%h4 RDEČ GUMB
+    %h4
+    = # link_to "Rdeč gumb", red_buttons_path
   .one-third.column
     %h4 O NAS
     %ul
       %li= link_to "O nas",   abouts_path
       %li= link_to "Kontakt", contacts_path
       %li= link_to "Pogoji uporabe", conditions_path
-      %li= link_to "Rdeč gumb", red_buttons_path
+      %li= #link_to "Rdeč gumb", red_buttons_path
       %li= link_to "O projektu", project_infos_path
       %li= link_to "Pomoč", help_path
   .sixteen.columns
