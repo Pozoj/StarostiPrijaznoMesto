@@ -8,4 +8,8 @@
   = f.input :phone
   = f.input :fax
   = f.input :website
+  - if resource.id.nil?
+    = f.input :visible, :as => :radio, :collection => Visible.all, :checked => Visible.invisible
+  - else
+    = f.input :visible, :as => :radio, :collection => Visible.all
   = f.submit
