@@ -4,7 +4,9 @@
   %nav#editors-resource-menu
     %ul
       %li= link_to "Dodaj ustanovo", new_resource_path
+  %h3 Nevidne uporabnikom
   = array_to_link_list(Institution.invisible, "institution")
+  %h3 Vidne uporabnikom
 
 = array_to_link_list(Institution.visible)
 

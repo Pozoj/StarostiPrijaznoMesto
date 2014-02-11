@@ -1,4 +1,9 @@
 = title resource
+- if resource.visible == 'visible'
+  %h5 Viden
+- else
+  %h5 Neviden
+%br
 
 - if can?(:update, resource) or can?(:destroy, resource) or can?(:create, Attachment) or can?(:destroy, Attachment)
   %nav#editors-resource-menu
@@ -24,7 +29,7 @@
       = render "common/default_pic", :pic_name => resource.name
   
 .six.columns.alpha
-  %h3 Infromacije
+  %h3 Informacije
   
   %p
     %strong Naslov:
