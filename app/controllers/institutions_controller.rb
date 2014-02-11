@@ -8,4 +8,8 @@ class InstitutionsController < InheritedResources::Base
     @post_kind_title = "Naziv objave"
     show!
   end
+
+  def visible
+    @institutions = Institution.visible
+  end
 end

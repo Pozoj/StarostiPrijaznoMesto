@@ -12,7 +12,10 @@ class Institution < ActiveRecord::Base
   validates_presence_of :name
   validates_presence_of :description
   validates_presence_of :address
-  
+
+  scope :visible,    where(:visible => "visible")
+  scope :invisible,    where(:visible => "invisible")
+
   def work_time
     work_hours.last
   end
