@@ -925,3 +925,7 @@ textarea {
 }
 
 /***** RAZŠIRITEV POLJA ********/
+
+
+/**** ANTI SPAM HONEY POT (by miha@rebernik.info) ****/
+.original_post_notes { display: none; }
