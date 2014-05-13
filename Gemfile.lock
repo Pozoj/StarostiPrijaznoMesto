@@ -2,7 +2,6 @@ GEM
   remote: http://rubygems.org/
   specs:
     Ascii85 (1.0.2)
-    RedCloth (4.2.9)
     actionmailer (3.2.16)
       actionpack (= 3.2.16)
       mail (~> 2.5.4)
@@ -152,6 +151,7 @@ GEM
     rake (10.1.1)
     rdoc (3.12.2)
       json (~> 1.4)
+    redcarpet (2.1.1)
     responders (1.0.0)
       railties (>= 3.2, < 5)
     rspec (2.14.1)
@@ -216,7 +216,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  RedCloth (~> 4.2.7)
   asset_sync
   aws-sdk
   calendar_helper
@@ -233,6 +232,7 @@ DEPENDENCIES
   pg
   prawn
   rails (>= 3.2.11)
+  redcarpet
   rspec-rails
   sass
   shoulda

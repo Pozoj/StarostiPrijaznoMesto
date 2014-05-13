@@ -14,7 +14,7 @@ gem 'haml'
 gem 'sass'
 gem 'paperclip'
 gem 'will_paginate', '~> 3.0'
-gem "RedCloth", "~> 4.2.7"
+gem 'redcarpet'
 gem "yahoo_weatherman", "~> 1.1.4"
 gem 'aws-sdk'
 gem 'thin'

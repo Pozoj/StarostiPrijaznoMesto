@@ -1,7 +1,7 @@
 = title "Izvorna objava"
 
 = render "common/sender", :original_post => resource
-= render "common/redcloth_it", :content => resource.text
+= render "common/markdown_it", :content => resource.text
 - if resource.attachment_added?  
   .attachment
     %p

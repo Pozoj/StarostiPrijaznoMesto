@@ -11,5 +11,5 @@
     %strong Čas dogodka: 
     %span= l resource.date_and_time_at, :format => :long
   
-  = render "common/redcloth_it", :content => resource.description
+  = render "common/markdown_it", :content => resource.description
 

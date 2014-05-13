@@ -35,11 +35,11 @@
 .post-pack
   .post
     %h5 Objava
-    = render "common/redcloth_it", :content => resource.text
+    = render "common/markdown_it", :content => resource.text
   - if resource.answered?
     .answer
       %h5 Odgovor
-      = render "common/redcloth_it", :content => resource.answer.answer
+      = render "common/markdown_it", :content => resource.answer.answer
 
   - if resource.approved_attachment
     .attachment

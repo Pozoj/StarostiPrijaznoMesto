@@ -9,5 +9,5 @@
       = render "common/new_edit_nav", :collection => collection
       
 - if thing.present?
-  = render "common/redcloth_it", :content => thing.description
+  = render "common/markdown_it", :content => thing.description
   .url= link_to thing.url, thing.url

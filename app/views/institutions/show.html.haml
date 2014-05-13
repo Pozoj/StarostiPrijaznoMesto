@@ -79,10 +79,10 @@
 
 .sixteen.columns
   %h3 Opis
-  = render "common/redcloth_it", :content => resource.description
+  = render "common/markdown_it", :content => resource.description
 
   %h3 Naloge
-  = render "common/redcloth_it", :content => resource.tasks
+  = render "common/markdown_it", :content => resource.tasks
 
   - if can? :update, resource
     %h4 Kontakti
